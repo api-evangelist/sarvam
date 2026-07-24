@@ -1,0 +1,465 @@
+openapi: 3.1.0
+info:
+  title: Endpoints chat pronunciationDictionary API
+  version: 1.0.0
+servers:
+- url: https://api.sarvam.ai
+  description: Production
+tags:
+- name: pronunciationDictionary
+paths:
+  /text-to-speech/pronunciation-dictionary:
+    post:
+      operationId: create
+      summary: Create Pronunciation Dictionary
+      description: 'Upload a `.json` file to create a new pronunciation dictionary. Only supported by **bulbul:v3**.
+
+
+        The file should contain a JSON object with a `pronunciations` key mapping language codes to word-pronunciation pairs. See the [Pronunciation Dictionary guide](/api-reference-docs/api-guides-tutorials/text-to-speech/pronunciation-dictionary) for format details and examples.
+
+
+        The returned `dictionary_id` can be passed as `dict_id` in text-to-speech requests (REST, HTTP Stream, and WebSocket).
+
+
+        **Limits:** Max 10 dictionaries per user, 100 words per dictionary, 1 MB file size.'
+      tags:
+      - pronunciationDictionary
+      parameters:
+      - name: api-subscription-key
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_PronunciationDictionaryResponse'
+        '400':
+          description: Bad Request — Invalid JSON, missing required fields, or bad schema.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '413':
+          description: Payload Too Large — File size exceeds the 1 MB limit.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '422':
+          description: Unprocessable Entity — Word limit exceeded (>100 words per dictionary) or dictionary limit exceeded (>10 dictionaries per user).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '429':
+          description: Quota Exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+              - file
+    get:
+      operationId: list
+      summary: List Pronunciation Dictionaries
+      description: Retrieve a list of all pronunciation dictionary IDs associated with the authenticated user.
+      tags:
+      - pronunciationDictionary
+      parameters:
+      - name: api-subscription-key
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_PronunciationDictionaryGetResponse'
+        '400':
+          description: Bad Request — Invalid JSON, missing required fields, or bad schema.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '429':
+          description: Quota Exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+    put:
+      operationId: update
+      summary: Update Pronunciation Dictionary
+      description: 'Update an existing pronunciation dictionary by uploading a JSON file. You can add new words, change existing pronunciations, or both — entries not included in the uploaded file remain unchanged.
+
+
+        **Limits:** Max 100 words per dictionary, 1 MB file size.
+
+
+        The response includes the `dictionary_id` and the updated pronunciation mappings for verification.'
+      tags:
+      - pronunciationDictionary
+      parameters:
+      - name: dict_id
+        in: query
+        description: ID of the dictionary to update
+        required: true
+        schema:
+          type: string
+      - name: api-subscription-key
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_PronunciationDictionaryUpdateResponse'
+        '400':
+          description: Bad Request — Invalid JSON, missing required fields, or bad schema.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '404':
+          description: Not Found — Dictionary not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '413':
+          description: Payload Too Large — File size exceeds the 1 MB limit.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '422':
+          description: Unprocessable Entity — Word limit exceeded (>100 words per dictionary).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '429':
+          description: Quota Exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+              - file
+    delete:
+      operationId: delete
+      summary: Delete Pronunciation Dictionary
+      description: Delete a pronunciation dictionary by its ID. Once deleted, the dictionary can no longer be referenced in text-to-speech requests.
+      tags:
+      - pronunciationDictionary
+      parameters:
+      - name: dict_id
+        in: query
+        description: ID of the dictionary to delete
+        required: true
+        schema:
+          type: string
+      - name: api-subscription-key
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_PronunciationDictionaryDeleteResponse'
+        '400':
+          description: Bad Request — Invalid JSON, missing required fields, or bad schema.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '404':
+          description: Not Found — Dictionary not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '429':
+          description: Quota Exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+  /text-to-speech/pronunciation-dictionary/{dict_id}:
+    get:
+      operationId: get
+      summary: Get Pronunciation Dictionary
+      description: 'Retrieve the full pronunciation mappings for a specific dictionary by its ID.
+
+
+        Returns the pronunciation data organized by language code, where each language contains word-to-pronunciation pairs.'
+      tags:
+      - pronunciationDictionary
+      parameters:
+      - name: dict_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: api-subscription-key
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_PronunciationDictionaryData'
+        '400':
+          description: Bad Request — Invalid JSON, missing required fields, or bad schema.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '404':
+          description: Not Found — Dictionary not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '429':
+          description: Quota Exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
+components:
+  schemas:
+    Sarvam_Model_API_PronunciationDictionaryUpdateResponse:
+      type: object
+      properties:
+        dictionary_id:
+          type: string
+          description: Unique identifier of the updated dictionary.
+        updated_pronunciations:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: string
+          description: 'The new pronunciation data after the update, organized as `{language_code: {word: pronunciation}}`.'
+      required:
+      - dictionary_id
+      - updated_pronunciations
+      description: Response returned after successfully updating a pronunciation dictionary. Includes the full updated pronunciation data for verification.
+      title: Sarvam_Model_API_PronunciationDictionaryUpdateResponse
+    Sarvam_Model_API_PronunciationDictionaryResponse:
+      type: object
+      properties:
+        dictionary_id:
+          type: string
+          description: Unique identifier for the created dictionary (e.g. `p_5cb7faa6`). Use this as the `dict_id` parameter in text-to-speech requests.
+      required:
+      - dictionary_id
+      description: Response returned after successfully creating a pronunciation dictionary.
+      title: Sarvam_Model_API_PronunciationDictionaryResponse
+    Sarvam_Model_API_PronunciationDictionaryData:
+      type: object
+      properties:
+        pronunciations:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: string
+          description: Pronunciation mappings organized by language code (e.g. `hi-IN`, `en-IN`). Each language maps words to their custom pronunciations.
+      required:
+      - pronunciations
+      description: The full pronunciation data for a dictionary.
+      title: Sarvam_Model_API_PronunciationDictionaryData
+    Sarvam_Model_API_PronunciationDictionaryGetResponse:
+      type: object
+      properties:
+        dictionary_count:
+          type: integer
+          description: Total number of pronunciation dictionaries owned by the user.
+        dictionaries:
+          type: array
+          items:
+            type: string
+          description: List of dictionary IDs.
+      required:
+      - dictionary_count
+      - dictionaries
+      description: Response containing all pronunciation dictionary IDs for the authenticated user.
+      title: Sarvam_Model_API_PronunciationDictionaryGetResponse
+    Sarvam_Model_API_PronunciationDictionaryDeleteResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the deletion was successful.
+        message:
+          type: string
+          description: Human-readable status message (e.g. "Dictionary 'p_5cb7faa6' deleted successfully").
+      required:
+      - success
+      - message
+      description: Response returned after deleting a pronunciation dictionary.
+      title: Sarvam_Model_API_PronunciationDictionaryDeleteResponse
+    Sarvam_Model_API_ErrorCode:
+      type: string
+      enum:
+      - invalid_request_error
+      - internal_server_error
+      - unprocessable_entity_error
+      - insufficient_quota_error
+      - invalid_api_key_error
+      - authentication_error
+      - not_found_error
+      - rate_limit_exceeded_error
+      title: Sarvam_Model_API_ErrorCode
+    Sarvam_Model_API_ErrorMessage:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/Sarvam_Model_API_ErrorDetails'
+          description: Error details
+      required:
+      - error
+      title: Sarvam_Model_API_ErrorMessage
+    Sarvam_Model_API_ErrorDetails:
+      type: object
+      properties:
+        request_id:
+          type:
+          - string
+          - 'null'
+        message:
+          type: string
+          description: Message describing the error
+        code:
+          $ref: '#/components/schemas/Sarvam_Model_API_ErrorCode'
+          description: Error code for the specific error that has occurred. Refer to the error code documentation for more details.
+      required:
+      - request_id
+      - message
+      - code
+      title: Sarvam_Model_API_ErrorDetails
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: api-subscription-key
+    HTTPBearer:
+      type: http
+      scheme: bearer

@@ -1,0 +1,802 @@
+openapi: 3.1.0
+info:
+  title: Endpoints chat documentIntelligence API
+  version: 1.0.0
+servers:
+- url: https://api.sarvam.ai
+  description: Production
+tags:
+- name: documentIntelligence
+paths:
+  /doc-digitization/job/v1:
+    post:
+      operationId: initialise
+      summary: Create Document Intelligence Job
+      description: 'Creates a new Document Intelligence job.
+
+
+        **Supported Languages (BCP-47 format):**
+
+        - `hi-IN`: Hindi (default)
+
+        - `en-IN`: English
+
+        - `bn-IN`: Bengali
+
+        - `gu-IN`: Gujarati
+
+        - `kn-IN`: Kannada
+
+        - `ml-IN`: Malayalam
+
+        - `mr-IN`: Marathi
+
+        - `od-IN`: Odia
+
+        - `pa-IN`: Punjabi
+
+        - `ta-IN`: Tamil
+
+        - `te-IN`: Telugu
+
+        - `ur-IN`: Urdu
+
+        - `as-IN`: Assamese
+
+        - `brx-IN`: Bodo
+
+        - `doi-IN`: Dogri
+
+        - `ks-IN`: Kashmiri
+
+        - `kok-IN`: Konkani
+
+        - `mai-IN`: Maithili
+
+        - `mni-IN`: Manipuri
+
+        - `ne-IN`: Nepali
+
+        - `sa-IN`: Sanskrit
+
+        - `sat-IN`: Santali
+
+        - `sd-IN`: Sindhi
+
+
+        **Output Formats (delivered as ZIP file):**
+
+        - `html`: Structured HTML files with layout preservation
+
+        - `md`: Markdown files (default)
+
+        - `json`: Structured JSON files for programmatic processing'
+      tags:
+      - documentIntelligence
+      parameters:
+      - name: api-subscription-key
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationCreateJobResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+        '429':
+          description: Quota Exceeded / Rate Limited
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocDigitizationCreateJobRequest'
+  /doc-digitization/job/v1/upload-files:
+    post:
+      operationId: get-upload-links
+      summary: Get Document Intelligence Upload URLs
+      description: 'Returns presigned URLs for uploading input files.
+
+
+        **File Constraints:**
+
+        - Exactly one file required (PDF or ZIP)
+
+        - PDF files: `.pdf` extension
+
+        - ZIP files: `.zip` extension'
+      tags:
+      - documentIntelligence
+      parameters:
+      - name: api-subscription-key
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationUploadFilesResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+        '429':
+          description: Quota Exceeded / Rate Limited
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocDigitizationUploadFilesRequest'
+  /doc-digitization/job/v1/{job_id}/start:
+    post:
+      operationId: start
+      summary: Start Document Intelligence Job
+      description: 'Validates the uploaded file and starts processing.
+
+
+        **Validation Checks:**
+
+        - File must be uploaded before starting
+
+        - File size must not exceed 200 MB
+
+        - PDF must be parseable by the PDF parser
+
+        - ZIP must contain only JPEG/PNG images
+
+        - ZIP must be flat (no nested folders beyond one level)
+
+        - ZIP must contain at least one valid image
+
+        - Page/image count must not exceed 10 (returns `422` with `max_page_limit_exceeded` if exceeded)
+
+        - User must have sufficient credits
+
+
+        **Processing:**
+
+        Job runs asynchronously. Poll the status endpoint or use webhook callback for completion notification.'
+      tags:
+      - documentIntelligence
+      parameters:
+      - name: job_id
+        in: path
+        description: The unique identifier of the job
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: api-subscription-key
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationJobStatusResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+        '429':
+          description: Quota Exceeded / Rate Limited
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+  /doc-digitization/job/v1/{job_id}/status:
+    get:
+      operationId: get-status
+      summary: Get Document Intelligence Job Status
+      description: 'Returns the current status of a job with page-level metrics.
+
+
+        **Job States:**
+
+        - `Accepted`: Job created, awaiting file upload
+
+        - `Pending`: File uploaded, waiting to start
+
+        - `Running`: Processing in progress
+
+        - `Completed`: All pages processed successfully
+
+        - `PartiallyCompleted`: Some pages succeeded, some failed
+
+        - `Failed`: All pages failed or job-level error
+
+
+        **Page Metrics:**
+
+        Response includes detailed progress: total pages, pages processed, succeeded, failed, and per-page errors.'
+      tags:
+      - documentIntelligence
+      parameters:
+      - name: job_id
+        in: path
+        description: The unique identifier of the job
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: api-subscription-key
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationJobStatusResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+        '429':
+          description: Quota Exceeded / Rate Limited
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+  /doc-digitization/job/v1/{job_id}/download-files:
+    post:
+      operationId: get-download-links
+      summary: Get Document Intelligence Download URLs
+      description: 'Returns presigned URLs for downloading output files.
+
+
+        **Method:** POST only. A GET request to this path returns 405 Method Not Allowed.
+
+
+        **Prerequisites:**
+
+        - Job must be in `Completed` or `PartiallyCompleted` state
+
+        - Failed jobs have no output available'
+      tags:
+      - documentIntelligence
+      parameters:
+      - name: job_id
+        in: path
+        description: The unique identifier of the job
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: api-subscription-key
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationDownloadFilesResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+        '429':
+          description: Quota Exceeded / Rate Limited
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocDigitizationErrorMessage'
+components:
+  schemas:
+    DocDigitizationJobDetail:
+      type: object
+      properties:
+        inputs:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskFileDetails'
+          description: Input file(s) for this task
+        outputs:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskFileDetails'
+          description: Output file(s) produced
+        state:
+          $ref: '#/components/schemas/DocDigitizationJobDetailState'
+          description: Processing state for this file
+        total_pages:
+          type: integer
+          default: 0
+          description: Total pages/images in the input file
+        pages_processed:
+          type: integer
+          default: 0
+          description: Number of pages processed so far
+        pages_succeeded:
+          type: integer
+          default: 0
+          description: Number of pages successfully processed
+        pages_failed:
+          type: integer
+          default: 0
+          description: Number of pages that failed processing
+        error_message:
+          type: string
+          default: ''
+          description: Error message if processing failed
+        error_code:
+          type:
+          - string
+          - 'null'
+          description: Standardized error code if failed
+        page_errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocDigitizationPageError'
+          description: Detailed errors for each failed page
+      required:
+      - inputs
+      - outputs
+      - state
+      description: Processing details for a single input file with page-level metrics.
+      title: DocDigitizationJobDetail
+    DocDigitizationErrorDetails:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Message describing the error
+        code:
+          $ref: '#/components/schemas/DocDigitizationErrorCode'
+          description: Error code for the specific error that has occurred.
+        request_id:
+          type: string
+          default: ''
+          description: 'Unique identifier for the request. Format: date_UUID4'
+      required:
+      - message
+      - code
+      title: DocDigitizationErrorDetails
+    DocDigitizationPageError:
+      type: object
+      properties:
+        page_number:
+          type: integer
+          description: Page number that failed
+        error_code:
+          type: string
+          description: Standardized error code
+        error_message:
+          type: string
+          description: Human-readable error description
+      required:
+      - page_number
+      - error_code
+      - error_message
+      description: Error details for a specific page.
+      title: DocDigitizationPageError
+    DocDigitizationJobState:
+      type: string
+      enum:
+      - Accepted
+      - Pending
+      - Running
+      - Completed
+      - PartiallyCompleted
+      - Failed
+      description: Current state of the document intelligence job
+      title: DocDigitizationJobState
+    DocDigitizationWebhookCallback:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          description: HTTPS webhook URL to call upon job completion (HTTP not allowed)
+        auth_token:
+          type: string
+          default: ''
+          description: Authorization token sent as X-SARVAM-JOB-CALLBACK-TOKEN header
+      required:
+      - url
+      description: Webhook configuration for job completion notification
+      title: DocDigitizationWebhookCallback
+    DocDigitizationCreateJobResponse:
+      type: object
+      properties:
+        job_id:
+          type: string
+          format: uuid
+          description: Unique job identifier (UUID)
+        storage_container_type:
+          $ref: '#/components/schemas/StorageContainerType'
+          description: Storage Container Type
+        job_parameters:
+          $ref: '#/components/schemas/DocDigitizationJobParameters'
+          description: '  Job configuration parameters'
+        job_state:
+          $ref: '#/components/schemas/DocDigitizationJobState'
+      required:
+      - job_id
+      - storage_container_type
+      - job_parameters
+      - job_state
+      title: DocDigitizationCreateJobResponse
+    DocDigitizationErrorMessage:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DocDigitizationErrorDetails'
+          description: Error details
+      required:
+      - error
+      title: DocDigitizationErrorMessage
+    DocDigitizationJobParameters:
+      type: object
+      properties:
+        language:
+          $ref: '#/components/schemas/DocDigitizationSupportedLanguage'
+          description: Primary language of the document in BCP-47 format (e.g. en-IN, hi-IN). Use this field name — not language_code (which other Sarvam APIs use). Sending language_code is ignored and defaults to hi-IN.
+        output_format:
+          $ref: '#/components/schemas/DocDigitizationOutputFormat'
+          description: 'Output format for the extracted content (delivered as a ZIP file). Accepted values: md, html, json. Use md for Markdown — not markdown (returns 400).'
+      description: Configuration parameters for Document Intelligence job. Specify the document language and desired output format.
+      title: DocDigitizationJobParameters
+    StorageContainerType:
+      type: string
+      enum:
+      - Azure
+      - Local
+      - Google
+      - Azure_V1
+      title: StorageContainerType
+    DocDigitizationOutputFormat:
+      type: string
+      enum:
+      - html
+      - md
+      - json
+      description: ' Output format for extracted document content, delivered as a ZIP file. ''html'' returns structured HTML files, ''md'' returns human-readable Markdown files, ''json'' returns structured JSON files for programmatic processing.'
+      title: DocDigitizationOutputFormat
+    DocDigitizationErrorCode:
+      type: string
+      enum:
+      - invalid_request_error
+      - internal_server_error
+      - insufficient_quota_error
+      - invalid_api_key_error
+      - rate_limit_exceeded_error
+      - high_load_error
+      title: DocDigitizationErrorCode
+    DocDigitizationJobStatusResponse:
+      type: object
+      properties:
+        job_id:
+          type: string
+          format: uuid
+          description: Job identifier (UUID)
+        job_state:
+          $ref: '#/components/schemas/DocDigitizationJobState'
+          description: Current job state
+        created_at:
+          type: string
+          format: date-time
+          description: Job creation timestamp (ISO 8601)
+        updated_at:
+          type: string
+          format: date-time
+          description: Last update timestamp (ISO 8601)
+        storage_container_type:
+          $ref: '#/components/schemas/StorageContainerType'
+          description: Storage backend type
+        total_files:
+          type: integer
+          default: 0
+          description: Total input files (always 1)
+        successful_files_count:
+          type: integer
+          default: 0
+          description: Files that completed successfully
+        failed_files_count:
+          type: integer
+          default: 0
+          description: Files that failed
+        error_message:
+          type: string
+          default: ''
+          description: Job-level error message
+        job_details:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocDigitizationJobDetail'
+          description: Per-file processing details with page metrics
+      required:
+      - job_id
+      - job_state
+      - created_at
+      - updated_at
+      - storage_container_type
+      description: Response model for job status endpoint.
+      title: DocDigitizationJobStatusResponse
+    TaskFileDetails:
+      type: object
+      properties:
+        file_name:
+          type: string
+        file_id:
+          type: string
+      required:
+      - file_name
+      - file_id
+      title: TaskFileDetails
+    DocDigitizationSupportedLanguage:
+      type: string
+      enum:
+      - hi-IN
+      - en-IN
+      - bn-IN
+      - gu-IN
+      - kn-IN
+      - ml-IN
+      - mr-IN
+      - od-IN
+      - pa-IN
+      - ta-IN
+      - te-IN
+      - ur-IN
+      - as-IN
+      - brx-IN
+      - doi-IN
+      - ks-IN
+      - kok-IN
+      - mai-IN
+      - mni-IN
+      - ne-IN
+      - sa-IN
+      - sat-IN
+      - sd-IN
+      description: 'BCP-47 language code specifying the primary language of the document. Supports 23 languages: 22 Indian languages (Hindi, Bengali, Tamil, Telugu, Marathi, Gujarati, Kannada, Malayalam, Odia, Punjabi, Assamese, Urdu, Sanskrit, Nepali, Konkani, Maithili, Sindhi, Kashmiri, Dogri, Manipuri, Bodo, Santali) and English language.'
+      title: DocDigitizationSupportedLanguage
+    DocDigitizationJobDetailState:
+      type: string
+      enum:
+      - Pending
+      - Running
+      - Success
+      - PartialSuccess
+      - Failed
+      description: Processing state for individual file
+      title: DocDigitizationJobDetailState
+    DocDigitizationCreateJobRequest:
+      type: object
+      properties:
+        job_parameters:
+          $ref: '#/components/schemas/DocDigitizationJobParameters'
+          description: Configuration parameters for the Document Intelligence job including language and output format. Defaults to Hindi (hi-IN) and Markdown output if omitted.
+        callback:
+          oneOf:
+          - $ref: '#/components/schemas/DocDigitizationWebhookCallback'
+          - type: 'null'
+          description: Optional webhook for completion notification
+      description: Request body for creating a new document intelligence job
+      title: DocDigitizationCreateJobRequest
+    FileSignedURLDetails:
+      type: object
+      properties:
+        file_url:
+          type: string
+        file_metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            description: Any type
+      required:
+      - file_url
+      title: FileSignedURLDetails
+    DocDigitizationDownloadFilesResponse:
+      type: object
+      properties:
+        job_id:
+          type: string
+          format: uuid
+          description: Job identifier (UUID)
+        job_state:
+          $ref: '#/components/schemas/DocDigitizationJobState'
+          description: Current job state
+        storage_container_type:
+          $ref: '#/components/schemas/StorageContainerType'
+          description: Storage backend type
+        download_urls:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/FileSignedURLDetails'
+          description: Map of filename to presigned download URL details
+        error_code:
+          type:
+          - string
+          - 'null'
+        error_message:
+          type:
+          - string
+          - 'null'
+      required:
+      - job_id
+      - job_state
+      - storage_container_type
+      - download_urls
+      description: Response for download-files endpoint.
+      title: DocDigitizationDownloadFilesResponse
+    DocDigitizationUploadFilesRequest:
+      type: object
+      properties:
+        job_id:
+          type: string
+          description: Job identifier returned from Create Job
+        files:
+          type: array
+          items:
+            type: string
+          description: 'List of filenames to upload (exactly 1 file: PDF or ZIP)'
+      required:
+      - job_id
+      - files
+      description: Request to get upload URLs for job files
+      title: DocDigitizationUploadFilesRequest
+    DocDigitizationUploadFilesResponse:
+      type: object
+      properties:
+        job_id:
+          type: string
+          format: uuid
+          description: Job identifier
+        job_state:
+          $ref: '#/components/schemas/DocDigitizationJobState'
+          description: Current job state
+        upload_urls:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/FileSignedURLDetails'
+          description: Map of filename to presigned upload URL details
+        storage_container_type:
+          $ref: '#/components/schemas/StorageContainerType'
+          description: Storage backend type
+      required:
+      - job_id
+      - job_state
+      - upload_urls
+      - storage_container_type
+      description: Response with presigned upload URLs
+      title: DocDigitizationUploadFilesResponse
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: api-subscription-key
+    HTTPBearer:
+      type: http
+      scheme: bearer

@@ -1,0 +1,673 @@
+openapi: 3.1.0
+info:
+  title: Endpoints chat API
+  version: 1.0.0
+servers:
+- url: https://api.sarvam.ai
+  description: Production
+tags:
+- name: chat
+paths:
+  /v1/chat/completions:
+    post:
+      operationId: completions
+      summary: Chat Completions
+      tags:
+      - chat
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      - name: api-subscription-key
+        in: header
+        description: "API subscription key in sk_xxx format.\n        [Steps to get your key](https://docs.sarvam.ai/api-reference-docs/authentication)"
+        required: false
+        schema:
+          type:
+          - string
+          - 'null'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateChatCompletionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '429':
+          description: Quota Exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateChatCompletionRequest'
+components:
+  schemas:
+    FunctionDefinition:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the function to be called.
+        description:
+          type:
+          - string
+          - 'null'
+          description: A description of what the function does.
+        parameters:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            description: Any type
+          description: The parameters the function accepts, described as a JSON Schema object.
+      required:
+      - name
+      title: FunctionDefinition
+    ErrorDetails:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Message describing the error
+        code:
+          $ref: '#/components/schemas/ErrorCode'
+          description: Error code for the specific error that has occurred. Refer to the error code documentation for more details.
+        request_id:
+          type: string
+          default: ''
+          description: 'Unique identifier for the request. Format: date_UUID4'
+      required:
+      - message
+      - code
+      title: ErrorDetails
+    ChatCompletionNamedToolChoiceFunction:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the function to call.
+      required:
+      - name
+      title: ChatCompletionNamedToolChoiceFunction
+    ErrorMessage:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorDetails'
+          description: Error details
+      required:
+      - error
+      title: ErrorMessage
+    CreateChatCompletionRequest:
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChatCompletionRequestMessage'
+          description: A list of messages comprising the conversation so far.
+        model:
+          $ref: '#/components/schemas/SarvamModelIds'
+          description: Chat model ID. Use `sarvam-30b` (64K context) or `sarvam-105b` (128K context).
+        temperature:
+          type:
+          - number
+          - 'null'
+          format: double
+          default: 0.2
+          description: 'What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
+
+            We generally recommend altering this or `top_p` but not both.
+
+            '
+        top_p:
+          type:
+          - number
+          - 'null'
+          format: double
+          default: 1
+          description: 'An alternative to sampling with temperature, called nucleus sampling,
+
+            where the model considers the results of the tokens with top_p probability
+
+            mass. So 0.1 means only the tokens comprising the top 10% probability mass
+
+            are considered.
+
+
+            We generally recommend altering this or `temperature` but not both.
+
+            '
+        reasoning_effort:
+          oneOf:
+          - $ref: '#/components/schemas/ReasoningEffort'
+          - type: 'null'
+          default: medium
+          description: The effort to use for reasoning. Can be disabled by explicitly setting to None. Default is 'medium'.
+        max_tokens:
+          type:
+          - integer
+          - 'null'
+          default: 2048
+          description: The maximum number of tokens that can be generated in the chat completion.
+        stream:
+          type:
+          - boolean
+          - 'null'
+          default: false
+          description: 'If set to true, the model response data will be streamed to the client
+
+            as it is generated using [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format).'
+        stop:
+          oneOf:
+          - $ref: '#/components/schemas/StopConfiguration'
+          - type: 'null'
+        n:
+          type:
+          - integer
+          - 'null'
+          default: 1
+          description: How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs.
+        seed:
+          type:
+          - integer
+          - 'null'
+          description: 'This feature is in Beta.
+
+            If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.
+
+            Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend.
+
+            '
+        frequency_penalty:
+          type:
+          - number
+          - 'null'
+          format: double
+          default: 0
+          description: 'Number between -2.0 and 2.0. Positive values penalize new tokens based on
+
+            their existing frequency in the text so far, decreasing the model''s
+
+            likelihood to repeat the same line verbatim.
+
+            '
+        presence_penalty:
+          type:
+          - number
+          - 'null'
+          format: double
+          default: 0
+          description: 'Number between -2.0 and 2.0. Positive values penalize new tokens based on
+
+            whether they appear in the text so far, increasing the model''s likelihood
+
+            to talk about new topics.
+
+            '
+        wiki_grounding:
+          type:
+          - boolean
+          - 'null'
+          default: false
+          description: If set to true, the model response will be wiki grounded.
+        tools:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ChatCompletionTool'
+          description: A list of tools the model may call. Currently, only functions are supported as a tool.
+        tool_choice:
+          oneOf:
+          - $ref: '#/components/schemas/ToolChoiceOption'
+          - type: 'null'
+          description: Controls which (if any) tool is called by the model.
+        response_format:
+          oneOf:
+          - $ref: '#/components/schemas/ResponseFormat'
+          - type: 'null'
+          description: 'An object specifying the format that the model must output. Setting `{ "type": "json_schema", "json_schema": {...} }` enables Structured Outputs which guarantees the model generates output matching the supplied JSON Schema. Setting `{ "type": "json_object" }` enables the older JSON mode, which guarantees valid JSON but not a specific schema.'
+      required:
+      - messages
+      - model
+      title: CreateChatCompletionRequest
+    Choice:
+      type: object
+      properties:
+        finish_reason:
+          $ref: '#/components/schemas/FinishReason'
+          description: 'The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence,
+
+            `length` if the maximum number of tokens specified in the request was reached,
+
+            `content_filter` if content was omitted due to a flag from our content filters,
+
+            `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.
+
+            '
+        index:
+          type: integer
+          description: The index of the choice in the list of choices.
+        logprobs:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            description: Any type
+        message:
+          $ref: '#/components/schemas/ChatCompletionResponseMessage'
+      required:
+      - finish_reason
+      - index
+      - message
+      title: Choice
+    ReasoningEffort:
+      type: string
+      enum:
+      - low
+      - medium
+      - high
+      title: ReasoningEffort
+    ToolChoiceOption0:
+      type: string
+      enum:
+      - none
+      - auto
+      - required
+      title: ToolChoiceOption0
+    JsonSchemaDefinition:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the response format. Must contain only alphanumeric characters, underscores and dashes.
+        description:
+          type:
+          - string
+          - 'null'
+          description: A description of what the response format is for, used by the model to determine how to respond in the format.
+        schema:
+          oneOf:
+          - $ref: '#/components/schemas/JsonSchemaDefinitionSchema'
+          - type: 'null'
+          description: The schema for the response format, described as a JSON Schema object.
+        strict:
+          type:
+          - boolean
+          - 'null'
+          default: false
+          description: Whether to enable strict schema adherence when generating the output.
+      required:
+      - name
+      title: JsonSchemaDefinition
+    ToolChoiceOption:
+      oneOf:
+      - $ref: '#/components/schemas/ToolChoiceOption0'
+      - $ref: '#/components/schemas/ChatCompletionNamedToolChoice'
+      title: ToolChoiceOption
+    CreateChatCompletionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: A unique identifier for the chat completion.
+        choices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Choice'
+          description: A list of chat completion choices. Can be more than one if `n` is greater than 1.
+        created:
+          type: integer
+          description: The Unix timestamp (in seconds) of when the chat completion was created.
+        model:
+          type: string
+          description: The model used for the chat completion.
+        object:
+          type: string
+          enum:
+          - chat.completion
+          description: The object type, which is always `chat.completion`.
+        service_tier:
+          type:
+          - string
+          - 'null'
+        system_fingerprint:
+          type:
+          - string
+          - 'null'
+        usage:
+          oneOf:
+          - $ref: '#/components/schemas/CompletionUsage'
+          - type: 'null'
+      required:
+      - id
+      - choices
+      - created
+      - model
+      - object
+      title: CreateChatCompletionResponse
+    ChatCompletionResponseMessage:
+      type: object
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+          description: The contents of the message.
+        refusal:
+          type:
+          - string
+          - 'null'
+        reasoning_content:
+          type:
+          - string
+          - 'null'
+          description: The contents of the reasoning message.
+        role:
+          $ref: '#/components/schemas/Role'
+          description: The role of the author of this message.
+        tool_calls:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ChatCompletionMessageToolCall'
+          description: The tool calls generated by the model.
+      required:
+      - content
+      - role
+      title: ChatCompletionResponseMessage
+    CompletionUsage:
+      type: object
+      properties:
+        completion_tokens:
+          type: integer
+          description: Number of tokens in the generated completion.
+        prompt_tokens:
+          type: integer
+          description: Number of tokens in the prompt.
+        total_tokens:
+          type: integer
+          description: Total number of tokens used in the request (prompt + completion).
+        completion_tokens_details:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            description: Any type
+        prompt_tokens_details:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            description: Any type
+      required:
+      - completion_tokens
+      - prompt_tokens
+      - total_tokens
+      title: CompletionUsage
+    ChatCompletionTool:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - function
+          description: The type of the tool. Currently, only `function` is supported.
+        function:
+          $ref: '#/components/schemas/FunctionDefinition'
+      required:
+      - type
+      - function
+      title: ChatCompletionTool
+    ChatCompletionNamedToolChoice:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - function
+          description: The type of the tool. Currently, only `function` is supported.
+        function:
+          $ref: '#/components/schemas/ChatCompletionNamedToolChoiceFunction'
+      required:
+      - type
+      - function
+      title: ChatCompletionNamedToolChoice
+    ResponseFormat:
+      oneOf:
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+            - text
+            description: The type of response format being defined. Always `text`.
+        required:
+        - type
+        description: ResponseFormatText variant
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+            - json_object
+            description: The type of response format being defined. Always `json_object`.
+        required:
+        - type
+        description: ResponseFormatJsonObject variant
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+            - json_schema
+            description: The type of response format being defined. Always `json_schema`.
+          json_schema:
+            $ref: '#/components/schemas/JsonSchemaDefinition'
+            description: Structured Outputs configuration options, including a JSON Schema.
+        required:
+        - type
+        - json_schema
+        description: ResponseFormatJsonSchema variant
+      discriminator:
+        propertyName: type
+      title: ResponseFormat
+    ChatCompletionMessageToolCall:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the tool call.
+        type:
+          type: string
+          enum:
+          - function
+          description: The type of the tool call, currently only `function`.
+        function:
+          $ref: '#/components/schemas/FunctionCall'
+      required:
+      - id
+      - type
+      - function
+      title: ChatCompletionMessageToolCall
+    StopConfiguration:
+      oneOf:
+      - type: string
+      - type: array
+        items:
+          type: string
+      description: 'Up to 4 sequences where the API will stop generating further tokens. The
+
+        returned text will not contain the stop sequence.
+
+        '
+      title: StopConfiguration
+    ChatCompletionRequestMessage:
+      oneOf:
+      - type: object
+        properties:
+          role:
+            type: string
+            enum:
+            - assistant
+            description: 'Discriminator value: assistant'
+          content:
+            type:
+            - string
+            - 'null'
+            description: 'The contents of the assistant message
+
+              '
+          tool_calls:
+            type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/ChatCompletionMessageToolCall'
+            description: The tool calls generated by the model.
+        required:
+        - role
+        description: ChatCompletionRequestAssistantMessage variant
+      - type: object
+        properties:
+          role:
+            type: string
+            enum:
+            - system
+            description: The role of the messages author, in this case `system`.
+          content:
+            type: string
+            description: The contents of the system message.
+        required:
+        - role
+        - content
+        description: ChatCompletionRequestSystemMessage variant
+      - type: object
+        properties:
+          role:
+            type: string
+            enum:
+            - tool
+            description: The role of the messages author, in this case `tool`.
+          content:
+            type: string
+            description: The contents of the tool message.
+          tool_call_id:
+            type: string
+            description: Tool call that this message is responding to.
+        required:
+        - role
+        - content
+        - tool_call_id
+        description: ChatCompletionRequestToolMessage variant
+      - type: object
+        properties:
+          role:
+            type: string
+            enum:
+            - user
+            description: The role of the messages author, in this case `user`.
+          content:
+            type: string
+            description: 'The contents of the user message.
+
+              '
+        required:
+        - role
+        - content
+        description: ChatCompletionRequestUserMessage variant
+      discriminator:
+        propertyName: role
+      title: ChatCompletionRequestMessage
+    FunctionCall:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the function to call.
+        arguments:
+          type: string
+          description: The arguments to call the function with, as a JSON string.
+      required:
+      - name
+      - arguments
+      title: FunctionCall
+    Role:
+      type: string
+      enum:
+      - assistant
+      title: Role
+    SarvamModelIds:
+      type: string
+      enum:
+      - sarvam-105b
+      - sarvam-30b
+      description: 'Supported chat completion model IDs: `sarvam-30b`, `sarvam-105b`.'
+      title: SarvamModelIds
+    FinishReason:
+      type: string
+      enum:
+      - stop
+      - length
+      - tool_calls
+      - content_filter
+      - function_call
+      title: FinishReason
+    JsonSchemaDefinitionSchema:
+      type: object
+      properties: {}
+      description: The schema for the response format, described as a JSON Schema object.
+      title: JsonSchemaDefinitionSchema
+    ErrorCode:
+      type: string
+      enum:
+      - invalid_request_error
+      - internal_server_error
+      - unprocessable_entity_error
+      - insufficient_quota_error
+      - invalid_api_key_error
+      - authentication_error
+      - rate_limit_exceeded_error
+      - not_found_error
+      title: ErrorCode
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: api-subscription-key
+    HTTPBearer:
+      type: http
+      scheme: bearer
