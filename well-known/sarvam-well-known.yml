@@ -1,0 +1,29 @@
+generated: '2026-07-21'
+method: searched
+hosts:
+- https://api.sarvam.ai
+- https://docs.sarvam.ai
+- https://www.sarvam.ai
+documents:
+- path: /.well-known/security.txt
+  host: https://api.sarvam.ai
+  status: 404
+- path: /.well-known/security.txt
+  host: https://docs.sarvam.ai
+  status: 404
+- path: /.well-known/security.txt
+  host: https://www.sarvam.ai
+  status: 404
+- path: /.well-known/openid-configuration
+  host: https://api.sarvam.ai
+  status: 404
+- path: /.well-known/oauth-authorization-server
+  host: https://api.sarvam.ai
+  status: 404
+- path: /.well-known/api-catalog
+  host: https://api.sarvam.ai
+  status: 404
+notes: >-
+  No /.well-known/ discovery documents are published on the api, docs, or www
+  hosts as of the probe date. API-key auth (no OAuth/OIDC) explains the absence
+  of openid-configuration / oauth-authorization-server.

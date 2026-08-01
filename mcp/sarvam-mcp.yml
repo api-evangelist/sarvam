@@ -1,0 +1,18 @@
+generated: '2026-07-21'
+method: searched
+status: published
+source: https://docs.sarvam.ai/api/getting-started/sdks
+server:
+  name: sarvam-docs
+  description: >-
+    Sarvam's official hosted MCP server exposing live documentation search for
+    AI clients (Claude Code, Cursor, etc.). Advertised across the docs and in
+    llms.txt.
+  transport: http
+  url: https://docs.sarvam.ai/_mcp/server
+notes: >-
+  This is a documentation-search MCP server hosted by Sarvam, not a full API
+  action server. The underlying REST API (https://api.sarvam.ai) has 28
+  operations across speech-to-text, text-to-speech, translation, chat, and
+  document digitization that could back a future API-action MCP server; see
+  openapi/sarvam-openapi-original.json for the operation set.

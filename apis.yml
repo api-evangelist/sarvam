@@ -1,24 +1,212 @@
 aid: sarvam
 name: Sarvam
-description: 'Sarvam is a company surfaced as a portfolio company of bessemer-venture-partners and added
-  to the API Evangelist network as a stub for enrichment. Sector: ai-ml. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: >-
+  Sarvam AI is an Indian-language AI platform offering a unified REST and
+  WebSocket API across speech-to-text (Saaras / Saarika), text-to-speech
+  (Bulbul, 30+ voices), translation and transliteration (Mayura /
+  Sarvam-Translate) for 22 Indian languages, multilingual chat completion
+  (Sarvam-30B and Sarvam-105B, OpenAI-compatible), and document digitization
+  (Sarvam Vision). The API is authenticated with an api-subscription-key header,
+  billed in Indian Rupees with ₹100 free credits on signup, and shipped with
+  official Python and JavaScript SDKs, published OpenAPI and AsyncAPI specs, a
+  documentation MCP server, a status page, and a dated changelog. Sarvam is
+  backed by Bessemer Venture Partners.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://avatars.githubusercontent.com/u/139587482?v=4
 url: https://raw.githubusercontent.com/api-evangelist/sarvam/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - bessemer-venture-partners
-x-tier: stub
+x-tier: enriched
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Ai Ml
-apis: []
+- Artificial Intelligence
+- Machine Learning
+- Speech To Text
+- Text To Speech
+- Translation
+- Large Language Models
+- Document Intelligence
+- Indian Languages
+- Voice
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: sarvam:sarvam-chat-api
+  name: Sarvam chat API
+  description: The chat API from Sarvam — 1 operation(s) for chat.
+  humanURL: https://docs.sarvam.ai/api-reference/introduction
+  baseURL: https://api.sarvam.ai
+  tags:
+  - chat
+  properties:
+  - type: OpenAPI
+    url: openapi/sarvam-chat-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/sarvam-streaming-asyncapi.yaml
+- aid: sarvam:sarvam-documentintelligence-api
+  name: Sarvam documentIntelligence API
+  description: The documentIntelligence API from Sarvam — 5 operation(s) for documentintelligence.
+  humanURL: https://docs.sarvam.ai/api-reference/introduction
+  baseURL: https://api.sarvam.ai
+  tags:
+  - documentIntelligence
+  properties:
+  - type: OpenAPI
+    url: openapi/sarvam-documentintelligence-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/sarvam-streaming-asyncapi.yaml
+- aid: sarvam:sarvam-pronunciationdictionary-api
+  name: Sarvam pronunciationDictionary API
+  description: >-
+    The pronunciationDictionary API from Sarvam — 2 operation(s) for pronunciationdictionary.
+  humanURL: https://docs.sarvam.ai/api-reference/introduction
+  baseURL: https://api.sarvam.ai
+  tags:
+  - pronunciationDictionary
+  properties:
+  - type: OpenAPI
+    url: openapi/sarvam-pronunciationdictionary-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/sarvam-streaming-asyncapi.yaml
+- aid: sarvam:sarvam-speechtotext-api
+  name: Sarvam speechToText API
+  description: The speechToText API from Sarvam — 2 operation(s) for speechtotext.
+  humanURL: https://docs.sarvam.ai/api-reference/introduction
+  baseURL: https://api.sarvam.ai
+  tags:
+  - speechToText
+  properties:
+  - type: OpenAPI
+    url: openapi/sarvam-speechtotext-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/sarvam-streaming-asyncapi.yaml
+- aid: sarvam:sarvam-speechtotextjob-api
+  name: Sarvam speechToTextJob API
+  description: The speechToTextJob API from Sarvam — 5 operation(s) for speechtotextjob.
+  humanURL: https://docs.sarvam.ai/api-reference/introduction
+  baseURL: https://api.sarvam.ai
+  tags:
+  - speechToTextJob
+  properties:
+  - type: OpenAPI
+    url: openapi/sarvam-speechtotextjob-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/sarvam-streaming-asyncapi.yaml
+- aid: sarvam:sarvam-speechtotexttranslatejob-api
+  name: Sarvam speechToTextTranslateJob API
+  description: >-
+    The speechToTextTranslateJob API from Sarvam — 5 operation(s) for speechtotexttranslatejob.
+  humanURL: https://docs.sarvam.ai/api-reference/introduction
+  baseURL: https://api.sarvam.ai
+  tags:
+  - speechToTextTranslateJob
+  properties:
+  - type: OpenAPI
+    url: openapi/sarvam-speechtotexttranslatejob-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/sarvam-streaming-asyncapi.yaml
+- aid: sarvam:sarvam-text-api
+  name: Sarvam text API
+  description: The text API from Sarvam — 3 operation(s) for text.
+  humanURL: https://docs.sarvam.ai/api-reference/introduction
+  baseURL: https://api.sarvam.ai
+  tags:
+  - text
+  properties:
+  - type: OpenAPI
+    url: openapi/sarvam-text-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/sarvam-streaming-asyncapi.yaml
+- aid: sarvam:sarvam-texttospeech-api
+  name: Sarvam textToSpeech API
+  description: The textToSpeech API from Sarvam — 2 operation(s) for texttospeech.
+  humanURL: https://docs.sarvam.ai/api-reference/introduction
+  baseURL: https://api.sarvam.ai
+  tags:
+  - textToSpeech
+  properties:
+  - type: OpenAPI
+    url: openapi/sarvam-texttospeech-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/sarvam-streaming-asyncapi.yaml
+common:
+- type: DeveloperPortal
+  url: https://docs.sarvam.ai
+- type: Documentation
+  url: https://docs.sarvam.ai
+- type: APIReference
+  url: https://docs.sarvam.ai/api-reference/introduction
+- type: GettingStarted
+  url: https://docs.sarvam.ai/api/getting-started/quickstart
+- type: Pricing
+  url: https://docs.sarvam.ai/api/getting-started/pricing
+- type: SignUp
+  url: https://dashboard.sarvam.ai
+- type: Support
+  url: https://docs.sarvam.ai/api/getting-started/help
+- type: GitHubOrganization
+  url: https://github.com/sarvamai
+- type: TermsOfService
+  url: https://www.sarvam.ai/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.sarvam.ai/privacy-policy
+- type: StatusPage
+  url: https://status.sarvam.ai
+- type: Deprecation
+  url: https://docs.sarvam.ai/api/getting-started/changelog
+- type: ChangeLog
+  url: changelog/sarvam-changelog.yml
+- type: Authentication
+  url: authentication/sarvam-authentication.yml
+- type: Packages
+  url: packages/sarvam-packages.yml
+- type: SDKs
+  url: packages/sarvam-packages.yml
+- type: MCPServer
+  url: mcp/sarvam-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/sarvam-llms.txt
+- type: Overlay
+  url: overlays/sarvam-openapi-overlay.yaml
+- type: Conformance
+  url: conformance/sarvam-conformance.yml
+- type: ErrorCatalog
+  url: errors/sarvam-error-codes.yml
+- type: Lifecycle
+  url: lifecycle/sarvam-lifecycle.yml
+- type: Conventions
+  url: conventions/sarvam-conventions.yml
+- type: DataModel
+  url: data-model/sarvam-data-model.yml
+- type: DomainSecurity
+  url: security/sarvam-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/sarvam-agentic-access.yml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 20
+  pass: local-v1

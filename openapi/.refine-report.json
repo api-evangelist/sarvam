@@ -1,0 +1,28 @@
+{
+  "provider": "sarvam",
+  "sources": [
+    "sarvam-chat-api-openapi.yml",
+    "sarvam-documentintelligence-api-openapi.yml",
+    "sarvam-pronunciationdictionary-api-openapi.yml",
+    "sarvam-speechtotext-api-openapi.yml",
+    "sarvam-speechtotextjob-api-openapi.yml",
+    "sarvam-speechtotexttranslatejob-api-openapi.yml",
+    "sarvam-text-api-openapi.yml",
+    "sarvam-texttospeech-api-openapi.yml"
+  ],
+  "outputs": [
+    "sarvam-chat-api-openapi.yml",
+    "sarvam-documentintelligence-api-openapi.yml",
+    "sarvam-pronunciationdictionary-api-openapi.yml",
+    "sarvam-speechtotext-api-openapi.yml",
+    "sarvam-speechtotextjob-api-openapi.yml",
+    "sarvam-speechtotexttranslatejob-api-openapi.yml",
+    "sarvam-text-api-openapi.yml",
+    "sarvam-texttospeech-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

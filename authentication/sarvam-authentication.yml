@@ -1,0 +1,27 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/sarvam-openapi-original.json
+docs: https://docs.sarvam.ai/api-reference/authentication
+notes: >-
+  Primary auth is an API key sent in the `api-subscription-key` header;
+  `Authorization: Bearer <key>` is also accepted. Keys are generated manually
+  in the Sarvam dashboard. Authentication failures return HTTP 403 (not 401)
+  with error.code `invalid_api_key_error`. The SDK also reads SARVAM_API_KEY.
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: api-subscription-key
+  sources:
+  - openapi/sarvam-openapi-original.json
+- name: HTTPBearer
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/sarvam-openapi-original.json

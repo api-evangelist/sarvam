@@ -1,0 +1,29 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sarvam.ai/api/getting-started/sdks
+packages:
+- language: python
+  registry: pypi
+  name: sarvamai
+  url: https://pypi.org/project/sarvamai/
+  install: pip install sarvamai
+  repository: https://github.com/sarvamai/sarvam-python-sdk
+  version: 0.1.28
+  official: true
+  clients:
+  - SarvamAI
+  - AsyncSarvamAI
+- language: javascript
+  registry: npm
+  name: sarvamai
+  url: https://www.npmjs.com/package/sarvamai
+  install: npm install sarvamai
+  repository: https://github.com/sarvamai/sarvam-javascript-sdk
+  version: 1.1.7
+  official: true
+  clients:
+  - SarvamAIClient
+notes: >-
+  Python and JavaScript/TypeScript are the two first-class, hand-tested SDKs.
+  Per-endpoint snippets in other languages (cURL, Go, Swift, etc.) shown on the
+  API Reference are auto-generated request examples, not supported SDKs.

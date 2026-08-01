@@ -1,0 +1,20 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/sarvam-openapi-original.json
+skills:
+- file: sarvam-transcribe-speech.md
+  name: Transcribe Indian-language speech
+  api: openapi/sarvam-openapi-original.json
+  operations: [transcribe]
+- file: sarvam-text-to-speech.md
+  name: Synthesize speech from text
+  api: openapi/sarvam-openapi-original.json
+  operations: [convert, convert-stream]
+- file: sarvam-translate-text.md
+  name: Translate and transliterate text
+  api: openapi/sarvam-openapi-original.json
+  operations: [translate, transliterate, identify-language]
+- file: sarvam-chat-completion.md
+  name: Chat completion with Sarvam LLMs
+  api: openapi/sarvam-openapi-original.json
+  operations: [completions]

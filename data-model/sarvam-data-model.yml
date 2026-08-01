@@ -1,0 +1,37 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/sarvam-openapi-original.json
+notes: >-
+  Derived from OpenAPI paths and identifier fields. Sarvam is largely a
+  stateless inference API (transcribe/translate/synthesize/chat return results
+  inline); the only persistent, addressable resources are async Jobs and
+  Pronunciation Dictionaries.
+entities:
+- name: Job
+  id_field: job_id
+  kinds: [speech-to-text, speech-to-text-translate, doc-digitization]
+  lifecycle: [initialise, upload-files, start, status, download-files]
+  operations:
+  - openapi/sarvam-openapi-original.json#initialise
+  - openapi/sarvam-openapi-original.json#get-upload-links
+  - openapi/sarvam-openapi-original.json#start
+  - openapi/sarvam-openapi-original.json#get-status
+  - openapi/sarvam-openapi-original.json#get-download-links
+- name: PronunciationDictionary
+  id_field: dict_id
+  operations:
+  - openapi/sarvam-openapi-original.json#create
+  - openapi/sarvam-openapi-original.json#list
+  - openapi/sarvam-openapi-original.json#update
+  - openapi/sarvam-openapi-original.json#delete
+  - openapi/sarvam-openapi-original.json#get
+- name: ChatCompletion
+  id_field: null
+  stateless: true
+  operations:
+  - openapi/sarvam-openapi-original.json#completions
+relationships:
+- from: Job
+  to: PronunciationDictionary
+  type: none
+  notes: Independent resources; no cross-references between the two entity families.

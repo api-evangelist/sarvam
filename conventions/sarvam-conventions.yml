@@ -1,0 +1,45 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sarvam.ai/api/getting-started/quickstart
+authentication:
+  style: api-key-header
+  header: api-subscription-key
+  bearer_alternative: 'Authorization: Bearer <key>'
+  ref: authentication/sarvam-authentication.yml
+idempotency:
+  supported: false
+  notes: No idempotency-key header or documented idempotency contract as of the capture date.
+pagination:
+  supported: false
+  notes: >-
+    No cursor/offset pagination surface; list endpoints (e.g. pronunciation
+    dictionary) return full collections. Large speech/document workloads use the
+    async job model instead of pagination.
+async_jobs:
+  style: job-poll
+  pattern: >-
+    Long-running speech-to-text, speech-to-text-translate, and document
+    digitization work uses a job lifecycle: initialise -> upload-files ->
+    {job_id}/start -> poll {job_id}/status -> download-files.
+  poll_defaults:
+    batch_stt: 5s
+    doc_digitization: 2s
+  ref: openapi/sarvam-openapi-original.json
+error_envelope:
+  shape: '{ "error": { "message": "...", "code": "..." } }'
+  auth_status: 403
+  ref: errors/sarvam-error-codes.yml
+rate_limiting:
+  model: token-bucket
+  enforcement: per-account (all API keys share one pool)
+  granularity: per-API (REST, WebSocket, Vision, LLM have independent limits)
+  statuses: [429, 503]
+  ref: https://docs.sarvam.ai/api/getting-started/ratelimits
+versioning:
+  style: model-version-tags
+  ref: lifecycle/sarvam-lifecycle.yml
+streaming:
+  transport: websocket
+  channels: [/speech-to-text/ws, /speech-to-text-translate/ws, /text-to-speech/ws]
+  ref: asyncapi/sarvam-streaming-asyncapi.yaml
+sdk_env_var: SARVAM_API_KEY

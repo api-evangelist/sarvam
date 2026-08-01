@@ -1,0 +1,51 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/sarvam-openapi-original.json
+format: json
+notes: >-
+  Derived from OpenAPI 4xx/5xx responses. Sarvam does NOT use RFC 9457
+  application/problem+json; errors carry a JSON envelope
+  `{ "error": { "message", "code" } }` (see errors/sarvam-error-codes.yml for
+  the error.code registry). Titles/remediation enriched from the docs error
+  reference.
+problems:
+- status: 400
+  title: Bad Request
+  detail: Invalid body or parameters.
+  error_codes: [invalid_request_error]
+  operations_affected: 17
+- status: 403
+  title: Forbidden
+  detail: Missing, malformed, or unknown API key (auth failures use 403, not 401).
+  error_codes: [invalid_api_key_error]
+  operations_affected: 17
+- status: 404
+  title: Not Found
+  detail: Resource does not exist (e.g. pronunciation dictionary or job not found).
+  error_codes: [not_found_error]
+  operations_affected: 3
+- status: 413
+  title: Payload Too Large
+  detail: File size exceeds the endpoint limit (e.g. 1 MB for synchronous audio).
+  error_codes: [invalid_request_error]
+  operations_affected: 2
+- status: 422
+  title: Unprocessable Entity
+  detail: Schema valid but a validation/business rule failed.
+  error_codes: [unprocessable_entity_error, max_page_limit_exceeded]
+  operations_affected: 17
+- status: 429
+  title: Quota / Rate Limit Exceeded
+  detail: Credits exhausted or too many requests; back off and retry.
+  error_codes: [insufficient_quota_error, rate_limit_exceeded_error]
+  operations_affected: 17
+- status: 500
+  title: Internal Server Error
+  detail: Server-side failure; retry with exponential backoff.
+  error_codes: [internal_server_error]
+  operations_affected: 17
+- status: 503
+  title: Service Overloaded
+  detail: High load; retry with exponential backoff.
+  error_codes: [rate_limit_exceeded_error]
+  operations_affected: 7

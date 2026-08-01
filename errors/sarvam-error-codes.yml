@@ -1,0 +1,44 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sarvam.ai/api/getting-started/errors-troubleshooting
+envelope:
+  shape: '{ "error": { "message": "...", "code": "..." } }'
+  message_field: error.message
+  code_field: error.code
+notes: >-
+  Sarvam returns a stable string `error.code` alongside the HTTP status. Auth
+  failures use HTTP 403 (not 401). Some products add their own codes (e.g.
+  Document Digitization `max_page_limit_exceeded` when a file exceeds 10 pages).
+error_codes:
+- code: invalid_api_key_error
+  http_status: 403
+  meaning: Missing, malformed, or unknown API key.
+  action: Check the api-subscription-key header and regenerate the key if needed.
+- code: invalid_request_error
+  http_status: 400 / 413 / 422
+  meaning: Bad parameters, payload, or file.
+  action: Fix the request; do not retry blindly.
+- code: unprocessable_entity_error
+  http_status: 422
+  meaning: Schema valid but a business rule failed.
+  action: Compare with the OpenAPI schema and endpoint guide.
+- code: not_found_error
+  http_status: 404
+  meaning: Resource does not exist (e.g. unknown job ID).
+  action: Verify the resource / job identifier.
+- code: insufficient_quota_error
+  http_status: 429
+  meaning: Credits exhausted.
+  action: Add credits or upgrade the plan in the dashboard.
+- code: rate_limit_exceeded_error
+  http_status: 429 / 503
+  meaning: Too many requests or high load.
+  action: Back off with exponential retry; respect per-API rate limits.
+- code: internal_server_error
+  http_status: 500
+  meaning: Server-side failure.
+  action: Retry with exponential backoff.
+- code: max_page_limit_exceeded
+  http_status: 422
+  meaning: Document Digitization file exceeds the 10-page limit.
+  action: Split the document to 10 pages or fewer per job.

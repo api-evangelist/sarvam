@@ -1,0 +1,41 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sarvam.ai/api/getting-started/changelog
+scheme: dated-monthly
+notes: >-
+  Sarvam publishes a dated, monthly changelog grouped by product area
+  (Chat Completion, Speech to Text, Text to Speech, Pricing, Integrations).
+entries:
+- date: '2026-06'
+  highlights:
+  - product: chat
+    breaking: true
+    text: sarvam-m deprecated and no longer accepted; use sarvam-30b (64K) or sarvam-105b (128K).
+  - product: speech-to-text
+    breaking: false
+    text: /speech-to-text REST and Batch now default to saaras:v3 (was saarika:v2.5); respects mode parameter.
+  - product: speech-to-text
+    breaking: false
+    text: /speech-to-text-translate is now legacy (saaras:v2.5); use /speech-to-text with saaras:v3 and mode=translate.
+- date: '2026-05'
+  highlights:
+  - product: chat
+    breaking: true
+    text: Removed fixed-context sarvam-30b-16k and sarvam-105b-32k variants; base models now serve full context.
+  - product: pricing
+    breaking: false
+    text: Document Intelligence renamed Document Digitization and repriced to ₹0.5/page (from ₹1.5).
+  - product: pricing
+    breaking: false
+    text: New accounts now receive ₹100 free credits (previously ₹1,000).
+- date: '2026-04'
+  highlights:
+  - product: chat
+    breaking: false
+    text: Adjusted default values for reasoning_effort and max_tokens in Chat Completions.
+  - product: chat
+    breaking: false
+    text: Marked sarvam-105b-32k and sarvam-30b-16k variants deprecated ahead of removal.
+  - product: speech-to-text
+    breaking: false
+    text: Added Voice Activity Detection (VAD) parameters to STT WebSocket streaming.

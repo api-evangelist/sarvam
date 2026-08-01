@@ -1,0 +1,190 @@
+# Sarvam API Docs
+
+> Sarvam AI is an Indian-language AI platform. APIs: Speech-to-Text (Saaras), Speech-to-Text-Translate (Saaras), Text-to-Speech (Bulbul), translation & transliteration (Mayura / Sarvam-Translate), chat completion (Sarvam-30B / 105B), and Document Digitization (Sarvam Vision). Base URL: `https://api.sarvam.ai`. Auth: send your key in the `api-subscription-key` header (auth failures return HTTP 403, not 401). Official SDKs: `sarvamai` on PyPI and npm. Append `.md` to any docs page URL for clean markdown. Full corpus: https://docs.sarvam.ai/llms-full.txt. MCP server (live docs search): https://docs.sarvam.ai/_mcp/server
+
+## Sarvam API
+
+- [👋 Welcome to Sarvam AI Docs](https://docs.sarvam.ai/api/getting-started/welcome.md): Welcome to Sarvam AI documentation. Access comprehensive guides, API references, quickstart tutorials, and community resources for Indian language AI development.
+- [Developer Quickstart](https://docs.sarvam.ai/api/getting-started/quickstart.md): Learn how to make your first API request with Sarvam AI in under 5 minutes. Complete guide with code examples for chat completion, speech-to-text, and translation APIs.
+- [Libraries & SDKs](https://docs.sarvam.ai/api/getting-started/sdks.md): Official client libraries for Python and JavaScript to integrate Sarvam AI APIs.
+- [Building for Indian Languages](https://docs.sarvam.ai/api/getting-started/building-for-india.md): A practical guide to shipping Indian-language AI — speech-to-text modes (code-mix, transliteration), natural Indian voices, 8kHz telephony audio, pronunciation control, and document digitization across 22 Indian languages.
+- [Models](https://docs.sarvam.ai/api/getting-started/models.md): Complete overview of Sarvam AI's specialized models for Indian languages. Choose the right model for your use case - from speech processing to text generation, translation, and document intelligence.
+- [Saaras](https://docs.sarvam.ai/api/getting-started/models/saaras.md): Saaras v3 - Domain-aware speech translation model that converts speech directly to English text with enhanced telephony support and intelligent entity preservation.
+- [Bulbul](https://docs.sarvam.ai/api/getting-started/models/bulbul.md): Bulbul v3 - High-quality multilingual text-to-speech model for Indian languages with natural prosody and 30+ speaker voices.
+- [Mayura](https://docs.sarvam.ai/api/getting-started/models/mayura.md): Mayura - Advanced multilingual translation model for Indian languages with customizable translation styles, script control, and intelligent code-mixed content handling.
+- [Sarvam Translate](https://docs.sarvam.ai/api/getting-started/models/sarvam-translate.md): Sarvam Translate - Comprehensive translation model supporting all 22 official Indian languages with formal translation style and structured text optimization.
+- [Sarvam-30B](https://docs.sarvam.ai/api/getting-started/models/sarvam-30b.md): Sarvam-30B - 30B parameter multilingual language model optimized for Indian languages with strong reasoning, coding, and conversational capabilities.
+- [Sarvam-105B](https://docs.sarvam.ai/api/getting-started/models/sarvam-105b.md): Sarvam-105B - 105B parameter flagship multilingual language model delivering state-of-the-art performance on Indian language understanding, reasoning, and generation tasks.
+- [Sarvam Vision](https://docs.sarvam.ai/api/getting-started/models/sarvam-vision.md): Sarvam Vision - A 3B parameter multimodal model delivering world-class Document Intelligence and visual understanding with unmatched accuracy for 23 languages (22 Indian + English).
+- [Saarika](https://docs.sarvam.ai/api/getting-started/models/saarika.md): Saarika v2.5 - High-accuracy speech recognition model for Indian languages with superior multi-speaker handling, telephony optimization, and automatic code-mixing support.
+- [Sarvam-M (Deprecated)](https://docs.sarvam.ai/api/getting-started/models/sarvam-m.md): Sarvam-M - 24B parameter multilingual, hybrid-reasoning language model with 20% improvement on Indian language benchmarks and Wikipedia grounding support.
+- [Credits & Rate Limits](https://docs.sarvam.ai/api/getting-started/ratelimits.md): Understand Sarvam AI rate limits by plan tier, per-API concurrency limits, and how to handle 429 and 503 errors gracefully. View your current limits on the dashboard.
+- [Errors & Troubleshooting](https://docs.sarvam.ai/api/getting-started/errors-troubleshooting.md): Central reference for Sarvam API error codes, HTTP status handling, SDK exceptions, retries, and common integration pitfalls.
+- [Talk to us](https://docs.sarvam.ai/api/getting-started/help.md): Get help and support for Sarvam AI APIs. Contact our team via Discord or email for technical questions, bug reports, feature requests, and enterprise inquiries.
+- [Pricing](https://docs.sarvam.ai/api/getting-started/pricing.md): Transparent pricing for all Sarvam AI services. View rates for chat completion, speech-to-text, text-to-speech, translation, and other Indian language AI APIs in Indian Rupees.
+- [Change Log](https://docs.sarvam.ai/api/getting-started/changelog.md): Stay updated with the latest Sarvam AI API changes, new features, and improvements. Track releases for speech-to-text, translation, chat completion, and other services.
+- [Chat Completions Overview](https://docs.sarvam.ai/api/api-guides-tutorials/chat-completion/overview.md): Get started with Sarvam AI LLM models for conversational AI. Build intelligent chat applications with native Indian language support and deep contextual reasoning capabilities.
+- [How to list your chat messages](https://docs.sarvam.ai/api/api-guides-tutorials/chat-completion/how-to/list-your-chat-messages.md): Defines your entire conversation.
+- [How to control response randomness with `temperature`](https://docs.sarvam.ai/api/api-guides-tutorials/chat-completion/how-to/control-response-randomness.md): Controls how random or deterministic the model's responses will be.
+- [How to control response diversity with `top_p`](https://docs.sarvam.ai/api/api-guides-tutorials/chat-completion/how-to/control-response-diversity.md): Method used to generate text by limiting the possibilities of the next word
+- [How to adjust the model's thinking level with `reasoning_effort`](https://docs.sarvam.ai/api/api-guides-tutorials/chat-completion/how-to/adjust-the-models-thinking-level.md): controls **how much effort the model puts into reasoning.
+- [How to improve factual accuracy with `wiki_grounding`](https://docs.sarvam.ai/api/api-guides-tutorials/chat-completion/how-to/improve-response-factual-accuracy.md): Model uses a RAG based approach to retrieve relevant chunks from Wikipedia.
+- [How to encourage new topics with `presence_penalty`](https://docs.sarvam.ai/api/api-guides-tutorials/chat-completion/how-to/encourage-new-topics-in-response.md): Helps you steer the model toward introducing new concepts or topics.
+- [How to reduce repetition with `frequency_penalty`](https://docs.sarvam.ai/api/api-guides-tutorials/chat-completion/how-to/reduce-repetition-words-or-phrases-in-response.md): Helps you control how often the model repeats words or phrases
+- [How to get repeatable results using `seed`](https://docs.sarvam.ai/api/api-guides-tutorials/chat-completion/how-to/get-repeatable-results.md): Get the same output every time for the same prompt
+- [How to control the response length with `max_tokens`](https://docs.sarvam.ai/api/api-guides-tutorials/chat-completion/how-to/control-the-response-length.md): control how long the model's response can be
+- [How to control where the model stops using `stop`](https://docs.sarvam.ai/api/api-guides-tutorials/chat-completion/how-to/control-where-the-model-stops.md): Tell the model to **stop generating further tokens.
+- [Speech-to-Text APIs](https://docs.sarvam.ai/api/api-guides-tutorials/speech-to-text/overview.md): Complete overview of Sarvam AI Speech-to-Text APIs including real-time, batch, and streaming options. Process audio with Saarika and Saaras models for high-accuracy transcription.
+- [Which Speech-to-Text API to Use](https://docs.sarvam.ai/api/api-guides-tutorials/speech-to-text/which-api-to-use.md): Compare Sarvam's Speech-to-Text APIs — REST, WebSocket, and Batch (plus their Speech-to-Text-Translate variants) — and pick the right one for your audio length, latency, and feature needs.
+- [Speech-to-Text Rest API](https://docs.sarvam.ai/api/api-guides-tutorials/speech-to-text/rest-api.md): Process short audio files synchronously with immediate response. Instant transcription and translation for quick audio processing with multiple format support.
+- [Batch Speech-to-Text API](https://docs.sarvam.ai/api/api-guides-tutorials/speech-to-text/batch-api.md): Process large audio files using synchronous or asynchronous methods. Handle up to 2-hour recordings with speaker diarization, timestamps, and advanced transcription features.
+- [Streaming Speech-to-Text API](https://docs.sarvam.ai/api/api-guides-tutorials/speech-to-text/streaming-api.md): Real-time audio transcription and translation with WebSocket connections. Low-latency streaming for live applications with instant results and interactive features.
+- [Best Practices for Speech-to-Text](https://docs.sarvam.ai/api/api-guides-tutorials/speech-to-text/best-practices.md): Connection handling, VAD tuning, and production recommendations for Sarvam AI's Speech-to-Text API.
+- [How to select output mode](https://docs.sarvam.ai/api/api-guides-tutorials/speech-to-text/how-to/select-output-mode.md): Choose the right output mode for your speech-to-text use case with Saaras v3.
+- [How to specify language codes](https://docs.sarvam.ai/api/api-guides-tutorials/speech-to-text/how-to/specify-language-codes.md): Use BCP-47 language codes for accurate speech-to-text transcription with Saaras v3.
+- [How to enable speaker diarization](https://docs.sarvam.ai/api/api-guides-tutorials/speech-to-text/how-to/enable-speaker-diarization.md): Identify and distinguish between multiple speakers in audio using the Batch API.
+- [FAQs](https://docs.sarvam.ai/api/speech-to-text/faq.md): Frequently asked questions about Sarvam AI speech-to-text services. Get answers about models, pricing, language support, audio formats, and implementation best practices.
+- [IVR & Contact Center Voice Agents](https://docs.sarvam.ai/api/api-guides-tutorials/speech-to-text/use-cases/ivr-contact-center.md): Architecture, model configuration, and latency targets for building telephony-based IVR and contact-center voice agents with Sarvam AI.
+- [BFSI Voice Bots](https://docs.sarvam.ai/api/api-guides-tutorials/speech-to-text/use-cases/bfsi-voice-bots.md): Architecture, model configuration, and compliance guardrails for building banking, financial services, and insurance voice agents with Sarvam AI.
+- [EdTech Voice Tutors](https://docs.sarvam.ai/api/api-guides-tutorials/speech-to-text/use-cases/edtech.md): Architecture, model configuration, and pitfalls for building voice-based tutoring agents with Sarvam AI.
+- [Government Services Voice Agents](https://docs.sarvam.ai/api/api-guides-tutorials/speech-to-text/use-cases/government-services.md): Architecture, model configuration, and pitfalls for building citizen-facing government scheme and services voice agents with Sarvam AI.
+- [Agri & Rural Voice Agents](https://docs.sarvam.ai/api/api-guides-tutorials/speech-to-text/use-cases/agri-rural.md): Architecture, model configuration, and pitfalls for building farmer-advisory and rural voice agents with Sarvam AI, tuned for low-bandwidth, feature-phone-first users.
+- [Text-to-Speech Overview](https://docs.sarvam.ai/api/api-guides-tutorials/text-to-speech/overview.md): Complete overview of Sarvam AI Text-to-Speech APIs using Bulbul v3 model. Convert text to natural speech with real-time and streaming options for Indian languages.
+- [Voices](https://docs.sarvam.ai/api/api-guides-tutorials/text-to-speech/voices.md): Listen to every Sarvam AI text-to-speech voice before you choose. Audio previews for all Bulbul v3 speakers, including multilingual samples.
+- [Which Text-to-Speech API to Use](https://docs.sarvam.ai/api/api-guides-tutorials/text-to-speech/which-api-to-use.md): Compare Sarvam's Text-to-Speech APIs — REST, HTTP streaming, and WebSocket — and pick the right one for your latency, text length, and interactivity needs.
+- [Text-to-Speech Rest API](https://docs.sarvam.ai/api/api-guides-tutorials/text-to-speech/rest-api.md): Real-time conversion of text into speech using customizable voices. Instant audio generation with multiple voice options and various audio formats for Indian languages.
+- [HTTP Streaming API](https://docs.sarvam.ai/api/api-guides-tutorials/text-to-speech/streaming-api/http-stream.md): Stream TTS audio over a single HTTP POST request. No WebSocket setup, no connection management — just POST text and pipe the audio response.
+- [Streaming Text-to-Speech API](https://docs.sarvam.ai/api/api-guides-tutorials/text-to-speech/streaming-api/web-socket.md): Real-time conversion of text into speech using WebSocket connections. Efficient streaming for long texts with progressive audio generation and low-latency playback.
+- [Pronunciation Dictionary](https://docs.sarvam.ai/api/api-guides-tutorials/text-to-speech/pronunciation-dictionary.md): Teach Bulbul v3 how to say specific words — brand names, abbreviations, regional terms — exactly the way you want, across all 11 supported languages.
+- [Best Practices for Writing Text for TTS](https://docs.sarvam.ai/api/api-guides-tutorials/text-to-speech/best-practices.md): A guide to writing text that produces natural-sounding speech output with Sarvam AI Bulbul.
+- [How to Set the Language](https://docs.sarvam.ai/api/api-guides-tutorials/text-to-speech/how-to/set-the-language.md): Defines the language for text normalization before speech synthesis.
+- [How to change the speaker voice](https://docs.sarvam.ai/api/api-guides-tutorials/text-to-speech/how-to/change-the-speaker-voice.md): Learn how to choose specific voices for text-to-speech output using the speaker parameter. Explore Bulbul v3's 30+ natural-sounding voices for different languages and use cases.
+- [How to adjust the pitch (tone)](https://docs.sarvam.ai/api/api-guides-tutorials/text-to-speech/how-to/adjust-the-tone.md): Control the tone of the synthesized speech (bulbul:v2 only).
+- [How to adjust the pace (speed)](https://docs.sarvam.ai/api/api-guides-tutorials/text-to-speech/how-to/adjust-the-speed.md): Controls the speed at which the speech is delivered.
+- [How to adjust the loudness (volume)](https://docs.sarvam.ai/api/api-guides-tutorials/text-to-speech/how-to/adjust-the-loudness.md): Controls the volume level of the generated audio (bulbul:v2 only).
+- [How to set the sample rate (audio quality)](https://docs.sarvam.ai/api/api-guides-tutorials/text-to-speech/how-to/set-the-sample-rate.md): Controls the audio quality and size of the generated output.
+- [How to enable text preprocessing](https://docs.sarvam.ai/api/api-guides-tutorials/text-to-speech/how-to/enable-text-preprocessing.md): improves pronunciation (bulbul:v2 only).
+- [How to set the audio format for output using `output_audio_codec`](https://docs.sarvam.ai/api/api-guides-tutorials/text-to-speech/how-to/set-audio-format-for-output.md): Choose the audio format for TTS streaming output.
+- [How to set `output_audio_bitrate`](https://docs.sarvam.ai/api/api-guides-tutorials/text-to-speech/how-to/set-bitrate-for-output.md): Control the quality and size of the synthesized audio output.
+- [How to set maximum length for sentence splitting using `max_chunk_length`](https://docs.sarvam.ai/api/api-guides-tutorials/text-to-speech/how-to/set-maximum-length-for-sentence-splitting.md): Control how long each sentence chunk can be when splitting text for streaming TTS.
+- [How to set buffer size to start processing in Streaming TTS with `min_buffer_size`](https://docs.sarvam.ai/api/api-guides-tutorials/text-to-speech/how-to/set-buffer-size-to-start-processing.md): Define when the TTS engine should start processing text from the buffer.
+- [Text Processing Overview](https://docs.sarvam.ai/api/api-guides-tutorials/text-processing/overview.md): Complete overview of Sarvam AI Text Processing APIs including translation, transliteration, and language identification for 22+ Indian languages using Mayura and Sarvam-Translate models.
+- [Text Translation API](https://docs.sarvam.ai/api/api-guides-tutorials/text-processing/translation.md): Complete overview of Sarvam AI Text Translation API supporting English to Indian languages and vice versa with multiple translation modes and high accuracy.
+- [Transliteration API](https://docs.sarvam.ai/api/api-guides-tutorials/text-processing/transliteration.md): Complete overview of Sarvam AI Transliteration API for script conversion between Indian languages. Convert between Roman, Devanagari, and other scripts with high accuracy.
+- [Language Identification API](https://docs.sarvam.ai/api/api-guides-tutorials/text-processing/language-detection.md): Identifies the language and script of input text, supporting multiple Indian languages. Automatic detection with confidence scores for multilingual text processing.
+- [Document Digitization Overview](https://docs.sarvam.ai/api/api-guides-tutorials/document-digitization/overview.md): Transform documents into structured, queryable data with Sarvam's Document Digitization API. Powered by Sarvam Vision for accurate text extraction and table parsing across 23 languages (22 Indian + English).
+- [Call Analytics Pipeline](https://docs.sarvam.ai/api/cookbook/guides/call-analytics-pipeline.md): Production-ready cookbook — Speech-to-Text Translate Batch API with diarization, speaker-wise transcript parsing, and LLM-powered call analysis with structured file outputs.
+- [Collection Agent using LiveKit](https://docs.sarvam.ai/api/cookbook/example-voice-agents/collection-agent.md): Build a voice-based collection agent for payment reminders and follow-ups using LiveKit and Sarvam AI. Support for 11 languages (10 Indian + English) with natural voices.
+- [Government Scheme Awareness Agent using LiveKit](https://docs.sarvam.ai/api/cookbook/example-voice-agents/government-scheme-agent.md): Build a voice-based agent that helps citizens understand and apply for government schemes using LiveKit and Sarvam AI. Support for 11 languages (10 Indian + English).
+- [Tutor Agent using Pipecat](https://docs.sarvam.ai/api/cookbook/example-voice-agents/tutor-agent.md): Build a voice-based tutor agent that teaches students in multiple Indian languages using Pipecat and Sarvam AI. Perfect for EdTech applications.
+- [Loan Advisory Agent using Pipecat](https://docs.sarvam.ai/api/cookbook/example-voice-agents/loan-advisory-agent.md): Build a voice-based loan advisory agent that helps customers understand loan options using Pipecat and Sarvam AI. Support for 11 languages (10 Indian + English).
+- [Build Your First Voice Agent using LiveKit](https://docs.sarvam.ai/api/integration/build-voice-agent-with-live-kit.md): A beginner-friendly guide to building a real-time voice agent using LiveKit and Sarvam AI. Support for 11 languages (10 Indian + English) with natural voices and multilingual conversations.
+- [Build Your First Voice Agent using Pipecat](https://docs.sarvam.ai/api/integration/build-voice-agent-with-pipecat.md): A beginner-friendly guide to building a real-time voice agent using Pipecat and Sarvam AI. Support for 11 languages (10 Indian + English) with natural voices and multilingual conversations.
+- [Build Your First Voice Agent using Twilio](https://docs.sarvam.ai/api/integration/build-voice-agent-with-twilio.md): A beginner-friendly guide to building a real-time phone voice agent using Twilio, Pipecat, and Sarvam AI. Support for 11 languages (10 Indian + English) with natural voices and multilingual conversations.
+- [Build Your First Voice Agent using Exotel](https://docs.sarvam.ai/api/integration/build-voice-agent-with-exotel.md): A beginner-friendly guide to building a real-time phone voice agent using Exotel, Pipecat, and Sarvam AI. Support for 11 languages (10 Indian + English) with natural voices and multilingual conversations.
+- [Build workflows with Sarvam AI in n8n](https://docs.sarvam.ai/api/integration/n8n.md): A beginner-friendly guide to automating Indian-language speech and chat in n8n using the Sarvam AI community node — install, credentials, sample workflows, and patterns that mirror our LiveKit and Pipecat integrations.
+- [Build with Sarvam AI in the Vercel AI SDK](https://docs.sarvam.ai/api/integration/integration-guides/vercel-ai-sdk.md): Use the community sarvam-ai-sdk provider to call Sarvam chat, text-to-speech, speech-to-text, translation, transliteration, and language identification from the Vercel AI SDK: install, setup, and code examples for every capability.
+- [MCP Server](https://docs.sarvam.ai/api/developer-tools/mcp.md): Connect Claude Desktop, Claude Code, Cursor, Windsurf, Zed, and other AI clients to Sarvam through MCP — call every Sarvam API as a tool.
+- [Markdown & llms.txt](https://docs.sarvam.ai/api/developer-tools/llms-txt.md): Use Sarvam's llms.txt, llms-full.txt, and per-page Markdown to feed accurate, up-to-date documentation into any LLM — and learn when to use llms.txt vs the MCP server.
+- [Context7](https://docs.sarvam.ai/api/developer-tools/context7.md): Pull up-to-date Sarvam AI documentation into Claude Code, Cursor, Windsurf, and other AI clients through Context7 — the Sarvam docs are pre-indexed, no setup on our side required.
+- [Migrating from ElevenLabs: Overview](https://docs.sarvam.ai/api/migrations/from-elevenlabs/overview.md): Common setup changes for teams moving from ElevenLabs to Sarvam: base URL, auth header, SDK client, and error handling, shared across every guide in this section.
+- [Migrating Text-to-Speech from ElevenLabs to Sarvam](https://docs.sarvam.ai/api/migrations/from-elevenlabs/text-to-speech.md): Endpoint, parameter, and response-format differences between ElevenLabs and Sarvam's Text-to-Speech API, with before/after code for REST, streaming, and pronunciation dictionaries.
+- [Migrating Speech-to-Text from ElevenLabs to Sarvam](https://docs.sarvam.ai/api/migrations/from-elevenlabs/speech-to-text.md): Endpoint, parameter, and response-format differences between ElevenLabs Scribe and Sarvam's Speech-to-Text API, with before/after code for REST, batch, and streaming transcription.
+- [Migrating from Cartesia: Overview](https://docs.sarvam.ai/api/migrations/from-cartesia/overview.md): Common setup changes for teams moving from Cartesia to Sarvam: base URL, auth header, SDK client, and error handling, shared across every guide in this section.
+- [Migrating Text-to-Speech from Cartesia to Sarvam](https://docs.sarvam.ai/api/migrations/from-cartesia/text-to-speech.md): Endpoint, parameter, and response-format differences between Cartesia's Sonic Text-to-Speech API and Sarvam's Text-to-Speech API, with before/after code for REST and streaming.
+- [Migrating Speech-to-Text from Cartesia to Sarvam](https://docs.sarvam.ai/api/migrations/from-cartesia/speech-to-text.md): Endpoint, parameter, and response-format differences between Cartesia's Ink Speech-to-Text API and Sarvam's Speech-to-Text API, with before/after code for REST, batch, and streaming transcription.
+- [Migrating from Deepgram: Overview](https://docs.sarvam.ai/api/migrations/from-deepgram/overview.md): Common setup changes for teams moving from Deepgram to Sarvam: base URL, auth header, SDK client, and error handling, shared across every guide in this section.
+- [Migrating Text-to-Speech from Deepgram to Sarvam](https://docs.sarvam.ai/api/migrations/from-deepgram/text-to-speech.md): Endpoint, parameter, and response-format differences between Deepgram's Aura Text-to-Speech API and Sarvam's Text-to-Speech API, with before/after code for REST and streaming.
+- [Migrating Speech-to-Text from Deepgram to Sarvam](https://docs.sarvam.ai/api/migrations/from-deepgram/speech-to-text.md): Endpoint, parameter, and response-format differences between Deepgram's Nova Speech-to-Text API and Sarvam's Speech-to-Text API, with before/after code for REST, batch, and streaming transcription.
+- [Migrating from Gemini: Overview](https://docs.sarvam.ai/api/migrations/from-gemini/overview.md): Common setup changes for teams moving from the Gemini API to Sarvam: base URL, auth header, SDK client, and error handling, shared across every guide in this section.
+- [Migrating Chat Completion from Gemini to Sarvam](https://docs.sarvam.ai/api/migrations/from-gemini/chat-completion.md): Endpoint, parameter, and response-format differences between the Gemini API and Sarvam's Chat Completion API, with before/after code for both the OpenAI-compatible endpoint and each platform's native SDK.
+- [Migrating Text-to-Speech from Gemini to Sarvam](https://docs.sarvam.ai/api/migrations/from-gemini/text-to-speech.md): Endpoint, parameter, and response-format differences between Gemini's native audio text-to-speech generation and Sarvam's Text-to-Speech API, with before/after code.
+- [Migrating Speech-to-Text from Gemini to Sarvam](https://docs.sarvam.ai/api/migrations/from-gemini/speech-to-text.md): Endpoint, parameter, and response-format differences between transcribing audio through the Gemini API's audio input and Sarvam's dedicated Speech-to-Text API, with before/after code.
+
+## API Reference
+
+- [Welcome to Sarvam AI API Reference Documentation](https://docs.sarvam.ai/api-reference/introduction.md): Explore Sarvam AI's comprehensive API documentation for chat completion, speech-to-text, text-to-speech, translation, and more across 22+ Indian languages.
+- [Authentication](https://docs.sarvam.ai/api-reference/authentication.md): Learn how to authenticate your Sarvam AI API requests using API subscription keys. Complete guide with examples and best practices for secure API key management.
+- [Access to Beta APIs](https://docs.sarvam.ai/api-reference/beta-apis.md): Get early access to Sarvam AI's upcoming beta features and APIs. Learn how to request whitelisting for your subscription key and try new features before public release.
+- [Meta Prompt Guide](https://docs.sarvam.ai/api-reference/metaprompt.md): Learn how to use Sarvam AI meta-prompts to guide AI models effectively. Complete guide with examples, templates, and best practices for consistent AI behavior.
+- Endpoints > Speech to Text [REST](https://docs.sarvam.ai/api-reference/speech-to-text/transcribe.md)
+- Endpoints > Speech to Text [WebSocket](https://docs.sarvam.ai/api-reference/speech-to-text/transcribe/ws.md)
+- Endpoints > Speech to Text [Batch - Initiate Job](https://docs.sarvam.ai/api-reference/speech-to-text/stt/job/initiate.md)
+- Endpoints > Speech to Text [Batch - Upload Files](https://docs.sarvam.ai/api-reference/speech-to-text/stt/job/upload.md)
+- Endpoints > Speech to Text [Batch - Start Job](https://docs.sarvam.ai/api-reference/speech-to-text/stt/job/start.md)
+- Endpoints > Speech to Text [Batch - Get Status](https://docs.sarvam.ai/api-reference/speech-to-text/stt/job/status.md)
+- Endpoints > Speech to Text [Batch - Download Results](https://docs.sarvam.ai/api-reference/speech-to-text/stt/job/download.md)
+- Endpoints > Speech to Text Translate (Legacy) [REST](https://docs.sarvam.ai/api-reference/speech-to-text-translate/translate.md)
+- Endpoints > Speech to Text Translate (Legacy) [WebSocket](https://docs.sarvam.ai/api-reference/speech-to-text-translate/translate/ws.md)
+- Endpoints > Speech to Text Translate (Legacy) [Batch - Initiate Job](https://docs.sarvam.ai/api-reference/speech-to-text-translate/stt-translate/job/initiate.md)
+- Endpoints > Speech to Text Translate (Legacy) [Batch - Upload Files](https://docs.sarvam.ai/api-reference/speech-to-text-translate/stt-translate/job/upload.md)
+- Endpoints > Speech to Text Translate (Legacy) [Batch - Start Job](https://docs.sarvam.ai/api-reference/speech-to-text-translate/stt-translate/job/start.md)
+- Endpoints > Speech to Text Translate (Legacy) [Batch - Get Status](https://docs.sarvam.ai/api-reference/speech-to-text-translate/stt-translate/job/status.md)
+- Endpoints > Speech to Text Translate (Legacy) [Batch - Download Results](https://docs.sarvam.ai/api-reference/speech-to-text-translate/stt-translate/job/download.md)
+- Endpoints > Text to Speech [REST](https://docs.sarvam.ai/api-reference/text-to-speech/convert.md)
+- Endpoints > Text to Speech [REST Stream](https://docs.sarvam.ai/api-reference/text-to-speech/convert-stream.md)
+- Endpoints > Text to Speech [WebSocket](https://docs.sarvam.ai/api-reference/text-to-speech/stream.md)
+- Endpoints > Pronunciation Dictionary [Create](https://docs.sarvam.ai/api-reference/pronunciation-dictionary/create.md)
+- Endpoints > Pronunciation Dictionary [List](https://docs.sarvam.ai/api-reference/pronunciation-dictionary/list.md)
+- Endpoints > Pronunciation Dictionary [Get](https://docs.sarvam.ai/api-reference/pronunciation-dictionary/get.md)
+- Endpoints > Pronunciation Dictionary [Update](https://docs.sarvam.ai/api-reference/pronunciation-dictionary/update.md)
+- Endpoints > Pronunciation Dictionary [Delete](https://docs.sarvam.ai/api-reference/pronunciation-dictionary/delete.md)
+- Endpoints > Text Processing [Translation](https://docs.sarvam.ai/api-reference/text/translate-text.md)
+- Endpoints > Text Processing [Transliteration](https://docs.sarvam.ai/api-reference/text/transliterate-text.md)
+- Endpoints > Text Processing [Language Detection](https://docs.sarvam.ai/api-reference/text/identify-language.md)
+- Endpoints > Chat Completion [Chat Completion](https://docs.sarvam.ai/api-reference/chat/chat-completions.md)
+- Endpoints > Document Intelligence [Create Document Intelligence Job](https://docs.sarvam.ai/api-reference/document-intelligence/initialise.md)
+- Endpoints > Document Intelligence [Get Document Intelligence Upload URLs](https://docs.sarvam.ai/api-reference/document-intelligence/get-upload-links.md)
+- Endpoints > Document Intelligence [Start Document Intelligence Job](https://docs.sarvam.ai/api-reference/document-intelligence/start.md)
+- Endpoints > Document Intelligence [Get Document Intelligence Job Status](https://docs.sarvam.ai/api-reference/document-intelligence/get-status.md)
+- Endpoints > Document Intelligence [Get Document Intelligence Download URLs](https://docs.sarvam.ai/api-reference/document-intelligence/get-download-links.md)
+
+## Sarvam Doc AI
+
+- [Welcome to Sarvam Doc AI](https://docs.sarvam.ai/docai/getting-started/overview.md): Document-intelligence workbench for extracting and digitising documents across 22 Indian languages plus English — no code required.
+- [Extract structured fields](https://docs.sarvam.ai/docai/how-to/extract-fields-from-a-document/extract-structured-fields.md): Pull specific fields from invoices, receipts, KYC forms, and bank statements as structured JSON, CSV, or Excel using Sarvam Vision.
+- [Digitise a document](https://docs.sarvam.ai/docai/how-to/digitise-a-document.md): Convert scans, handwritten forms, and multilingual manuscripts into structured text with bounding boxes, section types, and exports as HTML, Markdown, DOCX, or Plain Text.
+- [Create a Config](https://docs.sarvam.ai/docai/how-to/extract-fields-from-a-document/create-a-reusable-config.md): Build reusable Extract or Digitise recipes from templates, duplicates, or scratch — name, prompt, language, and output schema.
+- [Extract as CSV/Excel](https://docs.sarvam.ai/docai/extract-as-csv-excel.md): Turn table-heavy PDFs such as bank statements and invoices into spreadsheet-ready CSV or Excel output.
+- [Chain Digitise and Extract](https://docs.sarvam.ai/docai/how-to/chain-digitise-and-extract.md): Improve extraction accuracy on messy scans and handwritten documents by digitising first, then running Extract over clean text.
+- [FAQs](https://docs.sarvam.ai/docai/resources/faq.md): Short answers on Extract vs Digitise, Configs vs Projects, upload limits, pricing, and project statuses.
+
+## Sarvam Creative
+
+- [Welcome to Sarvam Studio](https://docs.sarvam.ai/creative/studio-overview.md): Generate voice and media content — dubbing, text-to-speech, voice cloning, and speech-to-text in one creative studio.
+- [Dubbing](https://docs.sarvam.ai/creative-dubbing.md): Overview of dubbing workflows in Sarvam Creative (Beta).
+- [Creating a Dub](https://docs.sarvam.ai/creative-dubbing-create.md): Start a new dubbing project and generate dubbed audio for your content.
+- [Editing a Dub](https://docs.sarvam.ai/creative-dubbing-edit.md): Review and refine dubbed output in the Creative editor.
+- [Dubbing Best Practices](https://docs.sarvam.ai/creative-dubbing-best-practices.md): Tips for high-quality dubbing results across languages.
+- [Text to Speech](https://docs.sarvam.ai/creative-text-to-speech.md): Overview of text-to-speech generation in Sarvam Creative.
+- [Generating Speech](https://docs.sarvam.ai/creative-tts-generate.md): Convert text into natural speech using voices from the Sarvam library.
+- [Text to Speech Best Practices](https://docs.sarvam.ai/creative-tts-best-practices.md): Writing and voice-selection tips for better TTS output.
+- [Voice Library](https://docs.sarvam.ai/creative-voice-library.md): Browse and manage voices available for speech generation.
+- [Browsing and Selecting Voices](https://docs.sarvam.ai/creative-voice-library-browse.md): Find the right voice for your project from the Sarvam voice library.
+- [Managing Your Voice Library](https://docs.sarvam.ai/creative-voice-library-manage.md): Organise saved and custom voices in your workspace.
+- [Voice Cloning](https://docs.sarvam.ai/creative-voice-cloning.md): Overview of voice cloning in Sarvam Creative (Beta).
+- [Creating a Clone](https://docs.sarvam.ai/creative-cloning-create.md): Record or upload samples to create a custom cloned voice.
+- [Using a Cloned Voice](https://docs.sarvam.ai/creative-cloning-use.md): Apply a cloned voice in TTS and dubbing projects.
+- [Cloning Best Practices](https://docs.sarvam.ai/creative-cloning-best-practices.md): Recording and sample-quality tips for reliable voice clones.
+- [Speech to Text](https://docs.sarvam.ai/creative-speech-to-text.md): Overview of transcription workflows in Sarvam Creative.
+- [Transcribing a File](https://docs.sarvam.ai/creative-stt-transcribe.md): Upload audio and generate a transcript in Sarvam Creative.
+- [Speech to Text Best Practices](https://docs.sarvam.ai/creative-stt-best-practices.md): Audio-quality and language tips for accurate transcription.
+- [Frequently Asked Questions](https://docs.sarvam.ai/creative/resources/faq.md): Common questions about Sarvam Creative features, limits, and workflows.
+
+## OpenAPI Specification
+
+The raw OpenAPI 3.1 specification for this API is available at:
+- [OpenAPI JSON](https://docs.sarvam.ai/openapi.json)
+- [OpenAPI YAML](https://docs.sarvam.ai/openapi.yaml)
+
+## AsyncAPI Specification
+
+The raw AsyncAPI 2.6.0 specification for the WebSocket channels is available at:
+- [AsyncAPI JSON](https://docs.sarvam.ai/asyncapi.json)
+- [AsyncAPI YAML](https://docs.sarvam.ai/asyncapi.yaml)
+
+## Optional
+
+- [MCP server](https://docs.sarvam.ai/_mcp/server): Connect Cursor, Claude Code, or other MCP clients to call Sarvam APIs and search docs programmatically
+- [llms-full.txt](https://docs.sarvam.ai/llms-full.txt): Complete documentation in one file
+- [Example Projects on GitHub](https://github.com/sarvamai/sarvam-ai-cookbook/tree/main/examples): Runnable cookbook samples and starter notebooks beyond what is published in these docs

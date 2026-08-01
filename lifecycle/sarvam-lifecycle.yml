@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sarvam.ai/api/getting-started/changelog
+versioning:
+  scheme: model-version-tags
+  notes: >-
+    APIs are versioned by model tag (e.g. saaras:v3, saarika:v2.5, bulbul:v3,
+    sarvam-30b, sarvam-105b) passed in the request `model` field rather than a
+    URI/header API version. The chat endpoint is under /v1/chat/completions.
+  docs: https://docs.sarvam.ai/api/getting-started/models
+deprecation:
+  policy: >-
+    Deprecations are announced in the dated changelog. Deprecated models are
+    first marked deprecated, then removed; requests to removed models fail.
+  docs: https://docs.sarvam.ai/api/getting-started/changelog
+  recent_deprecations:
+  - sarvam-m (chat) — deprecated and no longer accepted (June 2026)
+  - saaras:v2.5 via /speech-to-text-translate — now legacy; use /speech-to-text with saaras:v3
+  - sarvam-30b-16k / sarvam-105b-32k fixed-context variants — removed (May 2026)
+status_page: https://status.sarvam.ai
+sla:
+  notes: No public SLA / uptime target published; enterprise plans via sales.
+credits:
+  free_on_signup: "₹100"
+  expiry: never
+  dashboard: https://dashboard.sarvam.ai/billing

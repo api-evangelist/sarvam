@@ -1,0 +1,30 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/sarvam-openapi-original.json
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: Provider publishes an OpenAPI 3.1.0 document at docs.sarvam.ai/openapi.json
+- id: asyncapi-2.6
+  conforms: true
+  evidence: Provider publishes an AsyncAPI 2.6.0 document for the WebSocket streaming channels
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 security scheme; auth is API key + HTTP bearer
+- id: openid-connect
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: 'Errors use a custom { error: { message, code } } envelope, not application/problem+json'
+- id: bearer-token-auth
+  conforms: true
+  evidence: securityScheme HTTPBearer (http/bearer) accepted alongside api-subscription-key
+- id: openai-chat-completions-compatible
+  conforms: true
+  evidence: POST /v1/chat/completions with OpenAI-style messages/temperature/top_p/max_tokens parameters
+- id: websocket-streaming
+  conforms: true
+  evidence: AsyncAPI channels /speech-to-text/ws, /speech-to-text-translate/ws, /text-to-speech/ws
+- id: bcp47-language-codes
+  conforms: true
+  evidence: Docs specify BCP-47 language codes for speech and translation endpoints
