@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Endpoints chat pronunciationDictionary API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "pronunciationDictionary",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Pronunciation Dictionaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sarvam.ai/text-to-speech/pronunciation-dictionary",
+            "headers": [
+              {
+                "name": "api-subscription-key",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all pronunciation dictionary IDs associated with the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Create Pronunciation Dictionary",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/text-to-speech/pronunciation-dictionary",
+            "headers": [
+              {
+                "name": "api-subscription-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a `.json` file to create a new pronunciation dictionary. Only supported by **bulbul:v3**.\n\nThe file should contain a JSON object with a `pronunciations` key mapping language codes to word-pronunciation pairs. See the [Pronunciation Dictionary guide](/api-reference-docs/api-guides-tutorials/text-to-speech/pronunciation-dictionary) for format details and examples.\n\nThe returned `dictionary_id` can be passed as `dict_id` in text-to-speech requests (REST, HTTP Stream, and WebSocket).\n\n**Limit"
+        },
+        {
+          "info": {
+            "name": "Update Pronunciation Dictionary",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.sarvam.ai/text-to-speech/pronunciation-dictionary",
+            "headers": [
+              {
+                "name": "api-subscription-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "dict_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the dictionary to update"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Update an existing pronunciation dictionary by uploading a JSON file. You can add new words, change existing pronunciations, or both — entries not included in the uploaded file remain unchanged.\n\n**Limits:** Max 100 words per dictionary, 1 MB file size.\n\nThe response includes the `dictionary_id` and the updated pronunciation mappings for verification."
+        },
+        {
+          "info": {
+            "name": "Delete Pronunciation Dictionary",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.sarvam.ai/text-to-speech/pronunciation-dictionary",
+            "headers": [
+              {
+                "name": "api-subscription-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "dict_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the dictionary to delete"
+              }
+            ]
+          },
+          "docs": "Delete a pronunciation dictionary by its ID. Once deleted, the dictionary can no longer be referenced in text-to-speech requests."
+        },
+        {
+          "info": {
+            "name": "Get Pronunciation Dictionary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sarvam.ai/text-to-speech/pronunciation-dictionary/:dict_id",
+            "headers": [
+              {
+                "name": "api-subscription-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "dict_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the full pronunciation mappings for a specific dictionary by its ID.\n\nReturns the pronunciation data organized by language code, where each language contains word-to-pronunciation pairs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

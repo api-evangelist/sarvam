@@ -1,0 +1,107 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Endpoints chat speechToText API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "speechToText",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Speech to Text",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/speech-to-text",
+            "headers": [
+              {
+                "name": "api-subscription-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "model",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "mode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "language_code",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "input_audio_codec",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## Speech to Text API\n\nThis API transcribes speech to text in multiple Indian languages and English. Supports transcription for interactive applications.\n\n### Available Options:\n- **REST API** (Current Endpoint): For quick responses under 30 seconds with immediate results\n- **Batch API**: For longer audio files, [Follow This Documentation](https://docs.sarvam.ai/api-reference-docs/api-guides-tutorials/speech-to-text/batch-api)\n  - Supports diarization (speaker identification)\n\n### Note:\n- Pricin"
+        },
+        {
+          "info": {
+            "name": "Speech To Text Translate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/speech-to-text-translate",
+            "headers": [
+              {
+                "name": "api-subscription-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "prompt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "model",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "input_audio_codec",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "## Speech to Text Translation API\n\nThis API automatically detects the input language, transcribes the speech, and translates the text to English.\n\n### Available Options:\n- **REST API** (Current Endpoint): For quick responses under 30 seconds with immediate results\n- **Batch API**: For longer audio files [Follow this documentation](https://docs.sarvam.ai/api-reference-docs/api-guides-tutorials/speech-to-text/batch-api)\n  - Supports diarization (speaker identification)\n\n### Note:\n- Pricing differs"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

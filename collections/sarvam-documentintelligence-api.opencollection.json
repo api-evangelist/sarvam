@@ -1,0 +1,135 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Endpoints chat documentIntelligence API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "documentIntelligence",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Document Intelligence Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/doc-digitization/job/v1",
+            "headers": [
+              {
+                "name": "api-subscription-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Document Intelligence job.\n\n**Supported Languages (BCP-47 format):**\n- `hi-IN`: Hindi (default)\n- `en-IN`: English\n- `bn-IN`: Bengali\n- `gu-IN`: Gujarati\n- `kn-IN`: Kannada\n- `ml-IN`: Malayalam\n- `mr-IN`: Marathi\n- `od-IN`: Odia\n- `pa-IN`: Punjabi\n- `ta-IN`: Tamil\n- `te-IN`: Telugu\n- `ur-IN`: Urdu\n- `as-IN`: Assamese\n- `brx-IN`: Bodo\n- `doi-IN`: Dogri\n- `ks-IN`: Kashmiri\n- `kok-IN`: Konkani\n- `mai-IN`: Maithili\n- `mni-IN`: Manipuri\n- `ne-IN`: Nepali\n- `sa-IN`: Sanskrit\n- `sat-IN`: "
+        },
+        {
+          "info": {
+            "name": "Get Document Intelligence Upload URLs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/doc-digitization/job/v1/upload-files",
+            "headers": [
+              {
+                "name": "api-subscription-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns presigned URLs for uploading input files.\n\n**File Constraints:**\n- Exactly one file required (PDF or ZIP)\n- PDF files: `.pdf` extension\n- ZIP files: `.zip` extension"
+        },
+        {
+          "info": {
+            "name": "Start Document Intelligence Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/doc-digitization/job/v1/:job_id/start",
+            "headers": [
+              {
+                "name": "api-subscription-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the job"
+              }
+            ]
+          },
+          "docs": "Validates the uploaded file and starts processing.\n\n**Validation Checks:**\n- File must be uploaded before starting\n- File size must not exceed 200 MB\n- PDF must be parseable by the PDF parser\n- ZIP must contain only JPEG/PNG images\n- ZIP must be flat (no nested folders beyond one level)\n- ZIP must contain at least one valid image\n- Page/image count must not exceed 10 (returns `422` with `max_page_limit_exceeded` if exceeded)\n- User must have sufficient credits\n\n**Processing:**\nJob runs asynchron"
+        },
+        {
+          "info": {
+            "name": "Get Document Intelligence Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sarvam.ai/doc-digitization/job/v1/:job_id/status",
+            "headers": [
+              {
+                "name": "api-subscription-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the job"
+              }
+            ]
+          },
+          "docs": "Returns the current status of a job with page-level metrics.\n\n**Job States:**\n- `Accepted`: Job created, awaiting file upload\n- `Pending`: File uploaded, waiting to start\n- `Running`: Processing in progress\n- `Completed`: All pages processed successfully\n- `PartiallyCompleted`: Some pages succeeded, some failed\n- `Failed`: All pages failed or job-level error\n\n**Page Metrics:**\nResponse includes detailed progress: total pages, pages processed, succeeded, failed, and per-page errors."
+        },
+        {
+          "info": {
+            "name": "Get Document Intelligence Download URLs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/doc-digitization/job/v1/:job_id/download-files",
+            "headers": [
+              {
+                "name": "api-subscription-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the job"
+              }
+            ]
+          },
+          "docs": "Returns presigned URLs for downloading output files.\n\n**Method:** POST only. A GET request to this path returns 405 Method Not Allowed.\n\n**Prerequisites:**\n- Job must be in `Completed` or `PartiallyCompleted` state\n- Failed jobs have no output available"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

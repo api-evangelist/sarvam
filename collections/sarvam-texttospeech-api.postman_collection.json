@@ -1,0 +1,735 @@
+{
+  "item": [
+    {
+      "id": "e19436b9-f6a4-49d9-9398-725af6c419db",
+      "name": "textToSpeech",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "62379eb3-725b-4c99-ac2e-99e15d6453f5",
+          "name": "Text to Speech",
+          "request": {
+            "name": "Text to Speech",
+            "description": {
+              "content": "Convert text into spoken audio. The output is a base64-encoded audio string that must be decoded before use.\n\n**Available Models:**\n- **bulbul:v3**: Latest model with improved quality, 30+ voices, and temperature control\n- **bulbul:v2**: Legacy model with pitch and loudness controls\n\n**Important Notes for bulbul:v3:**\n- Pitch and loudness parameters are NOT supported\n- Pace range: 0.5 to 2.0\n- Preprocessing is automatically enabled\n- Default sample rate is 24000 Hz\n- Supports sample rates: 8000, 16000, 22050, 24000 Hz (REST API also supports 32000, 44100, 48000 Hz)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text-to-speech"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "api-subscription-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"<string>\",\n  \"target_language_code\": \"<string>\",\n  \"speaker\": \"<string>\",\n  \"pitch\": \"<number,null-double>\",\n  \"pace\": 1,\n  \"loudness\": \"<number,null-double>\",\n  \"speech_sample_rate\": \"<string>\",\n  \"enable_preprocessing\": false,\n  \"model\": \"<string>\",\n  \"output_audio_codec\": \"<string>\",\n  \"temperature\": 0.6,\n  \"dict_id\": \"<string,null>\",\n  \"enable_cached_responses\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0cf37a06-421c-473e-bc2d-d2f7a026f74d",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text-to-speech"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"string\",\n  \"target_language_code\": \"kn-IN\",\n  \"speaker\": \"sunny\",\n  \"pitch\": \"<number,null-double>\",\n  \"pace\": 1,\n  \"loudness\": \"<number,null-double>\",\n  \"speech_sample_rate\": \"32000\",\n  \"enable_preprocessing\": false,\n  \"model\": \"bulbul:v2\",\n  \"output_audio_codec\": \"mulaw\",\n  \"temperature\": 0.6,\n  \"dict_id\": \"<string,null>\",\n  \"enable_cached_responses\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"audios\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b40241c-81df-4eb5-b2d4-72b5ab5e5047",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text-to-speech"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"string\",\n  \"target_language_code\": \"kn-IN\",\n  \"speaker\": \"sunny\",\n  \"pitch\": \"<number,null-double>\",\n  \"pace\": 1,\n  \"loudness\": \"<number,null-double>\",\n  \"speech_sample_rate\": \"32000\",\n  \"enable_preprocessing\": false,\n  \"model\": \"bulbul:v2\",\n  \"output_audio_codec\": \"mulaw\",\n  \"temperature\": 0.6,\n  \"dict_id\": \"<string,null>\",\n  \"enable_cached_responses\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"request_id\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"unprocessable_entity_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81d6ebd6-312e-43dc-af4b-4a1b9a5a314e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text-to-speech"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"string\",\n  \"target_language_code\": \"kn-IN\",\n  \"speaker\": \"sunny\",\n  \"pitch\": \"<number,null-double>\",\n  \"pace\": 1,\n  \"loudness\": \"<number,null-double>\",\n  \"speech_sample_rate\": \"32000\",\n  \"enable_preprocessing\": false,\n  \"model\": \"bulbul:v2\",\n  \"output_audio_codec\": \"mulaw\",\n  \"temperature\": 0.6,\n  \"dict_id\": \"<string,null>\",\n  \"enable_cached_responses\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"request_id\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"unprocessable_entity_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8558613d-5388-4c5e-a02a-f5de011f4f4a",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text-to-speech"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"string\",\n  \"target_language_code\": \"kn-IN\",\n  \"speaker\": \"sunny\",\n  \"pitch\": \"<number,null-double>\",\n  \"pace\": 1,\n  \"loudness\": \"<number,null-double>\",\n  \"speech_sample_rate\": \"32000\",\n  \"enable_preprocessing\": false,\n  \"model\": \"bulbul:v2\",\n  \"output_audio_codec\": \"mulaw\",\n  \"temperature\": 0.6,\n  \"dict_id\": \"<string,null>\",\n  \"enable_cached_responses\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"request_id\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"unprocessable_entity_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd763d47-29ed-4578-b120-390c2944df37",
+              "name": "Quota Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text-to-speech"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"string\",\n  \"target_language_code\": \"kn-IN\",\n  \"speaker\": \"sunny\",\n  \"pitch\": \"<number,null-double>\",\n  \"pace\": 1,\n  \"loudness\": \"<number,null-double>\",\n  \"speech_sample_rate\": \"32000\",\n  \"enable_preprocessing\": false,\n  \"model\": \"bulbul:v2\",\n  \"output_audio_codec\": \"mulaw\",\n  \"temperature\": 0.6,\n  \"dict_id\": \"<string,null>\",\n  \"enable_cached_responses\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"request_id\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"unprocessable_entity_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d0da0d3-10a7-42c9-9f76-f5b2171cd0f0",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text-to-speech"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"string\",\n  \"target_language_code\": \"kn-IN\",\n  \"speaker\": \"sunny\",\n  \"pitch\": \"<number,null-double>\",\n  \"pace\": 1,\n  \"loudness\": \"<number,null-double>\",\n  \"speech_sample_rate\": \"32000\",\n  \"enable_preprocessing\": false,\n  \"model\": \"bulbul:v2\",\n  \"output_audio_codec\": \"mulaw\",\n  \"temperature\": 0.6,\n  \"dict_id\": \"<string,null>\",\n  \"enable_cached_responses\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"request_id\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"unprocessable_entity_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20716b52-be0a-41ed-9a46-575c0e5a04b8",
+          "name": "Text-to-Speech Stream Audio",
+          "request": {
+            "name": "Text-to-Speech Stream Audio",
+            "description": {
+              "content": "Converts the input text into a streamed spoken audio response.\n\nThis endpoint supports streaming audio using the specified output codec (e.g., `audio/mpeg` for MP3). The response is returned as a binary audio stream, which can be played or saved directly by the client.\n\nSupports the `dict_id` parameter to apply a [pronunciation dictionary](https://docs.sarvam.ai/api-reference-docs/pronunciation-dictionary/create) during synthesis.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text-to-speech",
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "api-subscription-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"<string>\",\n  \"target_language_code\": \"<string>\",\n  \"speaker\": \"<string>\",\n  \"pitch\": \"<number,null-double>\",\n  \"pace\": 1,\n  \"loudness\": \"<number,null-double>\",\n  \"speech_sample_rate\": \"<string>\",\n  \"enable_preprocessing\": false,\n  \"model\": \"<string>\",\n  \"temperature\": 0.6,\n  \"enable_cached_responses\": false,\n  \"dict_id\": \"<string,null>\",\n  \"output_audio_codec\": \"<string>\",\n  \"output_audio_bitrate\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ff77411c-d3b3-413c-82c9-cd1a0fb71c56",
+              "name": "Success. Returns a streamed audio response in the requested format (e.g., `audio/mpeg` for MP3, `audio/wav` for WAV).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text-to-speech",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"target_language_code\": \"en-IN\",\n  \"speaker\": \"priya\",\n  \"pitch\": \"<number,null-double>\",\n  \"pace\": 1,\n  \"loudness\": \"<number,null-double>\",\n  \"speech_sample_rate\": \"16000\",\n  \"enable_preprocessing\": false,\n  \"model\": \"bulbul:v3\",\n  \"temperature\": 0.6,\n  \"enable_cached_responses\": false,\n  \"dict_id\": \"<string,null>\",\n  \"output_audio_codec\": \"aac\",\n  \"output_audio_bitrate\": \"32k\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4828509e-eede-435b-a2a4-eb9bc6de025b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text-to-speech",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"target_language_code\": \"en-IN\",\n  \"speaker\": \"priya\",\n  \"pitch\": \"<number,null-double>\",\n  \"pace\": 1,\n  \"loudness\": \"<number,null-double>\",\n  \"speech_sample_rate\": \"16000\",\n  \"enable_preprocessing\": false,\n  \"model\": \"bulbul:v3\",\n  \"temperature\": 0.6,\n  \"enable_cached_responses\": false,\n  \"dict_id\": \"<string,null>\",\n  \"output_audio_codec\": \"aac\",\n  \"output_audio_bitrate\": \"32k\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"request_id\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"unprocessable_entity_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6fef3ff-b916-46ab-be43-73706d460b15",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text-to-speech",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"target_language_code\": \"en-IN\",\n  \"speaker\": \"priya\",\n  \"pitch\": \"<number,null-double>\",\n  \"pace\": 1,\n  \"loudness\": \"<number,null-double>\",\n  \"speech_sample_rate\": \"16000\",\n  \"enable_preprocessing\": false,\n  \"model\": \"bulbul:v3\",\n  \"temperature\": 0.6,\n  \"enable_cached_responses\": false,\n  \"dict_id\": \"<string,null>\",\n  \"output_audio_codec\": \"aac\",\n  \"output_audio_bitrate\": \"32k\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"request_id\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"unprocessable_entity_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d798adaf-c2b9-40f5-b632-62726499e056",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text-to-speech",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"target_language_code\": \"en-IN\",\n  \"speaker\": \"priya\",\n  \"pitch\": \"<number,null-double>\",\n  \"pace\": 1,\n  \"loudness\": \"<number,null-double>\",\n  \"speech_sample_rate\": \"16000\",\n  \"enable_preprocessing\": false,\n  \"model\": \"bulbul:v3\",\n  \"temperature\": 0.6,\n  \"enable_cached_responses\": false,\n  \"dict_id\": \"<string,null>\",\n  \"output_audio_codec\": \"aac\",\n  \"output_audio_bitrate\": \"32k\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"request_id\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"unprocessable_entity_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2464457b-b0f8-4b45-ad74-79e244393168",
+              "name": "Quota Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text-to-speech",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"target_language_code\": \"en-IN\",\n  \"speaker\": \"priya\",\n  \"pitch\": \"<number,null-double>\",\n  \"pace\": 1,\n  \"loudness\": \"<number,null-double>\",\n  \"speech_sample_rate\": \"16000\",\n  \"enable_preprocessing\": false,\n  \"model\": \"bulbul:v3\",\n  \"temperature\": 0.6,\n  \"enable_cached_responses\": false,\n  \"dict_id\": \"<string,null>\",\n  \"output_audio_codec\": \"aac\",\n  \"output_audio_bitrate\": \"32k\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"request_id\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"unprocessable_entity_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ca400b8-c9f2-43bb-a4be-688cd61746a1",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text-to-speech",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"target_language_code\": \"en-IN\",\n  \"speaker\": \"priya\",\n  \"pitch\": \"<number,null-double>\",\n  \"pace\": 1,\n  \"loudness\": \"<number,null-double>\",\n  \"speech_sample_rate\": \"16000\",\n  \"enable_preprocessing\": false,\n  \"model\": \"bulbul:v3\",\n  \"temperature\": 0.6,\n  \"enable_cached_responses\": false,\n  \"dict_id\": \"<string,null>\",\n  \"output_audio_codec\": \"aac\",\n  \"output_audio_bitrate\": \"32k\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"request_id\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"unprocessable_entity_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sarvam.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "92994706-e7f2-4c2e-8bcc-7408c6c4dd92",
+    "name": "Endpoints chat textToSpeech API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

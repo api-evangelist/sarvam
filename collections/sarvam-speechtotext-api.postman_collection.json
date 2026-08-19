@@ -1,0 +1,1381 @@
+{
+  "item": [
+    {
+      "id": "2588acc2-d4d3-4216-9a08-34386a10a8dc",
+      "name": "speechToText",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d4e16388-5663-4a7c-9eb7-2223d8f897a0",
+          "name": "Speech to Text",
+          "request": {
+            "name": "Speech to Text",
+            "description": {
+              "content": "## Speech to Text API\n\nThis API transcribes speech to text in multiple Indian languages and English. Supports transcription for interactive applications.\n\n### Available Options:\n- **REST API** (Current Endpoint): For quick responses under 30 seconds with immediate results\n- **Batch API**: For longer audio files, [Follow This Documentation](https://docs.sarvam.ai/api-reference-docs/api-guides-tutorials/speech-to-text/batch-api)\n  - Supports diarization (speaker identification)\n\n### Note:\n- Pricing differs for REST and Batch APIs\n- Diarization is only available in Batch API with separate pricing\n- Please refer to [here](https://docs.sarvam.ai/api-reference-docs/pricing) for detailed pricing information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "speech-to-text"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "api-subscription-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) The audio file to transcribe. Supported formats include WAV, MP3, AAC, AIFF, OGG, OPUS, FLAC, MP4/M4A, AMR, WMA, WebM, and PCM formats. The API automatically detects most codec formats, but for PCM files (pcm_s16le, pcm_l16, pcm_raw), you must specify the input_audio_codec parameter. PCM files are supported only at 16kHz sample rate.\nThe API works best with audio files sampled at 16kHz. If the audio contains multiple channels, they will be merged into a single channel."
+                },
+                {
+                  "key": "model",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Specifies the model to use for speech-to-text conversion.\n\n- **saaras:v3** (default, recommended): State-of-the-art model with flexible output formats. Supports multiple modes via the `mode` parameter: transcribe, translate, verbatim, translit, codemix.\n\n- **saarika:v2.5** (legacy): Transcribes audio in the spoken language. Kept for backward compatibility."
+                },
+                {
+                  "key": "mode",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Mode of operation. **Only applicable when using saaras:v3 model.**\n\nExample audio: 'मेरा फोन नंबर है 9840950950'\n\n- **transcribe** (default): Standard transcription in the original language with proper formatting and number normalization.\n  - Output: `मेरा फोन नंबर है 9840950950`\n\n- **translate**: Translates speech from any supported Indic language to English.\n  - Output: `My phone number is 9840950950`\n\n- **verbatim**: Exact word-for-word transcription without normalization, preserving filler words and spoken numbers as-is.\n  - Output: `मेरा फोन नंबर है नौ आठ चार zero नौ पांच zero नौ पांच zero`\n\n- **translit**: Romanization - Transliterates speech to Latin/Roman script only.\n  - Output: `mera phone number hai 9840950950`\n\n- **codemix**: Code-mixed text with English words in English and Indic words in native script.\n  - Output: `मेरा phone number है 9840950950`"
+                },
+                {
+                  "key": "language_code",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Specifies the language of the input audio in BCP-47 format.\n\n**Note:** This parameter is optional for `saarika:v2.5` model.\n\n**Available Options:**\n- `unknown`: Use when the language is not known; the API will auto-detect.\n- `hi-IN`: Hindi\n- `bn-IN`: Bengali\n- `kn-IN`: Kannada\n- `ml-IN`: Malayalam\n- `mr-IN`: Marathi\n- `od-IN`: Odia\n- `pa-IN`: Punjabi\n- `ta-IN`: Tamil\n- `te-IN`: Telugu\n- `en-IN`: English\n- `gu-IN`: Gujarati\n\n**Additional Options (saaras:v3 only):**\n- `as-IN`: Assamese\n- `ur-IN`: Urdu\n- `ne-IN`: Nepali\n- `kok-IN`: Konkani\n- `ks-IN`: Kashmiri\n- `sd-IN`: Sindhi\n- `sa-IN`: Sanskrit\n- `sat-IN`: Santali\n- `mni-IN`: Manipuri\n- `brx-IN`: Bodo\n- `mai-IN`: Maithili\n- `doi-IN`: Dogri"
+                },
+                {
+                  "key": "input_audio_codec",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Input Audio codec/format of the input file. PCM files are supported only at 16kHz sample rate."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1614b46b-0089-4875-81c0-8df142704f85",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The audio file to transcribe. Supported formats include WAV, MP3, AAC, AIFF, OGG, OPUS, FLAC, MP4/M4A, AMR, WMA, WebM, and PCM formats. The API automatically detects most codec formats, but for PCM files (pcm_s16le, pcm_l16, pcm_raw), you must specify the input_audio_codec parameter. PCM files are supported only at 16kHz sample rate.\nThe API works best with audio files sampled at 16kHz. If the audio contains multiple channels, they will be merged into a single channel.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Specifies the model to use for speech-to-text conversion.\n\n- **saaras:v3** (default, recommended): State-of-the-art model with flexible output formats. Supports multiple modes via the `mode` parameter: transcribe, translate, verbatim, translit, codemix.\n\n- **saarika:v2.5** (legacy): Transcribes audio in the spoken language. Kept for backward compatibility.",
+                        "type": "text/plain"
+                      },
+                      "key": "model",
+                      "value": "saarika:v2.5",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Mode of operation. **Only applicable when using saaras:v3 model.**\n\nExample audio: 'मेरा फोन नंबर है 9840950950'\n\n- **transcribe** (default): Standard transcription in the original language with proper formatting and number normalization.\n  - Output: `मेरा फोन नंबर है 9840950950`\n\n- **translate**: Translates speech from any supported Indic language to English.\n  - Output: `My phone number is 9840950950`\n\n- **verbatim**: Exact word-for-word transcription without normalization, preserving filler words and spoken numbers as-is.\n  - Output: `मेरा फोन नंबर है नौ आठ चार zero नौ पांच zero नौ पांच zero`\n\n- **translit**: Romanization - Transliterates speech to Latin/Roman script only.\n  - Output: `mera phone number hai 9840950950`\n\n- **codemix**: Code-mixed text with English words in English and Indic words in native script.\n  - Output: `मेरा phone number है 9840950950`",
+                        "type": "text/plain"
+                      },
+                      "key": "mode",
+                      "value": "translate",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Specifies the language of the input audio in BCP-47 format.\n\n**Note:** This parameter is optional for `saarika:v2.5` model.\n\n**Available Options:**\n- `unknown`: Use when the language is not known; the API will auto-detect.\n- `hi-IN`: Hindi\n- `bn-IN`: Bengali\n- `kn-IN`: Kannada\n- `ml-IN`: Malayalam\n- `mr-IN`: Marathi\n- `od-IN`: Odia\n- `pa-IN`: Punjabi\n- `ta-IN`: Tamil\n- `te-IN`: Telugu\n- `en-IN`: English\n- `gu-IN`: Gujarati\n\n**Additional Options (saaras:v3 only):**\n- `as-IN`: Assamese\n- `ur-IN`: Urdu\n- `ne-IN`: Nepali\n- `kok-IN`: Konkani\n- `ks-IN`: Kashmiri\n- `sd-IN`: Sindhi\n- `sa-IN`: Sanskrit\n- `sat-IN`: Santali\n- `mni-IN`: Manipuri\n- `brx-IN`: Bodo\n- `mai-IN`: Maithili\n- `doi-IN`: Dogri",
+                        "type": "text/plain"
+                      },
+                      "key": "language_code",
+                      "value": "te-IN",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Input Audio codec/format of the input file. PCM files are supported only at 16kHz sample rate.",
+                        "type": "text/plain"
+                      },
+                      "key": "input_audio_codec",
+                      "value": "mp4",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"transcript\": \"string\",\n  \"language_code\": \"string\",\n  \"timestamps\": {\n    \"words\": [\n      \"string\",\n      \"string\"\n    ],\n    \"start_time_seconds\": [\n      4705.30090618475,\n      6961.914048081502\n    ],\n    \"end_time_seconds\": [\n      7049.363164123407,\n      9339.118221752227\n    ]\n  },\n  \"diarized_transcript\": {\n    \"entries\": [\n      {\n        \"transcript\": \"string\",\n        \"start_time_seconds\": 3977.812718658571,\n        \"end_time_seconds\": 3227.6781499286544,\n        \"speaker_id\": \"string\"\n      },\n      {\n        \"transcript\": \"string\",\n        \"start_time_seconds\": 5844.20713653908,\n        \"end_time_seconds\": 4832.349689919652,\n        \"speaker_id\": \"string\"\n      }\n    ]\n  },\n  \"language_probability\": 332.95687926429673\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b2e3e56-4031-4194-ac3e-ed8bbe77cb4b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The audio file to transcribe. Supported formats include WAV, MP3, AAC, AIFF, OGG, OPUS, FLAC, MP4/M4A, AMR, WMA, WebM, and PCM formats. The API automatically detects most codec formats, but for PCM files (pcm_s16le, pcm_l16, pcm_raw), you must specify the input_audio_codec parameter. PCM files are supported only at 16kHz sample rate.\nThe API works best with audio files sampled at 16kHz. If the audio contains multiple channels, they will be merged into a single channel.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Specifies the model to use for speech-to-text conversion.\n\n- **saaras:v3** (default, recommended): State-of-the-art model with flexible output formats. Supports multiple modes via the `mode` parameter: transcribe, translate, verbatim, translit, codemix.\n\n- **saarika:v2.5** (legacy): Transcribes audio in the spoken language. Kept for backward compatibility.",
+                        "type": "text/plain"
+                      },
+                      "key": "model",
+                      "value": "saaras:v3",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Mode of operation. **Only applicable when using saaras:v3 model.**\n\nExample audio: 'मेरा फोन नंबर है 9840950950'\n\n- **transcribe** (default): Standard transcription in the original language with proper formatting and number normalization.\n  - Output: `मेरा फोन नंबर है 9840950950`\n\n- **translate**: Translates speech from any supported Indic language to English.\n  - Output: `My phone number is 9840950950`\n\n- **verbatim**: Exact word-for-word transcription without normalization, preserving filler words and spoken numbers as-is.\n  - Output: `मेरा फोन नंबर है नौ आठ चार zero नौ पांच zero नौ पांच zero`\n\n- **translit**: Romanization - Transliterates speech to Latin/Roman script only.\n  - Output: `mera phone number hai 9840950950`\n\n- **codemix**: Code-mixed text with English words in English and Indic words in native script.\n  - Output: `मेरा phone number है 9840950950`",
+                        "type": "text/plain"
+                      },
+                      "key": "mode",
+                      "value": "transcribe",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Specifies the language of the input audio in BCP-47 format.\n\n**Note:** This parameter is optional for `saarika:v2.5` model.\n\n**Available Options:**\n- `unknown`: Use when the language is not known; the API will auto-detect.\n- `hi-IN`: Hindi\n- `bn-IN`: Bengali\n- `kn-IN`: Kannada\n- `ml-IN`: Malayalam\n- `mr-IN`: Marathi\n- `od-IN`: Odia\n- `pa-IN`: Punjabi\n- `ta-IN`: Tamil\n- `te-IN`: Telugu\n- `en-IN`: English\n- `gu-IN`: Gujarati\n\n**Additional Options (saaras:v3 only):**\n- `as-IN`: Assamese\n- `ur-IN`: Urdu\n- `ne-IN`: Nepali\n- `kok-IN`: Konkani\n- `ks-IN`: Kashmiri\n- `sd-IN`: Sindhi\n- `sa-IN`: Sanskrit\n- `sat-IN`: Santali\n- `mni-IN`: Manipuri\n- `brx-IN`: Bodo\n- `mai-IN`: Maithili\n- `doi-IN`: Dogri",
+                        "type": "text/plain"
+                      },
+                      "key": "language_code",
+                      "value": "pa-IN",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Input Audio codec/format of the input file. PCM files are supported only at 16kHz sample rate.",
+                        "type": "text/plain"
+                      },
+                      "key": "input_audio_codec",
+                      "value": "x-wav",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"request_id\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"unprocessable_entity_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4dfe6fbb-a70d-4d33-9456-b4c323af088f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The audio file to transcribe. Supported formats include WAV, MP3, AAC, AIFF, OGG, OPUS, FLAC, MP4/M4A, AMR, WMA, WebM, and PCM formats. The API automatically detects most codec formats, but for PCM files (pcm_s16le, pcm_l16, pcm_raw), you must specify the input_audio_codec parameter. PCM files are supported only at 16kHz sample rate.\nThe API works best with audio files sampled at 16kHz. If the audio contains multiple channels, they will be merged into a single channel.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Specifies the model to use for speech-to-text conversion.\n\n- **saaras:v3** (default, recommended): State-of-the-art model with flexible output formats. Supports multiple modes via the `mode` parameter: transcribe, translate, verbatim, translit, codemix.\n\n- **saarika:v2.5** (legacy): Transcribes audio in the spoken language. Kept for backward compatibility.",
+                        "type": "text/plain"
+                      },
+                      "key": "model",
+                      "value": "saaras:v3",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Mode of operation. **Only applicable when using saaras:v3 model.**\n\nExample audio: 'मेरा फोन नंबर है 9840950950'\n\n- **transcribe** (default): Standard transcription in the original language with proper formatting and number normalization.\n  - Output: `मेरा फोन नंबर है 9840950950`\n\n- **translate**: Translates speech from any supported Indic language to English.\n  - Output: `My phone number is 9840950950`\n\n- **verbatim**: Exact word-for-word transcription without normalization, preserving filler words and spoken numbers as-is.\n  - Output: `मेरा फोन नंबर है नौ आठ चार zero नौ पांच zero नौ पांच zero`\n\n- **translit**: Romanization - Transliterates speech to Latin/Roman script only.\n  - Output: `mera phone number hai 9840950950`\n\n- **codemix**: Code-mixed text with English words in English and Indic words in native script.\n  - Output: `मेरा phone number है 9840950950`",
+                        "type": "text/plain"
+                      },
+                      "key": "mode",
+                      "value": "transcribe",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Specifies the language of the input audio in BCP-47 format.\n\n**Note:** This parameter is optional for `saarika:v2.5` model.\n\n**Available Options:**\n- `unknown`: Use when the language is not known; the API will auto-detect.\n- `hi-IN`: Hindi\n- `bn-IN`: Bengali\n- `kn-IN`: Kannada\n- `ml-IN`: Malayalam\n- `mr-IN`: Marathi\n- `od-IN`: Odia\n- `pa-IN`: Punjabi\n- `ta-IN`: Tamil\n- `te-IN`: Telugu\n- `en-IN`: English\n- `gu-IN`: Gujarati\n\n**Additional Options (saaras:v3 only):**\n- `as-IN`: Assamese\n- `ur-IN`: Urdu\n- `ne-IN`: Nepali\n- `kok-IN`: Konkani\n- `ks-IN`: Kashmiri\n- `sd-IN`: Sindhi\n- `sa-IN`: Sanskrit\n- `sat-IN`: Santali\n- `mni-IN`: Manipuri\n- `brx-IN`: Bodo\n- `mai-IN`: Maithili\n- `doi-IN`: Dogri",
+                        "type": "text/plain"
+                      },
+                      "key": "language_code",
+                      "value": "pa-IN",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Input Audio codec/format of the input file. PCM files are supported only at 16kHz sample rate.",
+                        "type": "text/plain"
+                      },
+                      "key": "input_audio_codec",
+                      "value": "x-wav",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"request_id\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"unprocessable_entity_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2bba233b-6706-4486-b139-3784478470b6",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The audio file to transcribe. Supported formats include WAV, MP3, AAC, AIFF, OGG, OPUS, FLAC, MP4/M4A, AMR, WMA, WebM, and PCM formats. The API automatically detects most codec formats, but for PCM files (pcm_s16le, pcm_l16, pcm_raw), you must specify the input_audio_codec parameter. PCM files are supported only at 16kHz sample rate.\nThe API works best with audio files sampled at 16kHz. If the audio contains multiple channels, they will be merged into a single channel.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Specifies the model to use for speech-to-text conversion.\n\n- **saaras:v3** (default, recommended): State-of-the-art model with flexible output formats. Supports multiple modes via the `mode` parameter: transcribe, translate, verbatim, translit, codemix.\n\n- **saarika:v2.5** (legacy): Transcribes audio in the spoken language. Kept for backward compatibility.",
+                        "type": "text/plain"
+                      },
+                      "key": "model",
+                      "value": "saaras:v3",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Mode of operation. **Only applicable when using saaras:v3 model.**\n\nExample audio: 'मेरा फोन नंबर है 9840950950'\n\n- **transcribe** (default): Standard transcription in the original language with proper formatting and number normalization.\n  - Output: `मेरा फोन नंबर है 9840950950`\n\n- **translate**: Translates speech from any supported Indic language to English.\n  - Output: `My phone number is 9840950950`\n\n- **verbatim**: Exact word-for-word transcription without normalization, preserving filler words and spoken numbers as-is.\n  - Output: `मेरा फोन नंबर है नौ आठ चार zero नौ पांच zero नौ पांच zero`\n\n- **translit**: Romanization - Transliterates speech to Latin/Roman script only.\n  - Output: `mera phone number hai 9840950950`\n\n- **codemix**: Code-mixed text with English words in English and Indic words in native script.\n  - Output: `मेरा phone number है 9840950950`",
+                        "type": "text/plain"
+                      },
+                      "key": "mode",
+                      "value": "transcribe",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Specifies the language of the input audio in BCP-47 format.\n\n**Note:** This parameter is optional for `saarika:v2.5` model.\n\n**Available Options:**\n- `unknown`: Use when the language is not known; the API will auto-detect.\n- `hi-IN`: Hindi\n- `bn-IN`: Bengali\n- `kn-IN`: Kannada\n- `ml-IN`: Malayalam\n- `mr-IN`: Marathi\n- `od-IN`: Odia\n- `pa-IN`: Punjabi\n- `ta-IN`: Tamil\n- `te-IN`: Telugu\n- `en-IN`: English\n- `gu-IN`: Gujarati\n\n**Additional Options (saaras:v3 only):**\n- `as-IN`: Assamese\n- `ur-IN`: Urdu\n- `ne-IN`: Nepali\n- `kok-IN`: Konkani\n- `ks-IN`: Kashmiri\n- `sd-IN`: Sindhi\n- `sa-IN`: Sanskrit\n- `sat-IN`: Santali\n- `mni-IN`: Manipuri\n- `brx-IN`: Bodo\n- `mai-IN`: Maithili\n- `doi-IN`: Dogri",
+                        "type": "text/plain"
+                      },
+                      "key": "language_code",
+                      "value": "pa-IN",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Input Audio codec/format of the input file. PCM files are supported only at 16kHz sample rate.",
+                        "type": "text/plain"
+                      },
+                      "key": "input_audio_codec",
+                      "value": "x-wav",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"request_id\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"unprocessable_entity_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9cb844c3-5949-461f-94e6-5d96eff7b6a8",
+              "name": "Quota Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The audio file to transcribe. Supported formats include WAV, MP3, AAC, AIFF, OGG, OPUS, FLAC, MP4/M4A, AMR, WMA, WebM, and PCM formats. The API automatically detects most codec formats, but for PCM files (pcm_s16le, pcm_l16, pcm_raw), you must specify the input_audio_codec parameter. PCM files are supported only at 16kHz sample rate.\nThe API works best with audio files sampled at 16kHz. If the audio contains multiple channels, they will be merged into a single channel.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Specifies the model to use for speech-to-text conversion.\n\n- **saaras:v3** (default, recommended): State-of-the-art model with flexible output formats. Supports multiple modes via the `mode` parameter: transcribe, translate, verbatim, translit, codemix.\n\n- **saarika:v2.5** (legacy): Transcribes audio in the spoken language. Kept for backward compatibility.",
+                        "type": "text/plain"
+                      },
+                      "key": "model",
+                      "value": "saaras:v3",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Mode of operation. **Only applicable when using saaras:v3 model.**\n\nExample audio: 'मेरा फोन नंबर है 9840950950'\n\n- **transcribe** (default): Standard transcription in the original language with proper formatting and number normalization.\n  - Output: `मेरा फोन नंबर है 9840950950`\n\n- **translate**: Translates speech from any supported Indic language to English.\n  - Output: `My phone number is 9840950950`\n\n- **verbatim**: Exact word-for-word transcription without normalization, preserving filler words and spoken numbers as-is.\n  - Output: `मेरा फोन नंबर है नौ आठ चार zero नौ पांच zero नौ पांच zero`\n\n- **translit**: Romanization - Transliterates speech to Latin/Roman script only.\n  - Output: `mera phone number hai 9840950950`\n\n- **codemix**: Code-mixed text with English words in English and Indic words in native script.\n  - Output: `मेरा phone number है 9840950950`",
+                        "type": "text/plain"
+                      },
+                      "key": "mode",
+                      "value": "transcribe",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Specifies the language of the input audio in BCP-47 format.\n\n**Note:** This parameter is optional for `saarika:v2.5` model.\n\n**Available Options:**\n- `unknown`: Use when the language is not known; the API will auto-detect.\n- `hi-IN`: Hindi\n- `bn-IN`: Bengali\n- `kn-IN`: Kannada\n- `ml-IN`: Malayalam\n- `mr-IN`: Marathi\n- `od-IN`: Odia\n- `pa-IN`: Punjabi\n- `ta-IN`: Tamil\n- `te-IN`: Telugu\n- `en-IN`: English\n- `gu-IN`: Gujarati\n\n**Additional Options (saaras:v3 only):**\n- `as-IN`: Assamese\n- `ur-IN`: Urdu\n- `ne-IN`: Nepali\n- `kok-IN`: Konkani\n- `ks-IN`: Kashmiri\n- `sd-IN`: Sindhi\n- `sa-IN`: Sanskrit\n- `sat-IN`: Santali\n- `mni-IN`: Manipuri\n- `brx-IN`: Bodo\n- `mai-IN`: Maithili\n- `doi-IN`: Dogri",
+                        "type": "text/plain"
+                      },
+                      "key": "language_code",
+                      "value": "pa-IN",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Input Audio codec/format of the input file. PCM files are supported only at 16kHz sample rate.",
+                        "type": "text/plain"
+                      },
+                      "key": "input_audio_codec",
+                      "value": "x-wav",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"request_id\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"unprocessable_entity_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a9000aa-8966-4dcc-be2c-803832fe0bee",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The audio file to transcribe. Supported formats include WAV, MP3, AAC, AIFF, OGG, OPUS, FLAC, MP4/M4A, AMR, WMA, WebM, and PCM formats. The API automatically detects most codec formats, but for PCM files (pcm_s16le, pcm_l16, pcm_raw), you must specify the input_audio_codec parameter. PCM files are supported only at 16kHz sample rate.\nThe API works best with audio files sampled at 16kHz. If the audio contains multiple channels, they will be merged into a single channel.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Specifies the model to use for speech-to-text conversion.\n\n- **saaras:v3** (default, recommended): State-of-the-art model with flexible output formats. Supports multiple modes via the `mode` parameter: transcribe, translate, verbatim, translit, codemix.\n\n- **saarika:v2.5** (legacy): Transcribes audio in the spoken language. Kept for backward compatibility.",
+                        "type": "text/plain"
+                      },
+                      "key": "model",
+                      "value": "saaras:v3",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Mode of operation. **Only applicable when using saaras:v3 model.**\n\nExample audio: 'मेरा फोन नंबर है 9840950950'\n\n- **transcribe** (default): Standard transcription in the original language with proper formatting and number normalization.\n  - Output: `मेरा फोन नंबर है 9840950950`\n\n- **translate**: Translates speech from any supported Indic language to English.\n  - Output: `My phone number is 9840950950`\n\n- **verbatim**: Exact word-for-word transcription without normalization, preserving filler words and spoken numbers as-is.\n  - Output: `मेरा फोन नंबर है नौ आठ चार zero नौ पांच zero नौ पांच zero`\n\n- **translit**: Romanization - Transliterates speech to Latin/Roman script only.\n  - Output: `mera phone number hai 9840950950`\n\n- **codemix**: Code-mixed text with English words in English and Indic words in native script.\n  - Output: `मेरा phone number है 9840950950`",
+                        "type": "text/plain"
+                      },
+                      "key": "mode",
+                      "value": "transcribe",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Specifies the language of the input audio in BCP-47 format.\n\n**Note:** This parameter is optional for `saarika:v2.5` model.\n\n**Available Options:**\n- `unknown`: Use when the language is not known; the API will auto-detect.\n- `hi-IN`: Hindi\n- `bn-IN`: Bengali\n- `kn-IN`: Kannada\n- `ml-IN`: Malayalam\n- `mr-IN`: Marathi\n- `od-IN`: Odia\n- `pa-IN`: Punjabi\n- `ta-IN`: Tamil\n- `te-IN`: Telugu\n- `en-IN`: English\n- `gu-IN`: Gujarati\n\n**Additional Options (saaras:v3 only):**\n- `as-IN`: Assamese\n- `ur-IN`: Urdu\n- `ne-IN`: Nepali\n- `kok-IN`: Konkani\n- `ks-IN`: Kashmiri\n- `sd-IN`: Sindhi\n- `sa-IN`: Sanskrit\n- `sat-IN`: Santali\n- `mni-IN`: Manipuri\n- `brx-IN`: Bodo\n- `mai-IN`: Maithili\n- `doi-IN`: Dogri",
+                        "type": "text/plain"
+                      },
+                      "key": "language_code",
+                      "value": "pa-IN",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Input Audio codec/format of the input file. PCM files are supported only at 16kHz sample rate.",
+                        "type": "text/plain"
+                      },
+                      "key": "input_audio_codec",
+                      "value": "x-wav",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"request_id\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"unprocessable_entity_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c5edc7a-8be4-4a5d-968e-208b57a68dfc",
+              "name": "Service Overloaded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The audio file to transcribe. Supported formats include WAV, MP3, AAC, AIFF, OGG, OPUS, FLAC, MP4/M4A, AMR, WMA, WebM, and PCM formats. The API automatically detects most codec formats, but for PCM files (pcm_s16le, pcm_l16, pcm_raw), you must specify the input_audio_codec parameter. PCM files are supported only at 16kHz sample rate.\nThe API works best with audio files sampled at 16kHz. If the audio contains multiple channels, they will be merged into a single channel.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Specifies the model to use for speech-to-text conversion.\n\n- **saaras:v3** (default, recommended): State-of-the-art model with flexible output formats. Supports multiple modes via the `mode` parameter: transcribe, translate, verbatim, translit, codemix.\n\n- **saarika:v2.5** (legacy): Transcribes audio in the spoken language. Kept for backward compatibility.",
+                        "type": "text/plain"
+                      },
+                      "key": "model",
+                      "value": "saaras:v3",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Mode of operation. **Only applicable when using saaras:v3 model.**\n\nExample audio: 'मेरा फोन नंबर है 9840950950'\n\n- **transcribe** (default): Standard transcription in the original language with proper formatting and number normalization.\n  - Output: `मेरा फोन नंबर है 9840950950`\n\n- **translate**: Translates speech from any supported Indic language to English.\n  - Output: `My phone number is 9840950950`\n\n- **verbatim**: Exact word-for-word transcription without normalization, preserving filler words and spoken numbers as-is.\n  - Output: `मेरा फोन नंबर है नौ आठ चार zero नौ पांच zero नौ पांच zero`\n\n- **translit**: Romanization - Transliterates speech to Latin/Roman script only.\n  - Output: `mera phone number hai 9840950950`\n\n- **codemix**: Code-mixed text with English words in English and Indic words in native script.\n  - Output: `मेरा phone number है 9840950950`",
+                        "type": "text/plain"
+                      },
+                      "key": "mode",
+                      "value": "transcribe",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Specifies the language of the input audio in BCP-47 format.\n\n**Note:** This parameter is optional for `saarika:v2.5` model.\n\n**Available Options:**\n- `unknown`: Use when the language is not known; the API will auto-detect.\n- `hi-IN`: Hindi\n- `bn-IN`: Bengali\n- `kn-IN`: Kannada\n- `ml-IN`: Malayalam\n- `mr-IN`: Marathi\n- `od-IN`: Odia\n- `pa-IN`: Punjabi\n- `ta-IN`: Tamil\n- `te-IN`: Telugu\n- `en-IN`: English\n- `gu-IN`: Gujarati\n\n**Additional Options (saaras:v3 only):**\n- `as-IN`: Assamese\n- `ur-IN`: Urdu\n- `ne-IN`: Nepali\n- `kok-IN`: Konkani\n- `ks-IN`: Kashmiri\n- `sd-IN`: Sindhi\n- `sa-IN`: Sanskrit\n- `sat-IN`: Santali\n- `mni-IN`: Manipuri\n- `brx-IN`: Bodo\n- `mai-IN`: Maithili\n- `doi-IN`: Dogri",
+                        "type": "text/plain"
+                      },
+                      "key": "language_code",
+                      "value": "pa-IN",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Input Audio codec/format of the input file. PCM files are supported only at 16kHz sample rate.",
+                        "type": "text/plain"
+                      },
+                      "key": "input_audio_codec",
+                      "value": "x-wav",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"request_id\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"unprocessable_entity_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4ed61f4-fa58-4ed2-8098-929674d2eb36",
+          "name": "Speech To Text Translate",
+          "request": {
+            "name": "Speech To Text Translate",
+            "description": {
+              "content": "## Speech to Text Translation API\n\nThis API automatically detects the input language, transcribes the speech, and translates the text to English.\n\n### Available Options:\n- **REST API** (Current Endpoint): For quick responses under 30 seconds with immediate results\n- **Batch API**: For longer audio files [Follow this documentation](https://docs.sarvam.ai/api-reference-docs/api-guides-tutorials/speech-to-text/batch-api)\n  - Supports diarization (speaker identification)\n\n### Note:\n- Pricing differs for REST and Batch APIs\n- Diarization is only available in Batch API with separate pricing\n- Please refer to [here](https://docs.sarvam.ai/api-reference-docs/pricing) for detailed pricing information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "speech-to-text-translate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "api-subscription-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) The audio file to transcribe. Supported formats include WAV, MP3, AAC, AIFF, OGG, OPUS, FLAC, MP4/M4A, AMR, WMA, WebM, and PCM formats. The API automatically detects most codec formats, but for PCM files (pcm_s16le, pcm_l16, pcm_raw), you must specify the input_audio_codec parameter. PCM files are supported only at 16kHz sample rate.\nWorks best at 16kHz. Multiple channels will be merged."
+                },
+                {
+                  "key": "prompt",
+                  "value": "<string,null>",
+                  "type": "text",
+                  "description": "Conversation context can be passed as a prompt to boost model accuracy. However, the current system is at an experimentation stage and doesn't match the prompt performance of large language models."
+                },
+                {
+                  "key": "model",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Model to be used for speech to text translation.\n\n- **saaras:v2.5** (default): Translation model that translates audio from any spoken Indic language to English.\n  - Example: Hindi audio → English text output\n\nFor the latest model (saaras:v3), use the `/speech-to-text` endpoint with `mode=\"translate\"`."
+                },
+                {
+                  "key": "input_audio_codec",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Audio codec/format of the input file. Our API automatically detects all codec formats, but for PCM files specifically (pcm_s16le, pcm_l16, pcm_raw), you must pass this parameter. PCM files are supported only at 16kHz sample rate."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "85f2c6e3-0a2a-4a2e-b65b-5d787e209318",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The audio file to transcribe. Supported formats include WAV, MP3, AAC, AIFF, OGG, OPUS, FLAC, MP4/M4A, AMR, WMA, WebM, and PCM formats. The API automatically detects most codec formats, but for PCM files (pcm_s16le, pcm_l16, pcm_raw), you must specify the input_audio_codec parameter. PCM files are supported only at 16kHz sample rate.\nWorks best at 16kHz. Multiple channels will be merged.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Conversation context can be passed as a prompt to boost model accuracy. However, the current system is at an experimentation stage and doesn't match the prompt performance of large language models.",
+                        "type": "text/plain"
+                      },
+                      "key": "prompt",
+                      "value": "<string,null>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Model to be used for speech to text translation.\n\n- **saaras:v2.5** (default): Translation model that translates audio from any spoken Indic language to English.\n  - Example: Hindi audio → English text output\n\nFor the latest model (saaras:v3), use the `/speech-to-text` endpoint with `mode=\"translate\"`.",
+                        "type": "text/plain"
+                      },
+                      "key": "model",
+                      "value": "saaras:v2.5",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Audio codec/format of the input file. Our API automatically detects all codec formats, but for PCM files specifically (pcm_s16le, pcm_l16, pcm_raw), you must pass this parameter. PCM files are supported only at 16kHz sample rate.",
+                        "type": "text/plain"
+                      },
+                      "key": "input_audio_codec",
+                      "value": "webm",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"transcript\": \"string\",\n  \"language_code\": \"te-IN\",\n  \"diarized_transcript\": {\n    \"entries\": [\n      {\n        \"transcript\": \"string\",\n        \"start_time_seconds\": 4963.745026999761,\n        \"end_time_seconds\": 302.4059708071958,\n        \"speaker_id\": \"string\"\n      },\n      {\n        \"transcript\": \"string\",\n        \"start_time_seconds\": 1864.7491353538749,\n        \"end_time_seconds\": 2924.411502976806,\n        \"speaker_id\": \"string\"\n      }\n    ]\n  },\n  \"language_probability\": 8451.530038896799\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97d4fc71-de74-4572-b3c6-278d6ecfa59f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The audio file to transcribe. Supported formats include WAV, MP3, AAC, AIFF, OGG, OPUS, FLAC, MP4/M4A, AMR, WMA, WebM, and PCM formats. The API automatically detects most codec formats, but for PCM files (pcm_s16le, pcm_l16, pcm_raw), you must specify the input_audio_codec parameter. PCM files are supported only at 16kHz sample rate.\nWorks best at 16kHz. Multiple channels will be merged.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Conversation context can be passed as a prompt to boost model accuracy. However, the current system is at an experimentation stage and doesn't match the prompt performance of large language models.",
+                        "type": "text/plain"
+                      },
+                      "key": "prompt",
+                      "value": "<string,null>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Model to be used for speech to text translation.\n\n- **saaras:v2.5** (default): Translation model that translates audio from any spoken Indic language to English.\n  - Example: Hindi audio → English text output\n\nFor the latest model (saaras:v3), use the `/speech-to-text` endpoint with `mode=\"translate\"`.",
+                        "type": "text/plain"
+                      },
+                      "key": "model",
+                      "value": "saaras:v2.5",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Audio codec/format of the input file. Our API automatically detects all codec formats, but for PCM files specifically (pcm_s16le, pcm_l16, pcm_raw), you must pass this parameter. PCM files are supported only at 16kHz sample rate.",
+                        "type": "text/plain"
+                      },
+                      "key": "input_audio_codec",
+                      "value": "amr",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"request_id\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"unprocessable_entity_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab95b74d-3e0c-406b-8884-858c2956cc48",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The audio file to transcribe. Supported formats include WAV, MP3, AAC, AIFF, OGG, OPUS, FLAC, MP4/M4A, AMR, WMA, WebM, and PCM formats. The API automatically detects most codec formats, but for PCM files (pcm_s16le, pcm_l16, pcm_raw), you must specify the input_audio_codec parameter. PCM files are supported only at 16kHz sample rate.\nWorks best at 16kHz. Multiple channels will be merged.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Conversation context can be passed as a prompt to boost model accuracy. However, the current system is at an experimentation stage and doesn't match the prompt performance of large language models.",
+                        "type": "text/plain"
+                      },
+                      "key": "prompt",
+                      "value": "<string,null>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Model to be used for speech to text translation.\n\n- **saaras:v2.5** (default): Translation model that translates audio from any spoken Indic language to English.\n  - Example: Hindi audio → English text output\n\nFor the latest model (saaras:v3), use the `/speech-to-text` endpoint with `mode=\"translate\"`.",
+                        "type": "text/plain"
+                      },
+                      "key": "model",
+                      "value": "saaras:v2.5",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Audio codec/format of the input file. Our API automatically detects all codec formats, but for PCM files specifically (pcm_s16le, pcm_l16, pcm_raw), you must pass this parameter. PCM files are supported only at 16kHz sample rate.",
+                        "type": "text/plain"
+                      },
+                      "key": "input_audio_codec",
+                      "value": "amr",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"request_id\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"unprocessable_entity_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d43d9740-eb0b-4802-a86b-5128c6eb9152",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The audio file to transcribe. Supported formats include WAV, MP3, AAC, AIFF, OGG, OPUS, FLAC, MP4/M4A, AMR, WMA, WebM, and PCM formats. The API automatically detects most codec formats, but for PCM files (pcm_s16le, pcm_l16, pcm_raw), you must specify the input_audio_codec parameter. PCM files are supported only at 16kHz sample rate.\nWorks best at 16kHz. Multiple channels will be merged.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Conversation context can be passed as a prompt to boost model accuracy. However, the current system is at an experimentation stage and doesn't match the prompt performance of large language models.",
+                        "type": "text/plain"
+                      },
+                      "key": "prompt",
+                      "value": "<string,null>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Model to be used for speech to text translation.\n\n- **saaras:v2.5** (default): Translation model that translates audio from any spoken Indic language to English.\n  - Example: Hindi audio → English text output\n\nFor the latest model (saaras:v3), use the `/speech-to-text` endpoint with `mode=\"translate\"`.",
+                        "type": "text/plain"
+                      },
+                      "key": "model",
+                      "value": "saaras:v2.5",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Audio codec/format of the input file. Our API automatically detects all codec formats, but for PCM files specifically (pcm_s16le, pcm_l16, pcm_raw), you must pass this parameter. PCM files are supported only at 16kHz sample rate.",
+                        "type": "text/plain"
+                      },
+                      "key": "input_audio_codec",
+                      "value": "amr",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"request_id\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"unprocessable_entity_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84caeb89-cf9e-4240-a0e3-8d272deb2dab",
+              "name": "Quota Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The audio file to transcribe. Supported formats include WAV, MP3, AAC, AIFF, OGG, OPUS, FLAC, MP4/M4A, AMR, WMA, WebM, and PCM formats. The API automatically detects most codec formats, but for PCM files (pcm_s16le, pcm_l16, pcm_raw), you must specify the input_audio_codec parameter. PCM files are supported only at 16kHz sample rate.\nWorks best at 16kHz. Multiple channels will be merged.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Conversation context can be passed as a prompt to boost model accuracy. However, the current system is at an experimentation stage and doesn't match the prompt performance of large language models.",
+                        "type": "text/plain"
+                      },
+                      "key": "prompt",
+                      "value": "<string,null>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Model to be used for speech to text translation.\n\n- **saaras:v2.5** (default): Translation model that translates audio from any spoken Indic language to English.\n  - Example: Hindi audio → English text output\n\nFor the latest model (saaras:v3), use the `/speech-to-text` endpoint with `mode=\"translate\"`.",
+                        "type": "text/plain"
+                      },
+                      "key": "model",
+                      "value": "saaras:v2.5",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Audio codec/format of the input file. Our API automatically detects all codec formats, but for PCM files specifically (pcm_s16le, pcm_l16, pcm_raw), you must pass this parameter. PCM files are supported only at 16kHz sample rate.",
+                        "type": "text/plain"
+                      },
+                      "key": "input_audio_codec",
+                      "value": "amr",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"request_id\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"unprocessable_entity_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2368afbe-3846-435c-8a2a-a106efee92f9",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The audio file to transcribe. Supported formats include WAV, MP3, AAC, AIFF, OGG, OPUS, FLAC, MP4/M4A, AMR, WMA, WebM, and PCM formats. The API automatically detects most codec formats, but for PCM files (pcm_s16le, pcm_l16, pcm_raw), you must specify the input_audio_codec parameter. PCM files are supported only at 16kHz sample rate.\nWorks best at 16kHz. Multiple channels will be merged.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Conversation context can be passed as a prompt to boost model accuracy. However, the current system is at an experimentation stage and doesn't match the prompt performance of large language models.",
+                        "type": "text/plain"
+                      },
+                      "key": "prompt",
+                      "value": "<string,null>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Model to be used for speech to text translation.\n\n- **saaras:v2.5** (default): Translation model that translates audio from any spoken Indic language to English.\n  - Example: Hindi audio → English text output\n\nFor the latest model (saaras:v3), use the `/speech-to-text` endpoint with `mode=\"translate\"`.",
+                        "type": "text/plain"
+                      },
+                      "key": "model",
+                      "value": "saaras:v2.5",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Audio codec/format of the input file. Our API automatically detects all codec formats, but for PCM files specifically (pcm_s16le, pcm_l16, pcm_raw), you must pass this parameter. PCM files are supported only at 16kHz sample rate.",
+                        "type": "text/plain"
+                      },
+                      "key": "input_audio_codec",
+                      "value": "amr",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"request_id\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"unprocessable_entity_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ca7bb19-70b9-477e-bd8b-d10453dcc18e",
+              "name": "Service Overloaded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The audio file to transcribe. Supported formats include WAV, MP3, AAC, AIFF, OGG, OPUS, FLAC, MP4/M4A, AMR, WMA, WebM, and PCM formats. The API automatically detects most codec formats, but for PCM files (pcm_s16le, pcm_l16, pcm_raw), you must specify the input_audio_codec parameter. PCM files are supported only at 16kHz sample rate.\nWorks best at 16kHz. Multiple channels will be merged.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Conversation context can be passed as a prompt to boost model accuracy. However, the current system is at an experimentation stage and doesn't match the prompt performance of large language models.",
+                        "type": "text/plain"
+                      },
+                      "key": "prompt",
+                      "value": "<string,null>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Model to be used for speech to text translation.\n\n- **saaras:v2.5** (default): Translation model that translates audio from any spoken Indic language to English.\n  - Example: Hindi audio → English text output\n\nFor the latest model (saaras:v3), use the `/speech-to-text` endpoint with `mode=\"translate\"`.",
+                        "type": "text/plain"
+                      },
+                      "key": "model",
+                      "value": "saaras:v2.5",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Audio codec/format of the input file. Our API automatically detects all codec formats, but for PCM files specifically (pcm_s16le, pcm_l16, pcm_raw), you must pass this parameter. PCM files are supported only at 16kHz sample rate.",
+                        "type": "text/plain"
+                      },
+                      "key": "input_audio_codec",
+                      "value": "amr",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"request_id\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"unprocessable_entity_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sarvam.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4e8d602a-8b4d-45a4-9f4d-e8773bb791cb",
+    "name": "Endpoints chat speechToText API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

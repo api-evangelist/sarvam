@@ -1,0 +1,1876 @@
+{
+  "item": [
+    {
+      "id": "e3486e0e-f1fd-4e3f-8ab7-67d26fbe6032",
+      "name": "documentIntelligence",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2dafb9dd-5024-46c2-9df9-62419bcb0f86",
+          "name": "Create Document Intelligence Job",
+          "request": {
+            "name": "Create Document Intelligence Job",
+            "description": {
+              "content": "Creates a new Document Intelligence job.\n\n**Supported Languages (BCP-47 format):**\n- `hi-IN`: Hindi (default)\n- `en-IN`: English\n- `bn-IN`: Bengali\n- `gu-IN`: Gujarati\n- `kn-IN`: Kannada\n- `ml-IN`: Malayalam\n- `mr-IN`: Marathi\n- `od-IN`: Odia\n- `pa-IN`: Punjabi\n- `ta-IN`: Tamil\n- `te-IN`: Telugu\n- `ur-IN`: Urdu\n- `as-IN`: Assamese\n- `brx-IN`: Bodo\n- `doi-IN`: Dogri\n- `ks-IN`: Kashmiri\n- `kok-IN`: Konkani\n- `mai-IN`: Maithili\n- `mni-IN`: Manipuri\n- `ne-IN`: Nepali\n- `sa-IN`: Sanskrit\n- `sat-IN`: Santali\n- `sd-IN`: Sindhi\n\n**Output Formats (delivered as ZIP file):**\n- `html`: Structured HTML files with layout preservation\n- `md`: Markdown files (default)\n- `json`: Structured JSON files for programmatic processing",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "doc-digitization",
+                "job",
+                "v1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "api-subscription-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"job_parameters\": {\n    \"language\": \"<string>\",\n    \"output_format\": \"<string>\"\n  },\n  \"callback\": {\n    \"url\": \"<uri>\",\n    \"auth_token\": \"\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6cf609dd-c2e7-4be1-92f5-a720c1633e16",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_parameters\": {\n    \"language\": \"en-IN\",\n    \"output_format\": \"html\"\n  },\n  \"callback\": {\n    \"url\": \"https://xHLKitsjDTtnTaxQHos.xzksn4jC1zasEE8ySeOdVbbAQ.WLc9w0.XP+BFouvP\",\n    \"auth_token\": \"\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"2ade0eeb-8241-efd0-869a-db44c9f92342\",\n  \"storage_container_type\": \"Azure\",\n  \"job_parameters\": {\n    \"language\": \"as-IN\",\n    \"output_format\": \"html\"\n  },\n  \"job_state\": \"PartiallyCompleted\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df5742e4-a18a-45ad-abd7-71616964f593",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_parameters\": {\n    \"language\": \"en-IN\",\n    \"output_format\": \"html\"\n  },\n  \"callback\": {\n    \"url\": \"https://xHLKitsjDTtnTaxQHos.xzksn4jC1zasEE8ySeOdVbbAQ.WLc9w0.XP+BFouvP\",\n    \"auth_token\": \"\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8f6124e-a649-4b09-8d22-cfb2b4fc6f4f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_parameters\": {\n    \"language\": \"en-IN\",\n    \"output_format\": \"html\"\n  },\n  \"callback\": {\n    \"url\": \"https://xHLKitsjDTtnTaxQHos.xzksn4jC1zasEE8ySeOdVbbAQ.WLc9w0.XP+BFouvP\",\n    \"auth_token\": \"\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b362baf-3986-4cf3-a276-4aa6f7b41336",
+              "name": "Quota Exceeded / Rate Limited",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_parameters\": {\n    \"language\": \"en-IN\",\n    \"output_format\": \"html\"\n  },\n  \"callback\": {\n    \"url\": \"https://xHLKitsjDTtnTaxQHos.xzksn4jC1zasEE8ySeOdVbbAQ.WLc9w0.XP+BFouvP\",\n    \"auth_token\": \"\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c039ad2f-28a2-4d54-abe5-18466c482bda",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_parameters\": {\n    \"language\": \"en-IN\",\n    \"output_format\": \"html\"\n  },\n  \"callback\": {\n    \"url\": \"https://xHLKitsjDTtnTaxQHos.xzksn4jC1zasEE8ySeOdVbbAQ.WLc9w0.XP+BFouvP\",\n    \"auth_token\": \"\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e1f2be0-5d82-429f-b4ce-caacddf0b57c",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_parameters\": {\n    \"language\": \"en-IN\",\n    \"output_format\": \"html\"\n  },\n  \"callback\": {\n    \"url\": \"https://xHLKitsjDTtnTaxQHos.xzksn4jC1zasEE8ySeOdVbbAQ.WLc9w0.XP+BFouvP\",\n    \"auth_token\": \"\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19fd786a-834e-472b-9d1b-1f17be5a2f70",
+          "name": "Get Document Intelligence Upload URLs",
+          "request": {
+            "name": "Get Document Intelligence Upload URLs",
+            "description": {
+              "content": "Returns presigned URLs for uploading input files.\n\n**File Constraints:**\n- Exactly one file required (PDF or ZIP)\n- PDF files: `.pdf` extension\n- ZIP files: `.zip` extension",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "doc-digitization",
+                "job",
+                "v1",
+                "upload-files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "api-subscription-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "25c32771-c790-434c-ab30-1372b064c442",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    "upload-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"ef26fe4a-cc81-a89f-602d-3f2d73aa40fc\",\n  \"job_state\": \"Completed\",\n  \"upload_urls\": {\n    \"key_0\": {\n      \"file_url\": \"string\",\n      \"file_metadata\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    }\n  },\n  \"storage_container_type\": \"Azure\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "999af833-6718-442b-b84b-d1259c3cbaf2",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    "upload-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1974f935-cc6d-4b8d-969e-e9a553c88629",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    "upload-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b1793c9-234b-4931-a862-bc3ca3929882",
+              "name": "Quota Exceeded / Rate Limited",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    "upload-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d22eeea-bbe0-480a-a446-c60aa96aa171",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    "upload-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b043f76b-72e1-4743-a16b-5bb14bfe2efe",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    "upload-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65a46c13-4406-4d42-a79c-795bd494d16e",
+          "name": "Start Document Intelligence Job",
+          "request": {
+            "name": "Start Document Intelligence Job",
+            "description": {
+              "content": "Validates the uploaded file and starts processing.\n\n**Validation Checks:**\n- File must be uploaded before starting\n- File size must not exceed 200 MB\n- PDF must be parseable by the PDF parser\n- ZIP must contain only JPEG/PNG images\n- ZIP must be flat (no nested folders beyond one level)\n- ZIP must contain at least one valid image\n- Page/image count must not exceed 10 (returns `422` with `max_page_limit_exceeded` if exceeded)\n- User must have sufficient credits\n\n**Processing:**\nJob runs asynchronously. Poll the status endpoint or use webhook callback for completion notification.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "doc-digitization",
+                "job",
+                "v1",
+                ":job_id",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "job_id",
+                  "description": "(Required) The unique identifier of the job"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "api-subscription-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5f137707-f3cc-4686-9444-2ede37a52653",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"2e148649-6fee-af0d-b370-6eee632aef1e\",\n  \"job_state\": \"Completed\",\n  \"created_at\": \"1988-03-24T05:11:35.448Z\",\n  \"updated_at\": \"1993-07-17T05:23:53.525Z\",\n  \"storage_container_type\": \"Azure_V1\",\n  \"total_files\": 0,\n  \"successful_files_count\": 0,\n  \"failed_files_count\": 0,\n  \"error_message\": \"\",\n  \"job_details\": [\n    {\n      \"inputs\": [\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        },\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        }\n      ],\n      \"outputs\": [\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        },\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        }\n      ],\n      \"state\": \"Running\",\n      \"total_pages\": 0,\n      \"pages_processed\": 0,\n      \"pages_succeeded\": 0,\n      \"pages_failed\": 0,\n      \"error_message\": \"\",\n      \"error_code\": \"string\",\n      \"page_errors\": [\n        {\n          \"page_number\": 5957,\n          \"error_code\": \"string\",\n          \"error_message\": \"string\"\n        },\n        {\n          \"page_number\": 3946,\n          \"error_code\": \"string\",\n          \"error_message\": \"string\"\n        }\n      ]\n    },\n    {\n      \"inputs\": [\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        },\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        }\n      ],\n      \"outputs\": [\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        },\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        }\n      ],\n      \"state\": \"Success\",\n      \"total_pages\": 0,\n      \"pages_processed\": 0,\n      \"pages_succeeded\": 0,\n      \"pages_failed\": 0,\n      \"error_message\": \"\",\n      \"error_code\": \"string\",\n      \"page_errors\": [\n        {\n          \"page_number\": 3861,\n          \"error_code\": \"string\",\n          \"error_message\": \"string\"\n        },\n        {\n          \"page_number\": 6272,\n          \"error_code\": \"string\",\n          \"error_message\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "848f797b-80e8-4895-91aa-d5219f6409a1",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a5d1f6a-2674-49a3-8024-303494c3f4d2",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f5d7b5b-db6d-44c0-9def-96fa609bc2eb",
+              "name": "Quota Exceeded / Rate Limited",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85c5e769-26a5-40a5-a0f6-8f7c5275bfe0",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03bfae59-3a94-4646-8acd-519d778a46ad",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb8e8288-fd80-4605-ad99-a5b34f6d9218",
+          "name": "Get Document Intelligence Job Status",
+          "request": {
+            "name": "Get Document Intelligence Job Status",
+            "description": {
+              "content": "Returns the current status of a job with page-level metrics.\n\n**Job States:**\n- `Accepted`: Job created, awaiting file upload\n- `Pending`: File uploaded, waiting to start\n- `Running`: Processing in progress\n- `Completed`: All pages processed successfully\n- `PartiallyCompleted`: Some pages succeeded, some failed\n- `Failed`: All pages failed or job-level error\n\n**Page Metrics:**\nResponse includes detailed progress: total pages, pages processed, succeeded, failed, and per-page errors.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "doc-digitization",
+                "job",
+                "v1",
+                ":job_id",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "job_id",
+                  "description": "(Required) The unique identifier of the job"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "api-subscription-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "47c5f720-606c-498c-b899-b6a32ef6a51f",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"2e148649-6fee-af0d-b370-6eee632aef1e\",\n  \"job_state\": \"Completed\",\n  \"created_at\": \"1988-03-24T05:11:35.448Z\",\n  \"updated_at\": \"1993-07-17T05:23:53.525Z\",\n  \"storage_container_type\": \"Azure_V1\",\n  \"total_files\": 0,\n  \"successful_files_count\": 0,\n  \"failed_files_count\": 0,\n  \"error_message\": \"\",\n  \"job_details\": [\n    {\n      \"inputs\": [\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        },\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        }\n      ],\n      \"outputs\": [\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        },\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        }\n      ],\n      \"state\": \"Running\",\n      \"total_pages\": 0,\n      \"pages_processed\": 0,\n      \"pages_succeeded\": 0,\n      \"pages_failed\": 0,\n      \"error_message\": \"\",\n      \"error_code\": \"string\",\n      \"page_errors\": [\n        {\n          \"page_number\": 5957,\n          \"error_code\": \"string\",\n          \"error_message\": \"string\"\n        },\n        {\n          \"page_number\": 3946,\n          \"error_code\": \"string\",\n          \"error_message\": \"string\"\n        }\n      ]\n    },\n    {\n      \"inputs\": [\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        },\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        }\n      ],\n      \"outputs\": [\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        },\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        }\n      ],\n      \"state\": \"Success\",\n      \"total_pages\": 0,\n      \"pages_processed\": 0,\n      \"pages_succeeded\": 0,\n      \"pages_failed\": 0,\n      \"error_message\": \"\",\n      \"error_code\": \"string\",\n      \"page_errors\": [\n        {\n          \"page_number\": 3861,\n          \"error_code\": \"string\",\n          \"error_message\": \"string\"\n        },\n        {\n          \"page_number\": 6272,\n          \"error_code\": \"string\",\n          \"error_message\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3207e64b-18a0-448d-a15f-49ea15ee9918",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a80e3f01-0edc-4a72-8ac1-241ec5359625",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b7d5957-b18d-4475-a6f2-c90c130487de",
+              "name": "Quota Exceeded / Rate Limited",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "300628de-106c-4b4f-9aa6-fd560258737f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "989b4beb-3c49-45ce-b9f4-ba6f29e4af9f",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a91b68a-b3a9-44d4-9890-ff5197656495",
+          "name": "Get Document Intelligence Download URLs",
+          "request": {
+            "name": "Get Document Intelligence Download URLs",
+            "description": {
+              "content": "Returns presigned URLs for downloading output files.\n\n**Method:** POST only. A GET request to this path returns 405 Method Not Allowed.\n\n**Prerequisites:**\n- Job must be in `Completed` or `PartiallyCompleted` state\n- Failed jobs have no output available",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "doc-digitization",
+                "job",
+                "v1",
+                ":job_id",
+                "download-files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "job_id",
+                  "description": "(Required) The unique identifier of the job"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "api-subscription-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7ebfe87-498f-4fc6-b81c-a40aee7303a0",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "download-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"a65a11ed-185a-28da-809a-e62527343ce0\",\n  \"job_state\": \"Running\",\n  \"storage_container_type\": \"Local\",\n  \"download_urls\": {\n    \"key_0\": {\n      \"file_url\": \"string\",\n      \"file_metadata\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    }\n  },\n  \"error_code\": \"string\",\n  \"error_message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29c98f20-ac50-478d-b151-3346e181e4d9",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "download-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5d04cb6-a507-40f0-827b-90bd0a0f4c6d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "download-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "19765918-4da3-4934-8e0f-91b3059f6067",
+              "name": "Quota Exceeded / Rate Limited",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "download-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6daa598b-1851-44ad-90e3-81236ecaef99",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "download-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e65c7f8b-3ae0-47f6-be29-066b7b261b8e",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "doc-digitization",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "download-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"internal_server_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sarvam.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "873d93c3-a99a-4eeb-ad82-0c86a6a1b3de",
+    "name": "Endpoints chat documentIntelligence API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Endpoints chat text API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "text",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Translate Text",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/translate",
+            "headers": [
+              {
+                "name": "api-subscription-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Translation** converts text from one language to another while preserving its meaning.\nFor Example: **'मैं ऑफिस जा रहा हूँ'** translates to **'I am going to the office'** in English, where the script and language change, but the original meaning remains the same.\n\nAvailable languages:\n- **`bn-IN`**: Bengali\n- **`en-IN`**: English\n- **`gu-IN`**: Gujarati\n- **`hi-IN`**: Hindi\n- **`kn-IN`**: Kannada\n- **`ml-IN`**: Malayalam\n- **`mr-IN`**: Marathi\n- **`od-IN`**: Odia\n- **`pa-IN`**: Punjabi\n- **`ta"
+        },
+        {
+          "info": {
+            "name": "Transliterate Text",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/transliterate",
+            "headers": [
+              {
+                "name": "api-subscription-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Transliteration** converts text from one script to another while preserving the original pronunciation. For example, **'नमस्ते'** becomes **'namaste'** in English, and **'how are you'** can be written as **'हाउ आर यू'** in Devanagari. This process ensures that the sound of the original text remains intact, even when written in a different script.\n\nTransliteration is useful when you want to represent words phonetically across different writing systems, such as converting **'मैं ऑफिस जा रहा हूँ'"
+        },
+        {
+          "info": {
+            "name": "Language Identification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/text-lid",
+            "headers": [
+              {
+                "name": "api-subscription-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Identifies the language (e.g., en-IN, hi-IN) and script (e.g., Latin, Devanagari) of the input text, supporting multiple languages."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

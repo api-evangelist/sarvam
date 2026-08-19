@@ -1,0 +1,157 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Endpoints chat speechToTextTranslateJob API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "speechToTextTranslateJob",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initiate Speech to Text Translate Bulk Job V1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/speech-to-text-translate/job/v1",
+            "headers": [
+              {
+                "name": "api-subscription-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "ptu_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new speech to text translate bulk job and receive a job UUID and storage folder details for processing multiple audio files with translation. Set `job_parameters.input_audio_codec` when uploads are raw PCM (`pcm_s16le`, `pcm_l16`, or `pcm_raw`); the API auto-detects other formats. PCM must be 16 kHz."
+        },
+        {
+          "info": {
+            "name": "Upload Files for Speech to Text Translate Bulk Job V1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/speech-to-text-translate/job/v1/upload-files",
+            "headers": [
+              {
+                "name": "api-subscription-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "ptu_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate presigned upload URLs for audio files that will be processed in a speech to text translate bulk job"
+        },
+        {
+          "info": {
+            "name": "Start Speech to Text Translate Bulk Job V1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/speech-to-text-translate/job/v1/:job_id/start",
+            "headers": [
+              {
+                "name": "api-subscription-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the job"
+              },
+              {
+                "name": "ptu_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Start processing a speech to text translate bulk job after all audio files have been uploaded"
+        },
+        {
+          "info": {
+            "name": "Get Speech to Text Translate Bulk Job V1 Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sarvam.ai/speech-to-text-translate/job/v1/:job_id/status",
+            "headers": [
+              {
+                "name": "api-subscription-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the job"
+              }
+            ]
+          },
+          "docs": "Retrieve the current status and details of a speech to text translate bulk job, including progress and file-level information.\n\n**Rate Limiting Best Practice:** To prevent rate limit errors and ensure optimal server performance, we recommend implementing a minimum 5-millisecond delay between consecutive status polling requests. This helps maintain system stability while still providing timely status updates."
+        },
+        {
+          "info": {
+            "name": "Download Files for Speech to Text Translate Bulk Job V1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/speech-to-text-translate/job/v1/download-files",
+            "headers": [
+              {
+                "name": "api-subscription-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "ptu_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate presigned download URLs for the translated transcription output files of a completed speech to text translate bulk job.\n\n**Required body fields:** `job_id` and `files` (array of output filenames such as `\"0.json\"`). Obtain filenames from the job status response after the job completes.\n\n**Method:** POST only (GET returns 405)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

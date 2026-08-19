@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Endpoints chat textToSpeech API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "textToSpeech",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Text to Speech",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/text-to-speech",
+            "headers": [
+              {
+                "name": "api-subscription-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Convert text into spoken audio. The output is a base64-encoded audio string that must be decoded before use.\n\n**Available Models:**\n- **bulbul:v3**: Latest model with improved quality, 30+ voices, and temperature control\n- **bulbul:v2**: Legacy model with pitch and loudness controls\n\n**Important Notes for bulbul:v3:**\n- Pitch and loudness parameters are NOT supported\n- Pace range: 0.5 to 2.0\n- Preprocessing is automatically enabled\n- Default sample rate is 24000 Hz\n- Supports sample rates: 8000,"
+        },
+        {
+          "info": {
+            "name": "Text-to-Speech Stream Audio",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sarvam.ai/text-to-speech/stream",
+            "headers": [
+              {
+                "name": "api-subscription-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Converts the input text into a streamed spoken audio response.\n\nThis endpoint supports streaming audio using the specified output codec (e.g., `audio/mpeg` for MP3). The response is returned as a binary audio stream, which can be played or saved directly by the client.\n\nSupports the `dict_id` parameter to apply a [pronunciation dictionary](https://docs.sarvam.ai/api-reference-docs/pronunciation-dictionary/create) during synthesis."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,2539 @@
+{
+  "item": [
+    {
+      "id": "0bf1e6d6-0977-458c-a746-9a9dd704386e",
+      "name": "speechToTextTranslateJob",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1dc1220e-bcc3-443d-aa0b-4f138fcb708e",
+          "name": "Initiate Speech to Text Translate Bulk Job V1",
+          "request": {
+            "name": "Initiate Speech to Text Translate Bulk Job V1",
+            "description": {
+              "content": "Create a new speech to text translate bulk job and receive a job UUID and storage folder details for processing multiple audio files with translation. Set `job_parameters.input_audio_codec` when uploads are raw PCM (`pcm_s16le`, `pcm_l16`, or `pcm_raw`); the API auto-detects other formats. PCM must be 16 kHz.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "speech-to-text-translate",
+                "job",
+                "v1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ptu_id",
+                  "value": "<integer,null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "api-subscription-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                "key": "api-subscription-key",
+                "value": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"job_parameters\": {\n    \"prompt\": \"<string,null>\",\n    \"model\": \"<string>\",\n    \"with_diarization\": false,\n    \"num_speakers\": \"<integer,null>\",\n    \"input_audio_codec\": \"<string>\"\n  },\n  \"callback\": {\n    \"url\": \"<string>\",\n    \"auth_token\": \"\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "03e217e6-be01-4558-a5db-0f3ac58bf9a9",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_parameters\": {\n    \"prompt\": \"string\",\n    \"model\": \"saaras:v2.5\",\n    \"with_diarization\": false,\n    \"num_speakers\": 1312,\n    \"input_audio_codec\": \"wav\"\n  },\n  \"callback\": {\n    \"url\": \"string\",\n    \"auth_token\": \"\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"string\",\n  \"storage_container_type\": \"Google\",\n  \"job_parameters\": {},\n  \"job_state\": \"Accepted\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6988974a-386b-4077-bf37-e327b650a62d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_parameters\": {\n    \"prompt\": \"string\",\n    \"model\": \"saaras:v2.5\",\n    \"with_diarization\": false,\n    \"num_speakers\": 1312,\n    \"input_audio_codec\": \"wav\"\n  },\n  \"callback\": {\n    \"url\": \"string\",\n    \"auth_token\": \"\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f88e099e-3538-47a8-9aa1-fecf9658a5f1",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_parameters\": {\n    \"prompt\": \"string\",\n    \"model\": \"saaras:v2.5\",\n    \"with_diarization\": false,\n    \"num_speakers\": 1312,\n    \"input_audio_codec\": \"wav\"\n  },\n  \"callback\": {\n    \"url\": \"string\",\n    \"auth_token\": \"\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c81c77a-8ee2-452d-bd98-e312e0fd4c57",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_parameters\": {\n    \"prompt\": \"string\",\n    \"model\": \"saaras:v2.5\",\n    \"with_diarization\": false,\n    \"num_speakers\": 1312,\n    \"input_audio_codec\": \"wav\"\n  },\n  \"callback\": {\n    \"url\": \"string\",\n    \"auth_token\": \"\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8f1a934-6079-4d42-8780-4bc373bb015c",
+              "name": "Quota Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_parameters\": {\n    \"prompt\": \"string\",\n    \"model\": \"saaras:v2.5\",\n    \"with_diarization\": false,\n    \"num_speakers\": 1312,\n    \"input_audio_codec\": \"wav\"\n  },\n  \"callback\": {\n    \"url\": \"string\",\n    \"auth_token\": \"\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49304897-76dd-4d21-b7e7-934bd95815fc",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_parameters\": {\n    \"prompt\": \"string\",\n    \"model\": \"saaras:v2.5\",\n    \"with_diarization\": false,\n    \"num_speakers\": 1312,\n    \"input_audio_codec\": \"wav\"\n  },\n  \"callback\": {\n    \"url\": \"string\",\n    \"auth_token\": \"\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a795a65e-65a3-4f8b-939c-d3f4e0f4056e",
+              "name": "Service Overloaded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_parameters\": {\n    \"prompt\": \"string\",\n    \"model\": \"saaras:v2.5\",\n    \"with_diarization\": false,\n    \"num_speakers\": 1312,\n    \"input_audio_codec\": \"wav\"\n  },\n  \"callback\": {\n    \"url\": \"string\",\n    \"auth_token\": \"\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "274d5a58-e3b1-482b-ad6e-23903557f983",
+          "name": "Upload Files for Speech to Text Translate Bulk Job V1",
+          "request": {
+            "name": "Upload Files for Speech to Text Translate Bulk Job V1",
+            "description": {
+              "content": "Generate presigned upload URLs for audio files that will be processed in a speech to text translate bulk job",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "speech-to-text-translate",
+                "job",
+                "v1",
+                "upload-files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ptu_id",
+                  "value": "<integer,null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "api-subscription-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                "key": "api-subscription-key",
+                "value": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5299b4d1-dbed-422d-ae2c-e9663445aea9",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    "upload-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"string\",\n  \"job_state\": \"Running\",\n  \"upload_urls\": {\n    \"key_0\": {\n      \"file_url\": \"string\",\n      \"file_metadata\": {\n        \"key_0\": {}\n      }\n    },\n    \"key_1\": {\n      \"file_url\": \"string\",\n      \"file_metadata\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    }\n  },\n  \"storage_container_type\": \"Azure_V1\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de5e821e-f4c9-4fa2-a350-82d8f5dd9b1b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    "upload-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3eca9149-86d2-455c-b40e-cf434f72c22d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    "upload-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14e4dded-7762-4fb8-88f9-51bb00979975",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    "upload-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b079617-10fb-48cd-8e6c-289b1031b461",
+              "name": "Quota Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    "upload-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44a7b251-787b-4299-9113-8a041bb0925e",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    "upload-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b88e49ab-82d4-43d6-9683-83d0fb5389d5",
+              "name": "Service Overloaded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    "upload-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68865b7e-4423-4613-aa2c-542ce4dad833",
+          "name": "Start Speech to Text Translate Bulk Job V1",
+          "request": {
+            "name": "Start Speech to Text Translate Bulk Job V1",
+            "description": {
+              "content": "Start processing a speech to text translate bulk job after all audio files have been uploaded",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "speech-to-text-translate",
+                "job",
+                "v1",
+                ":job_id",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ptu_id",
+                  "value": "<integer,null>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_id",
+                  "description": "(Required) The unique identifier of the job"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "api-subscription-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                "key": "api-subscription-key",
+                "value": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea1c8c5b-9d03-42d7-a131-41767bcbceb4",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_state\": \"Pending\",\n  \"created_at\": \"string\",\n  \"updated_at\": \"string\",\n  \"job_id\": \"string\",\n  \"storage_container_type\": \"Azure_V1\",\n  \"total_files\": 0,\n  \"successful_files_count\": 0,\n  \"failed_files_count\": 0,\n  \"error_message\": \"\",\n  \"job_details\": [\n    {\n      \"inputs\": [\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        },\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        }\n      ],\n      \"outputs\": [\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        },\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        }\n      ],\n      \"state\": \"Internal Server Error\",\n      \"error_message\": \"string\",\n      \"exception_name\": \"string\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        },\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        }\n      ],\n      \"outputs\": [\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        },\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        }\n      ],\n      \"state\": \"Success\",\n      \"error_message\": \"string\",\n      \"exception_name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7a53f0c-80d0-4f29-9161-4239ee9f57f9",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f1d3799-840d-4223-ad7d-24b63517bcb6",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a12678a7-6873-4d82-9867-f7b20110bac5",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b81cbcec-939f-42d8-a424-8d09904a44e3",
+              "name": "Quota Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67e7afb0-5dd9-428d-8439-bda29682b99b",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "034d2978-c1a4-464a-95ab-9512391a4522",
+              "name": "Service Overloaded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "595fa78f-fdb6-4d3a-b217-fb80587b551f",
+          "name": "Get Speech to Text Translate Bulk Job V1 Status",
+          "request": {
+            "name": "Get Speech to Text Translate Bulk Job V1 Status",
+            "description": {
+              "content": "Retrieve the current status and details of a speech to text translate bulk job, including progress and file-level information.\n\n**Rate Limiting Best Practice:** To prevent rate limit errors and ensure optimal server performance, we recommend implementing a minimum 5-millisecond delay between consecutive status polling requests. This helps maintain system stability while still providing timely status updates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "speech-to-text-translate",
+                "job",
+                "v1",
+                ":job_id",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_id",
+                  "description": "(Required) The unique identifier of the job"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "api-subscription-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                "key": "api-subscription-key",
+                "value": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e860cae-daa9-46a3-859c-5c31da3a3961",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_state\": \"Pending\",\n  \"created_at\": \"string\",\n  \"updated_at\": \"string\",\n  \"job_id\": \"string\",\n  \"storage_container_type\": \"Azure_V1\",\n  \"total_files\": 0,\n  \"successful_files_count\": 0,\n  \"failed_files_count\": 0,\n  \"error_message\": \"\",\n  \"job_details\": [\n    {\n      \"inputs\": [\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        },\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        }\n      ],\n      \"outputs\": [\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        },\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        }\n      ],\n      \"state\": \"Internal Server Error\",\n      \"error_message\": \"string\",\n      \"exception_name\": \"string\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        },\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        }\n      ],\n      \"outputs\": [\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        },\n        {\n          \"file_name\": \"string\",\n          \"file_id\": \"string\"\n        }\n      ],\n      \"state\": \"Success\",\n      \"error_message\": \"string\",\n      \"exception_name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3fcf2766-1a6e-4015-9b11-1f0dce281ebf",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f68d271-f3e5-46bf-9da0-94f3a4a3e241",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75041e2c-4756-44c3-8504-55e868dffbac",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a7ae02c-0961-452a-b37f-c84595091e0f",
+              "name": "Quota Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9ba290e-5933-4135-96b8-1f2bbff50c43",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa7e19fd-8697-40ca-a2bc-e34c481a2a0c",
+              "name": "Service Overloaded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    ":job_id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) The unique identifier of the job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34f88ada-8e84-4bec-804e-5299468a0efd",
+          "name": "Download Files for Speech to Text Translate Bulk Job V1",
+          "request": {
+            "name": "Download Files for Speech to Text Translate Bulk Job V1",
+            "description": {
+              "content": "Generate presigned download URLs for the translated transcription output files of a completed speech to text translate bulk job.\n\n**Required body fields:** `job_id` and `files` (array of output filenames such as `\"0.json\"`). Obtain filenames from the job status response after the job completes.\n\n**Method:** POST only (GET returns 405).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "speech-to-text-translate",
+                "job",
+                "v1",
+                "download-files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ptu_id",
+                  "value": "<integer,null>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "api-subscription-key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                "key": "api-subscription-key",
+                "value": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "734ae9c9-fe1e-4a27-9f3c-5819471508af",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    "download-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_id\": \"string\",\n  \"job_state\": \"Pending\",\n  \"download_urls\": {\n    \"key_0\": {\n      \"file_url\": \"string\",\n      \"file_metadata\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      }\n    },\n    \"key_1\": {\n      \"file_url\": \"string\",\n      \"file_metadata\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    }\n  },\n  \"storage_container_type\": \"Azure_V1\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "216cecef-765e-4132-a169-0aa32e7bd9ee",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    "download-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b20ad1ed-10fd-423a-a8bc-5a83d9f2d2fe",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    "download-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45518c39-cbff-4179-a5a3-e3cb5bd34f5e",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    "download-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f0d7317-8bea-4904-abb1-36a4b4169218",
+              "name": "Quota Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    "download-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b7106e1-c089-430f-aa99-61fc7607488f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    "download-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5017be5-0462-4442-b8d3-6db607f7db89",
+              "name": "Service Overloaded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speech-to-text-translate",
+                    "job",
+                    "v1",
+                    "download-files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ptu_id",
+                      "value": "<integer,null>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "api-subscription-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Your unique subscription key for authenticating requests to the Sarvam AI Speech-to-Text API.\n[Here are the steps to get your api key](https://docs.sarvam.ai/api-reference-docs/authentication#obtaining-your-api-subscription-key)",
+                    "key": "api-subscription-key",
+                    "value": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_id\": \"<string>\",\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"authentication_error\",\n    \"request_id\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sarvam.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b746cdf3-5ae4-4991-a7ae-cd7c1a71cc74",
+    "name": "Endpoints chat speechToTextTranslateJob API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}
