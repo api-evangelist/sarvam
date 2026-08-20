@@ -38,6 +38,18 @@ tags:
 - Company
 - Ai Ml
 - Artificial Intelligence
+- Machine-Learning
+- Speech-to-Text
+- Text-to-Speech
+- Translation
+- Large Language Models
+- Document Intelligence
+- Indian Languages
+- Voice
+tags_raw:
+- Company
+- Ai Ml
+- Artificial Intelligence
 - Machine Learning
 - Speech To Text
 - Text To Speech
@@ -58,6 +70,8 @@ apis:
   humanURL: https://docs.sarvam.ai/api-reference/introduction
   baseURL: https://api.sarvam.ai
   tags:
+  - Chat
+  tags_raw:
   - chat
   properties:
   - type: OpenAPI
@@ -70,6 +84,8 @@ apis:
   humanURL: https://docs.sarvam.ai/api-reference/introduction
   baseURL: https://api.sarvam.ai
   tags:
+  - Document Intelligence
+  tags_raw:
   - documentIntelligence
   properties:
   - type: OpenAPI
@@ -82,7 +98,8 @@ apis:
     The pronunciationDictionary API from Sarvam — 2 operation(s) for pronunciationdictionary.
   humanURL: https://docs.sarvam.ai/api-reference/introduction
   baseURL: https://api.sarvam.ai
-  tags:
+  tags: []
+  tags_raw:
   - pronunciationDictionary
   properties:
   - type: OpenAPI
@@ -95,6 +112,8 @@ apis:
   humanURL: https://docs.sarvam.ai/api-reference/introduction
   baseURL: https://api.sarvam.ai
   tags:
+  - Speech-to-Text
+  tags_raw:
   - speechToText
   properties:
   - type: OpenAPI
@@ -132,6 +151,8 @@ apis:
   humanURL: https://docs.sarvam.ai/api-reference/introduction
   baseURL: https://api.sarvam.ai
   tags:
+  - Text
+  tags_raw:
   - text
   properties:
   - type: OpenAPI
@@ -144,6 +165,8 @@ apis:
   humanURL: https://docs.sarvam.ai/api-reference/introduction
   baseURL: https://api.sarvam.ai
   tags:
+  - Text-to-Speech
+  tags_raw:
   - textToSpeech
   properties:
   - type: OpenAPI
