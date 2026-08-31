@@ -51,7 +51,7 @@ tags:
 - Ai Ml
 - Artificial Intelligence
 - Machine-Learning
-- Speech-to-Text
+- Speech To Text
 - Text-to-Speech
 - Translation
 - Large Language Models
@@ -95,8 +95,7 @@ apis:
   description: The documentIntelligence API from Sarvam — 5 operation(s) for documentintelligence.
   humanURL: https://docs.sarvam.ai/api-reference/introduction
   baseURL: https://api.sarvam.ai
-  tags:
-  - Document Intelligence
+  tags: []
   tags_raw:
   - documentIntelligence
   properties:
@@ -124,7 +123,7 @@ apis:
   humanURL: https://docs.sarvam.ai/api-reference/introduction
   baseURL: https://api.sarvam.ai
   tags:
-  - Speech-to-Text
+  - speechToText
   tags_raw:
   - speechToText
   properties:
@@ -163,7 +162,7 @@ apis:
   humanURL: https://docs.sarvam.ai/api-reference/introduction
   baseURL: https://api.sarvam.ai
   tags:
-  - Text
+  - text
   tags_raw:
   - text
   properties:
@@ -177,7 +176,7 @@ apis:
   humanURL: https://docs.sarvam.ai/api-reference/introduction
   baseURL: https://api.sarvam.ai
   tags:
-  - Text-to-Speech
+  - textToSpeech
   tags_raw:
   - textToSpeech
   properties:
