@@ -187,6 +187,8 @@ apis:
   - type: AsyncAPI
     url: asyncapi/sarvam-streaming-asyncapi.yaml
 common:
+- type: Website
+  url: https://www.sarvam.ai/
 - type: CapabilityMap
   url: capabilities/sarvam-capability-edges.yml
   name: Sarvam Business Capability Map
