@@ -91,20 +91,6 @@ apis:
     url: openapi/sarvam-chat-api-openapi.yml
   - type: AsyncAPI
     url: asyncapi/sarvam-streaming-asyncapi.yaml
-- aid: sarvam:sarvam-documentintelligence-api
-  name: Sarvam documentIntelligence API
-  description: The documentIntelligence API from Sarvam — 5 operation(s) for documentintelligence.
-  humanURL: https://docs.sarvam.ai/api-reference/introduction
-  baseURL: https://api.sarvam.ai
-  tags:
-  - Document Intelligence
-  tags_raw:
-  - documentIntelligence
-  properties:
-  - type: OpenAPI
-    url: openapi/sarvam-documentintelligence-api-openapi.yml
-  - type: AsyncAPI
-    url: asyncapi/sarvam-streaming-asyncapi.yaml
 - aid: sarvam:sarvam-pronunciationdictionary-api
   name: Sarvam pronunciationDictionary API
   description: >-
@@ -117,20 +103,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/sarvam-pronunciationdictionary-api-openapi.yml
-  - type: AsyncAPI
-    url: asyncapi/sarvam-streaming-asyncapi.yaml
-- aid: sarvam:sarvam-speechtotext-api
-  name: Sarvam speechToText API
-  description: The speechToText API from Sarvam — 2 operation(s) for speechtotext.
-  humanURL: https://docs.sarvam.ai/api-reference/introduction
-  baseURL: https://api.sarvam.ai
-  tags:
-  - Speech-to-Text
-  tags_raw:
-  - speechToText
-  properties:
-  - type: OpenAPI
-    url: openapi/sarvam-speechtotext-api-openapi.yml
   - type: AsyncAPI
     url: asyncapi/sarvam-streaming-asyncapi.yaml
 - aid: sarvam:sarvam-speechtotextjob-api
@@ -172,18 +144,40 @@ apis:
     url: openapi/sarvam-text-api-openapi.yml
   - type: AsyncAPI
     url: asyncapi/sarvam-streaming-asyncapi.yaml
-- aid: sarvam:sarvam-texttospeech-api
-  name: Sarvam textToSpeech API
-  description: The textToSpeech API from Sarvam — 2 operation(s) for texttospeech.
+- aid: sarvam:sarvam-document-intelligence-api
+  name: Sarvam Document Intelligence API
+  description: The Document Intelligence API from Sarvam — 5 operation(s) for document intelligence.
   humanURL: https://docs.sarvam.ai/api-reference/introduction
   baseURL: https://api.sarvam.ai
   tags:
-  - Text-to-Speech
-  tags_raw:
-  - textToSpeech
+  - Document Intelligence
   properties:
   - type: OpenAPI
-    url: openapi/sarvam-texttospeech-api-openapi.yml
+    url: openapi/sarvam-document-intelligence-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/sarvam-streaming-asyncapi.yaml
+- aid: sarvam:sarvam-speech-to-text-api
+  name: Sarvam Speech To Text API
+  description: The Speech To Text API from Sarvam — 2 operation(s) for speech to text.
+  humanURL: https://docs.sarvam.ai/api-reference/introduction
+  baseURL: https://api.sarvam.ai
+  tags:
+  - Speech To Text
+  properties:
+  - type: OpenAPI
+    url: openapi/sarvam-speech-to-text-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/sarvam-streaming-asyncapi.yaml
+- aid: sarvam:sarvam-text-to-speech-api
+  name: Sarvam Text To Speech API
+  description: The Text To Speech API from Sarvam — 2 operation(s) for text to speech.
+  humanURL: https://docs.sarvam.ai/api-reference/introduction
+  baseURL: https://api.sarvam.ai
+  tags:
+  - Text To Speech
+  properties:
+  - type: OpenAPI
+    url: openapi/sarvam-text-to-speech-api-openapi.yml
   - type: AsyncAPI
     url: asyncapi/sarvam-streaming-asyncapi.yaml
 common:
