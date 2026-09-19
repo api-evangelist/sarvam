@@ -55,7 +55,7 @@ tags:
 - Speech-to-Text
 - Text-to-Speech
 - Translation
-- Large Language Models
+- LLM
 - Document Intelligence
 - Indian Languages
 - Voice
@@ -162,6 +162,8 @@ apis:
   humanURL: https://docs.sarvam.ai/api-reference/introduction
   baseURL: https://api.sarvam.ai
   tags:
+  - Speech-to-Text
+  tags_raw:
   - Speech To Text
   properties:
   - type: OpenAPI
@@ -174,6 +176,8 @@ apis:
   humanURL: https://docs.sarvam.ai/api-reference/introduction
   baseURL: https://api.sarvam.ai
   tags:
+  - Text-to-Speech
+  tags_raw:
   - Text To Speech
   properties:
   - type: OpenAPI
