@@ -1,0 +1,139 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://docs.sarvam.ai/api/getting-started/pricing
+sources:
+- https://docs.sarvam.ai/api/getting-started/pricing
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120546
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: per-call
+published: true
+note: Detailed INR usage-based price list for LLM tokens, speech, text processing, document and dubbing
+  services; volume pricing/custom rate limits via contact.
+plan_count: 19
+currency: INR
+plans:
+- name: Sarvam 105B (sarvam-105b)
+  price_text: ₹29.28
+  price: 29.28
+  currency: INR
+  period: per-use
+  unit: per 1M input tokens
+- name: Sarvam 105B cached input
+  price_text: ₹10.98
+  price: 10.98
+  currency: INR
+  period: per-use
+  unit: per 1M cached input tokens
+- name: Sarvam 105B output
+  price_text: ₹73.2
+  price: 73.2
+  currency: INR
+  period: per-use
+  unit: per 1M output tokens
+- name: Gemma 4 31B input
+  price_text: ₹36.6
+  price: 36.6
+  currency: INR
+  period: per-use
+  unit: per 1M input tokens
+- name: Gemma 4 31B output
+  price_text: ₹91.5
+  price: 91.5
+  currency: INR
+  period: per-use
+  unit: per 1M output tokens
+- name: GLM-5.3 input
+  price_text: ₹126
+  price: 126
+  currency: INR
+  period: per-use
+  unit: per 1M input tokens
+- name: GLM-5.3 output
+  price_text: ₹396
+  price: 396
+  currency: INR
+  period: per-use
+  unit: per 1M output tokens
+- name: DeepSeek V4 Flash input
+  price_text: ₹19.8
+  price: 19.8
+  currency: INR
+  period: per-use
+  unit: per 1M input tokens
+- name: DeepSeek V4 Flash output
+  price_text: ₹59.4
+  price: 59.4
+  currency: INR
+  period: per-use
+  unit: per 1M output tokens
+- name: Speech to Text
+  price_text: ₹30
+  price: 30
+  currency: INR
+  period: per-use
+  unit: per hour, billed per second
+- name: Speech to Text with Diarization
+  price_text: ₹45
+  price: 45
+  currency: INR
+  period: per-use
+  unit: per hour
+- name: Sarvam Translate V1
+  price_text: ₹20
+  price: 20
+  currency: INR
+  period: per-use
+  unit: per 10K characters
+- name: Language Identification
+  price_text: ₹3.5
+  price: 3.5
+  currency: INR
+  period: per-use
+  unit: per 10K characters
+- name: Bulbul v3 (Speech Synthesis)
+  price_text: ₹30
+  price: 30
+  currency: INR
+  period: per-use
+  unit: per 10K characters
+- name: Document Digitization API
+  price_text: ₹0.5
+  price: 0.5
+  currency: INR
+  period: per-use
+  unit: per page
+  included_quota: Maximum 10 pages per job
+- name: Dubbing Starter
+  price_text: ₹40/min
+  price: 40
+  currency: INR
+  period: per-use
+  unit: per minute of source media (API rate)
+  overage: Editor flow rate ₹80/min
+- name: Dubbing Pro
+  price_text: ₹38/min
+  price: 38
+  currency: INR
+  period: per-use
+  unit: per minute (API rate)
+  overage: Editor flow rate ₹75/min
+- name: Dubbing Enterprise
+  price_text: ₹36/min
+  price: 36
+  currency: INR
+  period: per-use
+  unit: per minute (API rate)
+  overage: Editor flow rate ₹72/min
+- name: Free credits
+  price_text: ₹100 in credits
+  price: 100
+  currency: INR
+  period: one-time
+  unit: credits for new users
+rate_limit_statements:
+- See Credits & Rate Limits for per-API limits, response headers, and retry guidance.
+- Maximum 10 pages per job.
