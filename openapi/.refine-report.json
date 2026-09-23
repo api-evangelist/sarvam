@@ -1,14 +1,7 @@
 {
   "provider": "sarvam",
   "sources": [
-    "sarvam-chat-api-openapi.yml",
-    "sarvam-documentintelligence-api-openapi.yml",
-    "sarvam-pronunciationdictionary-api-openapi.yml",
-    "sarvam-speechtotext-api-openapi.yml",
-    "sarvam-speechtotextjob-api-openapi.yml",
-    "sarvam-speechtotexttranslatejob-api-openapi.yml",
-    "sarvam-text-api-openapi.yml",
-    "sarvam-texttospeech-api-openapi.yml"
+    "_original/sarvam-openapi-original.json"
   ],
   "outputs": [
     "sarvam-chat-api-openapi.yml",
@@ -20,9 +13,33 @@
     "sarvam-text-api-openapi.yml",
     "sarvam-texttospeech-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 3 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "sarvam-openapi-original.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sarvam-openapi-original.json: declared missing tag: chat",
+    "sarvam-openapi-original.json: declared missing tag: documentIntelligence",
+    "sarvam-openapi-original.json: declared missing tag: pronunciationDictionary",
+    "sarvam-openapi-original.json: declared missing tag: speechToText",
+    "sarvam-openapi-original.json: declared missing tag: speechToTextJob",
+    "sarvam-openapi-original.json: declared missing tag: speechToTextTranslateJob",
+    "sarvam-openapi-original.json: declared missing tag: text",
+    "sarvam-openapi-original.json: declared missing tag: textToSpeech",
+    "superseded outputs removed: sarvam-document-intelligence-api-openapi.yml, sarvam-speech-to-text-api-openapi.yml, sarvam-text-to-speech-api-openapi.yml",
+    "apis.yml register: written (+3 apis, 8 total)"
+  ],
+  "skipped": [
+    "sarvam-chat-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sarvam-document-intelligence-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sarvam-pronunciationdictionary-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sarvam-speech-to-text-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sarvam-speechtotextjob-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sarvam-speechtotexttranslatejob-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sarvam-text-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sarvam-text-to-speech-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

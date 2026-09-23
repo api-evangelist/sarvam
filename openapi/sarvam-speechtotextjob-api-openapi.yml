@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Endpoints chat speechToTextJob API
+  title: Endpoints Speech To Text Job API
   version: 1.0.0
 servers:
 - url: https://api.sarvam.ai
@@ -351,352 +351,6 @@ paths:
               $ref: '#/components/schemas/FilesRequest'
 components:
   schemas:
-    ErrorDetails:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Message describing the error
-        code:
-          $ref: '#/components/schemas/ErrorCode'
-          description: Error code for the specific error that has occurred. Refer to the error code documentation for more details.
-        request_id:
-          type: string
-          default: ''
-          description: 'Unique identifier for the request. Format: date_UUID4'
-      required:
-      - message
-      - code
-      title: ErrorDetails
-    Sarvam_Model_API_SpeechToTextLanguage:
-      type: string
-      enum:
-      - unknown
-      - hi-IN
-      - bn-IN
-      - kn-IN
-      - ml-IN
-      - mr-IN
-      - od-IN
-      - pa-IN
-      - ta-IN
-      - te-IN
-      - en-IN
-      - gu-IN
-      - as-IN
-      - ur-IN
-      - ne-IN
-      - kok-IN
-      - ks-IN
-      - sd-IN
-      - sa-IN
-      - sat-IN
-      - mni-IN
-      - brx-IN
-      - mai-IN
-      - doi-IN
-      description: 'Languages supported for Speech-to-Text.
-
-
-        **saarika:v2.5 supports (12 languages):** unknown, hi-IN, bn-IN, kn-IN, ml-IN, mr-IN, od-IN, pa-IN, ta-IN, te-IN, en-IN, gu-IN
-
-
-        **saaras:v3 supports all 23 languages** including: as-IN, ur-IN, ne-IN, kok-IN, ks-IN, sd-IN, sa-IN, sat-IN, mni-IN, brx-IN, mai-IN, doi-IN'
-      title: Sarvam_Model_API_SpeechToTextLanguage
-    BaseJobParameters:
-      type: object
-      properties: {}
-      title: BaseJobParameters
-    ErrorMessage:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorDetails'
-          description: Error details
-      required:
-      - error
-      title: ErrorMessage
-    Sarvam_Model_API_SpeechToTextModel:
-      type: string
-      enum:
-      - saaras:v3
-      - saarika:v2.5
-      description: 'Model to be used for speech to text.
-
-
-        - **saaras:v3** (default, recommended): State-of-the-art model with flexible output formats. Supports multiple modes via the `mode` parameter: transcribe, translate, verbatim, translit, codemix.
-
-
-        - **saarika:v2.5** (legacy): Transcribes audio in the spoken language. Kept for backward compatibility.'
-      title: Sarvam_Model_API_SpeechToTextModel
-    TaskDetail:
-      type: object
-      properties:
-        inputs:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaskFileDetails'
-        outputs:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaskFileDetails'
-        state:
-          $ref: '#/components/schemas/TaskState'
-        error_message:
-          type:
-          - string
-          - 'null'
-        exception_name:
-          type:
-          - string
-          - 'null'
-      title: TaskDetail
-    JobState:
-      type: string
-      enum:
-      - Accepted
-      - Pending
-      - Running
-      - Completed
-      - Failed
-      title: JobState
-    FilesDownloadResponse:
-      type: object
-      properties:
-        job_id:
-          type: string
-        job_state:
-          $ref: '#/components/schemas/JobState'
-        download_urls:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/FileSignedURLDetails'
-        storage_container_type:
-          $ref: '#/components/schemas/StorageContainerType'
-      required:
-      - job_id
-      - job_state
-      - download_urls
-      - storage_container_type
-      title: FilesDownloadResponse
-    BulkJobCallback:
-      type: object
-      properties:
-        url:
-          type: string
-          description: Webhook url to call upon job completion
-        auth_token:
-          type: string
-          default: ''
-          description: Authorization token required for the callback Url
-      required:
-      - url
-      title: BulkJobCallback
-    BulkJobInitResponse:
-      type: object
-      properties:
-        job_id:
-          type: string
-          description: Job UUID.
-        storage_container_type:
-          $ref: '#/components/schemas/StorageContainerType'
-          description: Storage Container Type
-        job_parameters:
-          $ref: '#/components/schemas/BaseJobParameters'
-        job_state:
-          $ref: '#/components/schemas/JobState'
-      required:
-      - job_id
-      - storage_container_type
-      - job_parameters
-      - job_state
-      title: BulkJobInitResponse
-    TaskState:
-      type: string
-      enum:
-      - Success
-      - API Error
-      - Internal Server Error
-      title: TaskState
-    BulkJobInitRequestV1_SpeechToTextJobParameters_:
-      type: object
-      properties:
-        job_parameters:
-          $ref: '#/components/schemas/SpeechToTextJobParameters'
-          description: Job Parameters for the bulk job
-        callback:
-          oneOf:
-          - $ref: '#/components/schemas/BulkJobCallback'
-          - type: 'null'
-          description: Parameters for callback URL
-      required:
-      - job_parameters
-      title: BulkJobInitRequestV1_SpeechToTextJobParameters_
-    StorageContainerType:
-      type: string
-      enum:
-      - Azure
-      - Local
-      - Google
-      - Azure_V1
-      title: StorageContainerType
-    FilesUploadResponse:
-      type: object
-      properties:
-        job_id:
-          type: string
-        job_state:
-          $ref: '#/components/schemas/JobState'
-        upload_urls:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/FileSignedURLDetails'
-        storage_container_type:
-          $ref: '#/components/schemas/StorageContainerType'
-      required:
-      - job_id
-      - job_state
-      - upload_urls
-      - storage_container_type
-      title: FilesUploadResponse
-    TaskFileDetails:
-      type: object
-      properties:
-        file_name:
-          type: string
-        file_id:
-          type: string
-      required:
-      - file_name
-      - file_id
-      title: TaskFileDetails
-    JobStatusResponse:
-      type: object
-      properties:
-        job_state:
-          $ref: '#/components/schemas/JobState'
-          description: Job State
-        created_at:
-          type: string
-          description: Created At
-        updated_at:
-          type: string
-          description: Updated At
-        job_id:
-          type: string
-          description: Job Id
-        total_files:
-          type: integer
-          default: 0
-          description: Total Files
-        successful_files_count:
-          type: integer
-          default: 0
-          description: Success Count
-        failed_files_count:
-          type: integer
-          default: 0
-          description: Failed Count
-        storage_container_type:
-          $ref: '#/components/schemas/StorageContainerType'
-          description: Storage Container Type
-        error_message:
-          type: string
-          default: ''
-          description: Error Message
-        job_details:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaskDetail'
-          description: Job details at file level.
-      required:
-      - job_state
-      - created_at
-      - updated_at
-      - job_id
-      - storage_container_type
-      title: JobStatusResponse
-    FileSignedURLDetails:
-      type: object
-      properties:
-        file_url:
-          type: string
-        file_metadata:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            description: Any type
-      required:
-      - file_url
-      title: FileSignedURLDetails
-    FilesRequest:
-      type: object
-      properties:
-        job_id:
-          type: string
-          description: UUID of the bulk job returned from job initiation.
-        files:
-          type: array
-          items:
-            type: string
-          description: 'Required. Output filenames to download (e.g. "0.json"). Get these from the job status response: job_details[].outputs[].file_name after the job completes.'
-      required:
-      - job_id
-      - files
-      description: Request body for bulk job upload/download URL generation. Both job_id and files are required for download.
-      title: FilesRequest
-    Sarvam_Model_API_Mode:
-      type: string
-      enum:
-      - transcribe
-      - translate
-      - verbatim
-      - translit
-      - codemix
-      description: "Mode of operation for saaras:v3 model.\n\nExample audio: 'मेरा फोन नंबर है 9840950950'\n\n- **transcribe** (default): Standard transcription in the original language with proper formatting and number normalization.\n  - Output: `मेरा फोन नंबर है 9840950950`\n\n- **translate**: Translates speech from any supported Indic language to English.\n  - Output: `My phone number is 9840950950`\n\n- **verbatim**: Exact word-for-word transcription without normalization, preserving filler words and spoken numbers as-is.\n  - Output: `मेरा फोन नंबर है नौ आठ चार zero नौ पांच zero नौ पांच zero`\n\n- **translit**: Romanization - Transliterates speech to Latin/Roman script only.\n  - Output: `mera phone number hai 9840950950`\n\n- **codemix**: Code-mixed text with English words in English and Indic words in native script.\n  - Output: `मेरा phone number है 9840950950`"
-      title: Sarvam_Model_API_Mode
-    Sarvam_Model_API_InputAudioCodec:
-      type: string
-      enum:
-      - wav
-      - x-wav
-      - wave
-      - mp3
-      - mpeg
-      - mpeg3
-      - x-mp3
-      - x-mpeg-3
-      - aac
-      - x-aac
-      - aiff
-      - x-aiff
-      - ogg
-      - opus
-      - flac
-      - x-flac
-      - mp4
-      - x-m4a
-      - amr
-      - x-ms-wma
-      - webm
-      - pcm_s16le
-      - pcm_l16
-      - pcm_raw
-      description: Audio codec/format of the input file. Our API automatically detects all codec formats, but for PCM files specifically (pcm_s16le, pcm_l16, pcm_raw), you must pass this parameter. PCM files are supported only at 16kHz sample rate.
-      title: Sarvam_Model_API_InputAudioCodec
-    ErrorCode:
-      type: string
-      enum:
-      - invalid_request_error
-      - internal_server_error
-      - unprocessable_entity_error
-      - insufficient_quota_error
-      - invalid_api_key_error
-      - authentication_error
-      - rate_limit_exceeded_error
-      - not_found_error
-      title: ErrorCode
     SpeechToTextJobParameters:
       type: object
       properties:
@@ -792,6 +446,352 @@ components:
           $ref: '#/components/schemas/Sarvam_Model_API_InputAudioCodec'
           description: Audio codec/format of uploaded files. The API automatically detects most formats; for PCM files (pcm_s16le, pcm_l16, pcm_raw), you must specify this parameter. PCM files are supported only at 16kHz sample rate.
       title: SpeechToTextJobParameters
+    Sarvam_Model_API_InputAudioCodec:
+      type: string
+      enum:
+      - wav
+      - x-wav
+      - wave
+      - mp3
+      - mpeg
+      - mpeg3
+      - x-mp3
+      - x-mpeg-3
+      - aac
+      - x-aac
+      - aiff
+      - x-aiff
+      - ogg
+      - opus
+      - flac
+      - x-flac
+      - mp4
+      - x-m4a
+      - amr
+      - x-ms-wma
+      - webm
+      - pcm_s16le
+      - pcm_l16
+      - pcm_raw
+      description: Audio codec/format of the input file. Our API automatically detects all codec formats, but for PCM files specifically (pcm_s16le, pcm_l16, pcm_raw), you must pass this parameter. PCM files are supported only at 16kHz sample rate.
+      title: Sarvam_Model_API_InputAudioCodec
+    ErrorCode:
+      type: string
+      enum:
+      - invalid_request_error
+      - internal_server_error
+      - unprocessable_entity_error
+      - insufficient_quota_error
+      - invalid_api_key_error
+      - authentication_error
+      - rate_limit_exceeded_error
+      - not_found_error
+      title: ErrorCode
+    FileSignedURLDetails:
+      type: object
+      properties:
+        file_url:
+          type: string
+        file_metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            description: Any type
+      required:
+      - file_url
+      title: FileSignedURLDetails
+    Sarvam_Model_API_Mode:
+      type: string
+      enum:
+      - transcribe
+      - translate
+      - verbatim
+      - translit
+      - codemix
+      description: "Mode of operation for saaras:v3 model.\n\nExample audio: 'मेरा फोन नंबर है 9840950950'\n\n- **transcribe** (default): Standard transcription in the original language with proper formatting and number normalization.\n  - Output: `मेरा फोन नंबर है 9840950950`\n\n- **translate**: Translates speech from any supported Indic language to English.\n  - Output: `My phone number is 9840950950`\n\n- **verbatim**: Exact word-for-word transcription without normalization, preserving filler words and spoken numbers as-is.\n  - Output: `मेरा फोन नंबर है नौ आठ चार zero नौ पांच zero नौ पांच zero`\n\n- **translit**: Romanization - Transliterates speech to Latin/Roman script only.\n  - Output: `mera phone number hai 9840950950`\n\n- **codemix**: Code-mixed text with English words in English and Indic words in native script.\n  - Output: `मेरा phone number है 9840950950`"
+      title: Sarvam_Model_API_Mode
+    BaseJobParameters:
+      type: object
+      properties: {}
+      title: BaseJobParameters
+    JobStatusResponse:
+      type: object
+      properties:
+        job_state:
+          $ref: '#/components/schemas/JobState'
+          description: Job State
+        created_at:
+          type: string
+          description: Created At
+        updated_at:
+          type: string
+          description: Updated At
+        job_id:
+          type: string
+          description: Job Id
+        total_files:
+          type: integer
+          default: 0
+          description: Total Files
+        successful_files_count:
+          type: integer
+          default: 0
+          description: Success Count
+        failed_files_count:
+          type: integer
+          default: 0
+          description: Failed Count
+        storage_container_type:
+          $ref: '#/components/schemas/StorageContainerType'
+          description: Storage Container Type
+        error_message:
+          type: string
+          default: ''
+          description: Error Message
+        job_details:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskDetail'
+          description: Job details at file level.
+      required:
+      - job_state
+      - created_at
+      - updated_at
+      - job_id
+      - storage_container_type
+      title: JobStatusResponse
+    StorageContainerType:
+      type: string
+      enum:
+      - Azure
+      - Local
+      - Google
+      - Azure_V1
+      title: StorageContainerType
+    BulkJobInitResponse:
+      type: object
+      properties:
+        job_id:
+          type: string
+          description: Job UUID.
+        storage_container_type:
+          $ref: '#/components/schemas/StorageContainerType'
+          description: Storage Container Type
+        job_parameters:
+          $ref: '#/components/schemas/BaseJobParameters'
+        job_state:
+          $ref: '#/components/schemas/JobState'
+      required:
+      - job_id
+      - storage_container_type
+      - job_parameters
+      - job_state
+      title: BulkJobInitResponse
+    Sarvam_Model_API_SpeechToTextLanguage:
+      type: string
+      enum:
+      - unknown
+      - hi-IN
+      - bn-IN
+      - kn-IN
+      - ml-IN
+      - mr-IN
+      - od-IN
+      - pa-IN
+      - ta-IN
+      - te-IN
+      - en-IN
+      - gu-IN
+      - as-IN
+      - ur-IN
+      - ne-IN
+      - kok-IN
+      - ks-IN
+      - sd-IN
+      - sa-IN
+      - sat-IN
+      - mni-IN
+      - brx-IN
+      - mai-IN
+      - doi-IN
+      description: 'Languages supported for Speech-to-Text.
+
+
+        **saarika:v2.5 supports (12 languages):** unknown, hi-IN, bn-IN, kn-IN, ml-IN, mr-IN, od-IN, pa-IN, ta-IN, te-IN, en-IN, gu-IN
+
+
+        **saaras:v3 supports all 23 languages** including: as-IN, ur-IN, ne-IN, kok-IN, ks-IN, sd-IN, sa-IN, sat-IN, mni-IN, brx-IN, mai-IN, doi-IN'
+      title: Sarvam_Model_API_SpeechToTextLanguage
+    ErrorMessage:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorDetails'
+          description: Error details
+      required:
+      - error
+      title: ErrorMessage
+    JobState:
+      type: string
+      enum:
+      - Accepted
+      - Pending
+      - Running
+      - Completed
+      - Failed
+      title: JobState
+    FilesRequest:
+      type: object
+      properties:
+        job_id:
+          type: string
+          description: UUID of the bulk job returned from job initiation.
+        files:
+          type: array
+          items:
+            type: string
+          description: 'Required. Output filenames to download (e.g. "0.json"). Get these from the job status response: job_details[].outputs[].file_name after the job completes.'
+      required:
+      - job_id
+      - files
+      description: Request body for bulk job upload/download URL generation. Both job_id and files are required for download.
+      title: FilesRequest
+    ErrorDetails:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Message describing the error
+        code:
+          $ref: '#/components/schemas/ErrorCode'
+          description: Error code for the specific error that has occurred. Refer to the error code documentation for more details.
+        request_id:
+          type: string
+          default: ''
+          description: 'Unique identifier for the request. Format: date_UUID4'
+      required:
+      - message
+      - code
+      title: ErrorDetails
+    TaskFileDetails:
+      type: object
+      properties:
+        file_name:
+          type: string
+        file_id:
+          type: string
+      required:
+      - file_name
+      - file_id
+      title: TaskFileDetails
+    BulkJobInitRequestV1_SpeechToTextJobParameters_:
+      type: object
+      properties:
+        job_parameters:
+          $ref: '#/components/schemas/SpeechToTextJobParameters'
+          description: Job Parameters for the bulk job
+        callback:
+          oneOf:
+          - $ref: '#/components/schemas/BulkJobCallback'
+          - type: 'null'
+          description: Parameters for callback URL
+      required:
+      - job_parameters
+      title: BulkJobInitRequestV1_SpeechToTextJobParameters_
+    BulkJobCallback:
+      type: object
+      properties:
+        url:
+          type: string
+          description: Webhook url to call upon job completion
+        auth_token:
+          type: string
+          default: ''
+          description: Authorization token required for the callback Url
+      required:
+      - url
+      title: BulkJobCallback
+    TaskDetail:
+      type: object
+      properties:
+        inputs:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskFileDetails'
+        outputs:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskFileDetails'
+        state:
+          $ref: '#/components/schemas/TaskState'
+        error_message:
+          type:
+          - string
+          - 'null'
+        exception_name:
+          type:
+          - string
+          - 'null'
+      title: TaskDetail
+    FilesUploadResponse:
+      type: object
+      properties:
+        job_id:
+          type: string
+        job_state:
+          $ref: '#/components/schemas/JobState'
+        upload_urls:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/FileSignedURLDetails'
+        storage_container_type:
+          $ref: '#/components/schemas/StorageContainerType'
+      required:
+      - job_id
+      - job_state
+      - upload_urls
+      - storage_container_type
+      title: FilesUploadResponse
+    TaskState:
+      type: string
+      enum:
+      - Success
+      - API Error
+      - Internal Server Error
+      title: TaskState
+    Sarvam_Model_API_SpeechToTextModel:
+      type: string
+      enum:
+      - saaras:v3
+      - saarika:v2.5
+      description: 'Model to be used for speech to text.
+
+
+        - **saaras:v3** (default, recommended): State-of-the-art model with flexible output formats. Supports multiple modes via the `mode` parameter: transcribe, translate, verbatim, translit, codemix.
+
+
+        - **saarika:v2.5** (legacy): Transcribes audio in the spoken language. Kept for backward compatibility.'
+      title: Sarvam_Model_API_SpeechToTextModel
+    FilesDownloadResponse:
+      type: object
+      properties:
+        job_id:
+          type: string
+        job_state:
+          $ref: '#/components/schemas/JobState'
+        download_urls:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/FileSignedURLDetails'
+        storage_container_type:
+          $ref: '#/components/schemas/StorageContainerType'
+      required:
+      - job_id
+      - job_state
+      - download_urls
+      - storage_container_type
+      title: FilesDownloadResponse
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -1,12 +1,12 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Endpoints chat text API
+  title: Endpoints Text API
   version: 1.0.0
 servers:
 - url: https://api.sarvam.ai
   description: Production
 tags:
-- name: text
+- name: Text
 paths:
   /translate:
     post:
@@ -69,9 +69,9 @@ paths:
         - **`ur-IN`**: Urdu
 
 
-        For hands-on practice, you can explore the notebook tutorial on [Translate API Tutorial](https://github.com/sarvamai/sarvam-ai-cookbook/blob/main/notebooks/translate/Translate_API_Tutorial.ipynb).'
+        For hands-on practice, you can explore the notebook tutorial on Translate API Tutorial.'
       tags:
-      - text
+      - Text
       parameters:
       - name: api-subscription-key
         in: header
@@ -164,9 +164,9 @@ paths:
         - **`te-IN`**: Telugu
 
 
-        For hands-on practice, you can explore the notebook tutorial on [Transliterate API Tutorial](https://github.com/sarvamai/sarvam-ai-cookbook/blob/main/notebooks/transliterate/Transliterate_API_Tutorial.ipynb).'
+        For hands-on practice, you can explore the notebook tutorial on Transliterate API Tutorial.'
       tags:
-      - text
+      - Text
       parameters:
       - name: api-subscription-key
         in: header
@@ -221,7 +221,7 @@ paths:
       summary: Language Identification
       description: Identifies the language (e.g., en-IN, hi-IN) and script (e.g., Latin, Devanagari) of the input text, supporting multiple languages.
       tags:
-      - text
+      - Text
       parameters:
       - name: api-subscription-key
         in: header
@@ -272,21 +272,12 @@ paths:
               $ref: '#/components/schemas/Sarvam_Model_API_LanguageIdentificationRequest'
 components:
   schemas:
-    Sarvam_Model_API_NumeralsFormat:
+    Sarvam_Model_API_SpokenFormNumeralsFormat:
       type: string
       enum:
-      - international
+      - english
       - native
-      title: Sarvam_Model_API_NumeralsFormat
-    Sarvam_Model_API_ErrorMessage:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/Sarvam_Model_API_ErrorDetails'
-          description: Error details
-      required:
-      - error
-      title: Sarvam_Model_API_ErrorMessage
+      title: Sarvam_Model_API_SpokenFormNumeralsFormat
     Sarvam_Model_API_ErrorCode:
       type: string
       enum:
@@ -299,6 +290,93 @@ components:
       - not_found_error
       - rate_limit_exceeded_error
       title: Sarvam_Model_API_ErrorCode
+    Sarvam_Model_API_ErrorMessage:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/Sarvam_Model_API_ErrorDetails'
+          description: Error details
+      required:
+      - error
+      title: Sarvam_Model_API_ErrorMessage
+    Sarvam_Model_API_TransliterationRequest:
+      type: object
+      properties:
+        input:
+          type: string
+          description: The text you want to transliterate.
+        source_language_code:
+          $ref: '#/components/schemas/Sarvam_Model_API_TransliterateSourceLanguage'
+          description: "The language code of the input text. This specifies the source language for transliteration.\n\n\n\n Note:  The source language should either be an Indic language or English. As we supports both Indic-to-English and English-to-Indic transliteration.\n\n"
+        target_language_code:
+          $ref: '#/components/schemas/Sarvam_Model_API_TranslatiterateTargetLanguage'
+          description: "The language code of the transliteration text. This specifies the target language for transliteration.\n\n\n\n Note:The target language should either be an Indic language or English. As we supports both Indic-to-English and English-to-Indic transliteration.\n\n"
+        numerals_format:
+          $ref: '#/components/schemas/Sarvam_Model_API_NumeralsFormat'
+          description: '`numerals_format` is an optional parameter with two options:
+
+
+            - **`international`** (default): Uses regular numerals (0-9).
+
+            - **`native`**: Uses language-specific native numerals.
+
+
+            ### Example:
+
+            - If `international` format is selected, we use regular numerals (0-9). For example: `मेरा phone number है: 9840950950`.
+
+            - If `native` format is selected, we use language-specific native numerals, like: `मेरा phone number है: ९८४०९५०९५०`.'
+        spoken_form_numerals_language:
+          $ref: '#/components/schemas/Sarvam_Model_API_SpokenFormNumeralsFormat'
+          description: "`spoken_form_numerals_language` is an optional parameter with two options and only works when spoken_form is true:\n\n- **`english`** : Numbers in the text will be spoken in English.\n- **`native(default)`**: Numbers in the text will be spoken in the native language.\n\n### Examples:\n- **Input:** \"मेरे पास ₹200 है\"\n  - If `english` format is selected: \"मेरे पास टू हन्डर्ड रूपीस है\"\n  - If `native` format is selected: \"मेरे पास दो सौ रुपये है\"\n\n"
+        spoken_form:
+          type: boolean
+          default: false
+          description: "  - Default: `False`\n  - Converts text into a natural spoken form when `True`.\n  - **Note:** No effect if output language is `en-IN`.\n\n### Example:\n- **Input:** `मुझे कल 9:30am को appointment है`\n  - **Output:** `मुझे कल सुबह साढ़े नौ बजे को अपॉइंटमेंट है`\n"
+      required:
+      - input
+      - source_language_code
+      - target_language_code
+      title: Sarvam_Model_API_TransliterationRequest
+    Sarvam_Model_API_TransliterateMode:
+      type: string
+      enum:
+      - roman
+      - fully-native
+      - spoken-form-in-native
+      title: Sarvam_Model_API_TransliterateMode
+    Sarvam_Model_API_TranslateSpeakerGender:
+      type: string
+      enum:
+      - Male
+      - Female
+      title: Sarvam_Model_API_TranslateSpeakerGender
+    Sarvam_Model_API_TransliterationResponse:
+      type: object
+      properties:
+        request_id:
+          type:
+          - string
+          - 'null'
+        transliterated_text:
+          type: string
+          description: Transliterated text result in the requested target language.
+        source_language_code:
+          type: string
+          description: Detected or provided source language of the input text.
+      required:
+      - request_id
+      - transliterated_text
+      - source_language_code
+      title: Sarvam_Model_API_TransliterationResponse
+    Sarvam_Model_API_TranslateMode:
+      type: string
+      enum:
+      - formal
+      - modern-colloquial
+      - classic-colloquial
+      - code-mixed
+      title: Sarvam_Model_API_TranslateMode
     Sarvam_Model_API_LanguageIdentificationResponse:
       type: object
       properties:
@@ -367,30 +445,6 @@ components:
       required:
       - request_id
       title: Sarvam_Model_API_LanguageIdentificationResponse
-    Sarvam_Model_API_TransliterationResponse:
-      type: object
-      properties:
-        request_id:
-          type:
-          - string
-          - 'null'
-        transliterated_text:
-          type: string
-          description: Transliterated text result in the requested target language.
-        source_language_code:
-          type: string
-          description: Detected or provided source language of the input text.
-      required:
-      - request_id
-      - transliterated_text
-      - source_language_code
-      title: Sarvam_Model_API_TransliterationResponse
-    Sarvam_Model_API_SpokenFormNumeralsFormat:
-      type: string
-      enum:
-      - english
-      - native
-      title: Sarvam_Model_API_SpokenFormNumeralsFormat
     Sarvam_Model_API_TranslateTargetLanguage:
       type: string
       enum:
@@ -418,45 +472,73 @@ components:
       - sd-IN
       - ur-IN
       title: Sarvam_Model_API_TranslateTargetLanguage
-    Sarvam_Model_API_TransliterationRequest:
+    Sarvam_Model_API_TranslationResponse:
+      type: object
+      properties:
+        request_id:
+          type:
+          - string
+          - 'null'
+        translated_text:
+          type: string
+          description: Translated text result in the requested target language.
+        source_language_code:
+          type: string
+          description: Detected or provided source language of the input text.
+      required:
+      - request_id
+      - translated_text
+      - source_language_code
+      title: Sarvam_Model_API_TranslationResponse
+    Sarvam_Model_API_TranslateModel:
+      type: string
+      enum:
+      - mayura:v1
+      - sarvam-translate:v1
+      title: Sarvam_Model_API_TranslateModel
+    Sarvam_Model_API_NumeralsFormat:
+      type: string
+      enum:
+      - international
+      - native
+      title: Sarvam_Model_API_NumeralsFormat
+    Sarvam_Model_API_TranslateSourceLanguage:
+      type: string
+      enum:
+      - auto
+      - bn-IN
+      - en-IN
+      - gu-IN
+      - hi-IN
+      - kn-IN
+      - ml-IN
+      - mr-IN
+      - od-IN
+      - pa-IN
+      - ta-IN
+      - te-IN
+      - as-IN
+      - brx-IN
+      - doi-IN
+      - kok-IN
+      - ks-IN
+      - mai-IN
+      - mni-IN
+      - ne-IN
+      - sa-IN
+      - sat-IN
+      - sd-IN
+      - ur-IN
+      title: Sarvam_Model_API_TranslateSourceLanguage
+    Sarvam_Model_API_LanguageIdentificationRequest:
       type: object
       properties:
         input:
           type: string
-          description: The text you want to transliterate.
-        source_language_code:
-          $ref: '#/components/schemas/Sarvam_Model_API_TransliterateSourceLanguage'
-          description: "The language code of the input text. This specifies the source language for transliteration.\n\n\n\n Note:  The source language should either be an Indic language or English. As we supports both Indic-to-English and English-to-Indic transliteration.\n\n"
-        target_language_code:
-          $ref: '#/components/schemas/Sarvam_Model_API_TranslatiterateTargetLanguage'
-          description: "The language code of the transliteration text. This specifies the target language for transliteration.\n\n\n\n Note:The target language should either be an Indic language or English. As we supports both Indic-to-English and English-to-Indic transliteration.\n\n"
-        numerals_format:
-          $ref: '#/components/schemas/Sarvam_Model_API_NumeralsFormat'
-          description: '`numerals_format` is an optional parameter with two options:
-
-
-            - **`international`** (default): Uses regular numerals (0-9).
-
-            - **`native`**: Uses language-specific native numerals.
-
-
-            ### Example:
-
-            - If `international` format is selected, we use regular numerals (0-9). For example: `मेरा phone number है: 9840950950`.
-
-            - If `native` format is selected, we use language-specific native numerals, like: `मेरा phone number है: ९८४०९५०९५०`.'
-        spoken_form_numerals_language:
-          $ref: '#/components/schemas/Sarvam_Model_API_SpokenFormNumeralsFormat'
-          description: "`spoken_form_numerals_language` is an optional parameter with two options and only works when spoken_form is true:\n\n- **`english`** : Numbers in the text will be spoken in English.\n- **`native(default)`**: Numbers in the text will be spoken in the native language.\n\n### Examples:\n- **Input:** \"मेरे पास ₹200 है\"\n  - If `english` format is selected: \"मेरे पास टू हन्डर्ड रूपीस है\"\n  - If `native` format is selected: \"मेरे पास दो सौ रुपये है\"\n\n"
-        spoken_form:
-          type: boolean
-          default: false
-          description: "  - Default: `False`\n  - Converts text into a natural spoken form when `True`.\n  - **Note:** No effect if output language is `en-IN`.\n\n### Example:\n- **Input:** `मुझे कल 9:30am को appointment है`\n  - **Output:** `मुझे कल सुबह साढ़े नौ बजे को अपॉइंटमेंट है`\n"
+          description: The text input for language and script identification. Max Input Limit is 1000 characters
       required:
       - input
-      - source_language_code
-      - target_language_code
-      title: Sarvam_Model_API_TransliterationRequest
+      title: Sarvam_Model_API_LanguageIdentificationRequest
     Sarvam_Model_API_TranslatiterateTargetLanguage:
       type: string
       enum:
@@ -490,20 +572,22 @@ components:
       - message
       - code
       title: Sarvam_Model_API_ErrorDetails
-    Sarvam_Model_API_TranslateMode:
+    Sarvam_Model_API_TransliterateSourceLanguage:
       type: string
       enum:
-      - formal
-      - modern-colloquial
-      - classic-colloquial
-      - code-mixed
-      title: Sarvam_Model_API_TranslateMode
-    Sarvam_Model_API_TranslateModel:
-      type: string
-      enum:
-      - mayura:v1
-      - sarvam-translate:v1
-      title: Sarvam_Model_API_TranslateModel
+      - auto
+      - bn-IN
+      - en-IN
+      - gu-IN
+      - hi-IN
+      - kn-IN
+      - ml-IN
+      - mr-IN
+      - od-IN
+      - pa-IN
+      - ta-IN
+      - te-IN
+      title: Sarvam_Model_API_TransliterateSourceLanguage
     Sarvam_Model_API_TranslationRequest:
       type: object
       properties:
@@ -613,90 +697,6 @@ components:
       - source_language_code
       - target_language_code
       title: Sarvam_Model_API_TranslationRequest
-    Sarvam_Model_API_TranslateSpeakerGender:
-      type: string
-      enum:
-      - Male
-      - Female
-      title: Sarvam_Model_API_TranslateSpeakerGender
-    Sarvam_Model_API_TransliterateMode:
-      type: string
-      enum:
-      - roman
-      - fully-native
-      - spoken-form-in-native
-      title: Sarvam_Model_API_TransliterateMode
-    Sarvam_Model_API_LanguageIdentificationRequest:
-      type: object
-      properties:
-        input:
-          type: string
-          description: The text input for language and script identification. Max Input Limit is 1000 characters
-      required:
-      - input
-      title: Sarvam_Model_API_LanguageIdentificationRequest
-    Sarvam_Model_API_TranslateSourceLanguage:
-      type: string
-      enum:
-      - auto
-      - bn-IN
-      - en-IN
-      - gu-IN
-      - hi-IN
-      - kn-IN
-      - ml-IN
-      - mr-IN
-      - od-IN
-      - pa-IN
-      - ta-IN
-      - te-IN
-      - as-IN
-      - brx-IN
-      - doi-IN
-      - kok-IN
-      - ks-IN
-      - mai-IN
-      - mni-IN
-      - ne-IN
-      - sa-IN
-      - sat-IN
-      - sd-IN
-      - ur-IN
-      title: Sarvam_Model_API_TranslateSourceLanguage
-    Sarvam_Model_API_TransliterateSourceLanguage:
-      type: string
-      enum:
-      - auto
-      - bn-IN
-      - en-IN
-      - gu-IN
-      - hi-IN
-      - kn-IN
-      - ml-IN
-      - mr-IN
-      - od-IN
-      - pa-IN
-      - ta-IN
-      - te-IN
-      title: Sarvam_Model_API_TransliterateSourceLanguage
-    Sarvam_Model_API_TranslationResponse:
-      type: object
-      properties:
-        request_id:
-          type:
-          - string
-          - 'null'
-        translated_text:
-          type: string
-          description: Translated text result in the requested target language.
-        source_language_code:
-          type: string
-          description: Detected or provided source language of the input text.
-      required:
-      - request_id
-      - translated_text
-      - source_language_code
-      title: Sarvam_Model_API_TranslationResponse
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

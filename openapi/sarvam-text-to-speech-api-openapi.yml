@@ -1,12 +1,12 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Endpoints chat textToSpeech API
+  title: Endpoints Text To Speech API
   version: 1.0.0
 servers:
 - url: https://api.sarvam.ai
   description: Production
 tags:
-- name: textToSpeech
+- name: Text To Speech
 paths:
   /text-to-speech:
     post:
@@ -34,7 +34,7 @@ paths:
 
         - Supports sample rates: 8000, 16000, 22050, 24000 Hz (REST API also supports 32000, 44100, 48000 Hz)'
       tags:
-      - textToSpeech
+      - Text To Speech
       parameters:
       - name: api-subscription-key
         in: header
@@ -93,9 +93,9 @@ paths:
         This endpoint supports streaming audio using the specified output codec (e.g., `audio/mpeg` for MP3). The response is returned as a binary audio stream, which can be played or saved directly by the client.
 
 
-        Supports the `dict_id` parameter to apply a [pronunciation dictionary](https://docs.sarvam.ai/api-reference-docs/pronunciation-dictionary/create) during synthesis.'
+        Supports the `dict_id` parameter to apply a pronunciation dictionary during synthesis.'
       tags:
-      - textToSpeech
+      - Text To Speech
       parameters:
       - name: api-subscription-key
         in: header
@@ -147,151 +147,6 @@ paths:
               $ref: '#/components/schemas/Sarvam_Model_API_TextToSpeechStreamRequest'
 components:
   schemas:
-    Sarvam_Model_API_TextToSpeechResponse:
-      type: object
-      properties:
-        request_id:
-          type:
-          - string
-          - 'null'
-        audios:
-          type: array
-          items:
-            type: string
-          description: ' The output audio files in WAV format, encoded as base64 strings. Each string corresponds to one of the input texts.'
-      required:
-      - request_id
-      - audios
-      title: Sarvam_Model_API_TextToSpeechResponse
-    Sarvam_Model_API_TextToSpeechStreamRequest:
-      type: object
-      properties:
-        text:
-          type: string
-          description: 'The text to be converted into streamed speech.
-
-
-            **Features:**
-
-            - Max 3500 characters
-
-            - Supports code-mixed text (English and Indic languages)
-
-
-            **Important Note:**
-
-            - For numbers larger than 4 digits, use commas (e.g., ''10,000'' instead of ''10000'')
-
-            - This ensures proper pronunciation as a whole number'
-        target_language_code:
-          $ref: '#/components/schemas/Sarvam_Model_API_TextToSpeechLanguage'
-          description: The language code in BCP-47 format.
-        speaker:
-          oneOf:
-          - $ref: '#/components/schemas/Sarvam_Model_API_TextToSpeechSpeaker'
-          - type: 'null'
-          description: 'The speaker voice to be used for the output audio.
-
-
-            **Default:** shubh (for bulbul:v3), anushka (for bulbul:v2)
-
-
-            **Note:** Speaker selection must match the chosen model version.
-
-
-            **Important:** Speaker names are case-sensitive and must be lowercase (e.g., `ritu` not `Ritu`).'
-        pitch:
-          type:
-          - number
-          - 'null'
-          format: double
-          description: 'Controls the pitch of the audio. Range: -0.75 to 0.75. Default is 0.0.
-
-
-            **Note:** Only supported for bulbul:v2.'
-        pace:
-          type:
-          - number
-          - 'null'
-          format: double
-          default: 1
-          description: 'Controls the speed of the audio. Default is 1.0.
-
-
-            **Model-specific ranges:**
-
-            - **bulbul:v3:** 0.5 to 2.0
-
-            - **bulbul:v2:** 0.3 to 3.0'
-        loudness:
-          type:
-          - number
-          - 'null'
-          format: double
-          description: 'Controls the loudness of the audio. Range: 0.3 to 3.0. Default is 1.0.
-
-
-            **Note:** Only supported for bulbul:v2.'
-        speech_sample_rate:
-          oneOf:
-          - $ref: '#/components/schemas/Sarvam_Model_API_SpeechSampleRate'
-          - type: 'null'
-          default: 22050
-          description: 'Specifies the sample rate of the output audio. Default is 22050 Hz.
-
-
-            **Note:** OPUS codec only supports 8000, 12000, 16000, 24000, 48000 Hz.'
-        enable_preprocessing:
-          type: boolean
-          default: false
-          description: Controls whether normalization of English words and numeric entities is performed. Default is false.
-        model:
-          $ref: '#/components/schemas/Sarvam_Model_API_TextToSpeechModel'
-          description: Specifies the model to use for text-to-speech conversion. Default is bulbul:v2.
-        temperature:
-          type:
-          - number
-          - 'null'
-          format: double
-          default: 0.6
-          description: 'Controls the randomness of the output. Range: 0.01 to 1.0. Default is 0.6.
-
-
-            **Note:** Only supported for bulbul:v3.'
-        enable_cached_responses:
-          type: boolean
-          default: false
-          description: Enable caching for the request. Default is false. Currently in beta.
-        dict_id:
-          type:
-          - string
-          - 'null'
-          description: 'The ID of a pronunciation dictionary to apply during synthesis. When provided, matching words in the input text will be replaced with their custom pronunciations before generating speech.
-
-
-            Create and manage dictionaries via the [Pronunciation Dictionary API](https://docs.sarvam.ai/api-reference-docs/pronunciation-dictionary/create). Only supported by **bulbul:v3**.'
-        output_audio_codec:
-          $ref: '#/components/schemas/Sarvam_Model_API_SpeechStreamCodec'
-          description: Specifies the codec for the streamed output audio (e.g., 'mp3').
-        output_audio_bitrate:
-          $ref: '#/components/schemas/Sarvam_Model_API_SpeechStreamBitrate'
-          description: Bitrate for the streamed output audio. Default is '128k'.
-      required:
-      - text
-      title: Sarvam_Model_API_TextToSpeechStreamRequest
-    TextToSpeechOutputAudioCodec:
-      type: string
-      enum:
-      - mp3
-      - linear16
-      - mulaw
-      - alaw
-      - opus
-      - flac
-      - aac
-      - wav
-      description: Audio codec options for the non-streaming /text-to-speech endpoint
-      title: TextToSpeechOutputAudioCodec
     Sarvam_Model_API_SpeechStreamBitrate:
       type: string
       enum:
@@ -316,15 +171,18 @@ components:
       - ta-IN
       - te-IN
       title: Sarvam_Model_API_TextToSpeechLanguage
-    Sarvam_Model_API_ErrorMessage:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/Sarvam_Model_API_ErrorDetails'
-          description: Error details
-      required:
-      - error
-      title: Sarvam_Model_API_ErrorMessage
+    Sarvam_Model_API_SpeechStreamCodec:
+      type: string
+      enum:
+      - mp3
+      - linear16
+      - mulaw
+      - alaw
+      - opus
+      - flac
+      - aac
+      - wav
+      title: Sarvam_Model_API_SpeechStreamCodec
     Sarvam_Model_API_TextToSpeechRequest:
       type: object
       properties:
@@ -462,6 +320,231 @@ components:
       - text
       - target_language_code
       title: Sarvam_Model_API_TextToSpeechRequest
+    Sarvam_Model_API_TextToSpeechStreamRequest:
+      type: object
+      properties:
+        text:
+          type: string
+          description: 'The text to be converted into streamed speech.
+
+
+            **Features:**
+
+            - Max 3500 characters
+
+            - Supports code-mixed text (English and Indic languages)
+
+
+            **Important Note:**
+
+            - For numbers larger than 4 digits, use commas (e.g., ''10,000'' instead of ''10000'')
+
+            - This ensures proper pronunciation as a whole number'
+        target_language_code:
+          $ref: '#/components/schemas/Sarvam_Model_API_TextToSpeechLanguage'
+          description: The language code in BCP-47 format.
+        speaker:
+          oneOf:
+          - $ref: '#/components/schemas/Sarvam_Model_API_TextToSpeechSpeaker'
+          - type: 'null'
+          description: 'The speaker voice to be used for the output audio.
+
+
+            **Default:** shubh (for bulbul:v3), anushka (for bulbul:v2)
+
+
+            **Note:** Speaker selection must match the chosen model version.
+
+
+            **Important:** Speaker names are case-sensitive and must be lowercase (e.g., `ritu` not `Ritu`).'
+        pitch:
+          type:
+          - number
+          - 'null'
+          format: double
+          description: 'Controls the pitch of the audio. Range: -0.75 to 0.75. Default is 0.0.
+
+
+            **Note:** Only supported for bulbul:v2.'
+        pace:
+          type:
+          - number
+          - 'null'
+          format: double
+          default: 1
+          description: 'Controls the speed of the audio. Default is 1.0.
+
+
+            **Model-specific ranges:**
+
+            - **bulbul:v3:** 0.5 to 2.0
+
+            - **bulbul:v2:** 0.3 to 3.0'
+        loudness:
+          type:
+          - number
+          - 'null'
+          format: double
+          description: 'Controls the loudness of the audio. Range: 0.3 to 3.0. Default is 1.0.
+
+
+            **Note:** Only supported for bulbul:v2.'
+        speech_sample_rate:
+          oneOf:
+          - $ref: '#/components/schemas/Sarvam_Model_API_SpeechSampleRate'
+          - type: 'null'
+          default: 22050
+          description: 'Specifies the sample rate of the output audio. Default is 22050 Hz.
+
+
+            **Note:** OPUS codec only supports 8000, 12000, 16000, 24000, 48000 Hz.'
+        enable_preprocessing:
+          type: boolean
+          default: false
+          description: Controls whether normalization of English words and numeric entities is performed. Default is false.
+        model:
+          $ref: '#/components/schemas/Sarvam_Model_API_TextToSpeechModel'
+          description: Specifies the model to use for text-to-speech conversion. Default is bulbul:v2.
+        temperature:
+          type:
+          - number
+          - 'null'
+          format: double
+          default: 0.6
+          description: 'Controls the randomness of the output. Range: 0.01 to 1.0. Default is 0.6.
+
+
+            **Note:** Only supported for bulbul:v3.'
+        enable_cached_responses:
+          type: boolean
+          default: false
+          description: Enable caching for the request. Default is false. Currently in beta.
+        dict_id:
+          type:
+          - string
+          - 'null'
+          description: 'The ID of a pronunciation dictionary to apply during synthesis. When provided, matching words in the input text will be replaced with their custom pronunciations before generating speech.
+
+
+            Create and manage dictionaries via the [Pronunciation Dictionary API](https://docs.sarvam.ai/api-reference-docs/pronunciation-dictionary/create). Only supported by **bulbul:v3**.'
+        output_audio_codec:
+          $ref: '#/components/schemas/Sarvam_Model_API_SpeechStreamCodec'
+          description: Specifies the codec for the streamed output audio (e.g., 'mp3').
+        output_audio_bitrate:
+          $ref: '#/components/schemas/Sarvam_Model_API_SpeechStreamBitrate'
+          description: Bitrate for the streamed output audio. Default is '128k'.
+      required:
+      - text
+      title: Sarvam_Model_API_TextToSpeechStreamRequest
+    Sarvam_Model_API_ErrorDetails:
+      type: object
+      properties:
+        request_id:
+          type:
+          - string
+          - 'null'
+        message:
+          type: string
+          description: Message describing the error
+        code:
+          $ref: '#/components/schemas/Sarvam_Model_API_ErrorCode'
+          description: Error code for the specific error that has occurred. Refer to the error code documentation for more details.
+      required:
+      - request_id
+      - message
+      - code
+      title: Sarvam_Model_API_ErrorDetails
+    Sarvam_Model_API_SpeechSampleRate:
+      type: string
+      enum:
+      - '8000'
+      - '16000'
+      - '22050'
+      - '24000'
+      - '32000'
+      - '44100'
+      - '48000'
+      title: Sarvam_Model_API_SpeechSampleRate
+    TextToSpeechOutputAudioCodec:
+      type: string
+      enum:
+      - mp3
+      - linear16
+      - mulaw
+      - alaw
+      - opus
+      - flac
+      - aac
+      - wav
+      description: Audio codec options for the non-streaming /text-to-speech endpoint
+      title: TextToSpeechOutputAudioCodec
+    Sarvam_Model_API_TextToSpeechModel:
+      type: string
+      enum:
+      - bulbul:v2
+      - bulbul:v3
+      title: Sarvam_Model_API_TextToSpeechModel
+    SarvamModelApiTextToSpeechRequestText:
+      oneOf:
+      - type: string
+      description: 'The text(s) to be converted into speech.
+
+
+        **Features:**
+
+        - Supports code-mixed text (English and Indic languages)
+
+
+        **Model-specific limits:**
+
+        - **bulbul:v3:** Max 2500 characters
+
+        - **bulbul:v2:** Max 1500 characters
+
+
+        **Important Note:**
+
+        - For numbers larger than 4 digits, use commas (e.g., ''10,000'' instead of ''10000'')
+
+        - This ensures proper pronunciation as a whole number'
+      title: SarvamModelApiTextToSpeechRequestText
+    Sarvam_Model_API_TextToSpeechResponse:
+      type: object
+      properties:
+        request_id:
+          type:
+          - string
+          - 'null'
+        audios:
+          type: array
+          items:
+            type: string
+          description: ' The output audio files in WAV format, encoded as base64 strings. Each string corresponds to one of the input texts.'
+      required:
+      - request_id
+      - audios
+      title: Sarvam_Model_API_TextToSpeechResponse
+    Sarvam_Model_API_ErrorCode:
+      type: string
+      enum:
+      - invalid_request_error
+      - internal_server_error
+      - unprocessable_entity_error
+      - insufficient_quota_error
+      - invalid_api_key_error
+      - authentication_error
+      - not_found_error
+      - rate_limit_exceeded_error
+      title: Sarvam_Model_API_ErrorCode
+    Sarvam_Model_API_ErrorMessage:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/Sarvam_Model_API_ErrorDetails'
+          description: Error details
+      required:
+      - error
+      title: Sarvam_Model_API_ErrorMessage
     Sarvam_Model_API_TextToSpeechSpeaker:
       type: string
       enum:
@@ -510,89 +593,6 @@ components:
       - soham
       - rupali
       title: Sarvam_Model_API_TextToSpeechSpeaker
-    Sarvam_Model_API_TextToSpeechModel:
-      type: string
-      enum:
-      - bulbul:v2
-      - bulbul:v3
-      title: Sarvam_Model_API_TextToSpeechModel
-    Sarvam_Model_API_ErrorCode:
-      type: string
-      enum:
-      - invalid_request_error
-      - internal_server_error
-      - unprocessable_entity_error
-      - insufficient_quota_error
-      - invalid_api_key_error
-      - authentication_error
-      - not_found_error
-      - rate_limit_exceeded_error
-      title: Sarvam_Model_API_ErrorCode
-    SarvamModelApiTextToSpeechRequestText:
-      oneOf:
-      - type: string
-      description: 'The text(s) to be converted into speech.
-
-
-        **Features:**
-
-        - Supports code-mixed text (English and Indic languages)
-
-
-        **Model-specific limits:**
-
-        - **bulbul:v3:** Max 2500 characters
-
-        - **bulbul:v2:** Max 1500 characters
-
-
-        **Important Note:**
-
-        - For numbers larger than 4 digits, use commas (e.g., ''10,000'' instead of ''10000'')
-
-        - This ensures proper pronunciation as a whole number'
-      title: SarvamModelApiTextToSpeechRequestText
-    Sarvam_Model_API_SpeechSampleRate:
-      type: string
-      enum:
-      - '8000'
-      - '16000'
-      - '22050'
-      - '24000'
-      - '32000'
-      - '44100'
-      - '48000'
-      title: Sarvam_Model_API_SpeechSampleRate
-    Sarvam_Model_API_ErrorDetails:
-      type: object
-      properties:
-        request_id:
-          type:
-          - string
-          - 'null'
-        message:
-          type: string
-          description: Message describing the error
-        code:
-          $ref: '#/components/schemas/Sarvam_Model_API_ErrorCode'
-          description: Error code for the specific error that has occurred. Refer to the error code documentation for more details.
-      required:
-      - request_id
-      - message
-      - code
-      title: Sarvam_Model_API_ErrorDetails
-    Sarvam_Model_API_SpeechStreamCodec:
-      type: string
-      enum:
-      - mp3
-      - linear16
-      - mulaw
-      - alaw
-      - opus
-      - flac
-      - aac
-      - wav
-      title: Sarvam_Model_API_SpeechStreamCodec
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

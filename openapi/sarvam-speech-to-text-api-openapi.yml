@@ -1,20 +1,41 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Endpoints chat speechToText API
+  title: Endpoints Speech To Text API
   version: 1.0.0
 servers:
 - url: https://api.sarvam.ai
   description: Production
 tags:
-- name: speechToText
+- name: Speech To Text
 paths:
   /speech-to-text:
     post:
       operationId: transcribe
       summary: Speech to Text
-      description: "## Speech to Text API\n\nThis API transcribes speech to text in multiple Indian languages and English. Supports transcription for interactive applications.\n\n### Available Options:\n- **REST API** (Current Endpoint): For quick responses under 30 seconds with immediate results\n- **Batch API**: For longer audio files, [Follow This Documentation](https://docs.sarvam.ai/api-reference-docs/api-guides-tutorials/speech-to-text/batch-api)\n  - Supports diarization (speaker identification)\n\n### Note:\n- Pricing differs for REST and Batch APIs\n- Diarization is only available in Batch API with separate pricing\n- Please refer to [here](https://docs.sarvam.ai/api-reference-docs/pricing) for detailed pricing information"
+      description: '## Speech to Text API
+
+
+        This API transcribes speech to text in multiple Indian languages and English. Supports transcription for interactive applications.
+
+
+        ### Available Options:
+
+        - **REST API** (Current Endpoint): For quick responses under 30 seconds with immediate results
+
+        - **Batch API**: For longer audio files, Follow This Documentation
+
+        - Supports diarization (speaker identification)
+
+
+        ### Note:
+
+        - Pricing differs for REST and Batch APIs
+
+        - Diarization is only available in Batch API with separate pricing
+
+        - Please refer to here for detailed pricing information'
       tags:
-      - speechToText
+      - Speech To Text
       parameters:
       - name: api-subscription-key
         in: header
@@ -160,9 +181,30 @@ paths:
     post:
       operationId: translate
       summary: Speech To Text Translate
-      description: "## Speech to Text Translation API\n\nThis API automatically detects the input language, transcribes the speech, and translates the text to English.\n\n### Available Options:\n- **REST API** (Current Endpoint): For quick responses under 30 seconds with immediate results\n- **Batch API**: For longer audio files [Follow this documentation](https://docs.sarvam.ai/api-reference-docs/api-guides-tutorials/speech-to-text/batch-api)\n  - Supports diarization (speaker identification)\n\n### Note:\n- Pricing differs for REST and Batch APIs\n- Diarization is only available in Batch API with separate pricing\n- Please refer to [here](https://docs.sarvam.ai/api-reference-docs/pricing) for detailed pricing information"
+      description: '## Speech to Text Translation API
+
+
+        This API automatically detects the input language, transcribes the speech, and translates the text to English.
+
+
+        ### Available Options:
+
+        - **REST API** (Current Endpoint): For quick responses under 30 seconds with immediate results
+
+        - **Batch API**: For longer audio files Follow this documentation
+
+        - Supports diarization (speaker identification)
+
+
+        ### Note:
+
+        - Pricing differs for REST and Batch APIs
+
+        - Diarization is only available in Batch API with separate pricing
+
+        - Please refer to here for detailed pricing information'
       tags:
-      - speechToText
+      - Speech To Text
       parameters:
       - name: api-subscription-key
         in: header
@@ -262,6 +304,12 @@ components:
       - end_time_seconds
       - speaker_id
       title: Sarvam_Model_API_DiarizedEntry
+    Sarvam_Model_API_SpeechToTextTranslateModel:
+      type: string
+      enum:
+      - saaras:v2.5
+      description: "Model to be used for speech to text translation.\n\n- **saaras:v2.5** (default): Translation model that translates audio from any spoken Indic language to English.\n  - Example: Hindi audio → English text output\n\nFor the latest model (saaras:v3), use the `/speech-to-text` endpoint with `mode=\"translate\"`."
+      title: Sarvam_Model_API_SpeechToTextTranslateModel
     Sarvam_Model_API_DiarizedTranscript:
       type: object
       properties:
@@ -273,146 +321,6 @@ components:
       required:
       - entries
       title: Sarvam_Model_API_DiarizedTranscript
-    Sarvam_Model_API_SpeechToTextTranslateLanguage:
-      type: string
-      enum:
-      - hi-IN
-      - bn-IN
-      - kn-IN
-      - ml-IN
-      - mr-IN
-      - od-IN
-      - pa-IN
-      - ta-IN
-      - te-IN
-      - gu-IN
-      - en-IN
-      - as-IN
-      - ur-IN
-      - ne-IN
-      - kok-IN
-      - ks-IN
-      - sd-IN
-      - sa-IN
-      - sat-IN
-      - mni-IN
-      - brx-IN
-      - mai-IN
-      - doi-IN
-      description: 'Languages supported for Speech-to-Text-Translate (detected source language).
-
-
-        **saaras:v2.5 supports (11 languages):** hi-IN, bn-IN, kn-IN, ml-IN, mr-IN, od-IN, pa-IN, ta-IN, te-IN, gu-IN, en-IN
-
-
-        For additional languages (as-IN, ur-IN, ne-IN, kok-IN, ks-IN, sd-IN, sa-IN, sat-IN, mni-IN, brx-IN, mai-IN, doi-IN), use saaras:v3 via the `/speech-to-text` endpoint with `mode="translate"`.'
-      title: Sarvam_Model_API_SpeechToTextTranslateLanguage
-    Sarvam_Model_API_TimestampsModel:
-      type: object
-      properties:
-        words:
-          type: array
-          items:
-            type: string
-          description: List of words in the transcript.
-        start_time_seconds:
-          type: array
-          items:
-            type: number
-            format: double
-          description: List of start times of words in seconds.
-        end_time_seconds:
-          type: array
-          items:
-            type: number
-            format: double
-          description: List of end times of words in seconds.
-      required:
-      - words
-      - start_time_seconds
-      - end_time_seconds
-      title: Sarvam_Model_API_TimestampsModel
-    Sarvam_Model_API_SpeechToTextLanguage:
-      type: string
-      enum:
-      - unknown
-      - hi-IN
-      - bn-IN
-      - kn-IN
-      - ml-IN
-      - mr-IN
-      - od-IN
-      - pa-IN
-      - ta-IN
-      - te-IN
-      - en-IN
-      - gu-IN
-      - as-IN
-      - ur-IN
-      - ne-IN
-      - kok-IN
-      - ks-IN
-      - sd-IN
-      - sa-IN
-      - sat-IN
-      - mni-IN
-      - brx-IN
-      - mai-IN
-      - doi-IN
-      description: 'Languages supported for Speech-to-Text.
-
-
-        **saarika:v2.5 supports (12 languages):** unknown, hi-IN, bn-IN, kn-IN, ml-IN, mr-IN, od-IN, pa-IN, ta-IN, te-IN, en-IN, gu-IN
-
-
-        **saaras:v3 supports all 23 languages** including: as-IN, ur-IN, ne-IN, kok-IN, ks-IN, sd-IN, sa-IN, sat-IN, mni-IN, brx-IN, mai-IN, doi-IN'
-      title: Sarvam_Model_API_SpeechToTextLanguage
-    Sarvam_Model_API_SpeechToTextTranslateResponse:
-      type: object
-      properties:
-        request_id:
-          type:
-          - string
-          - 'null'
-        transcript:
-          type: string
-          description: Transcript of the provided speech
-        language_code:
-          oneOf:
-          - $ref: '#/components/schemas/Sarvam_Model_API_SpeechToTextTranslateLanguage'
-          - type: 'null'
-          description: This will return the BCP-47 code of language spoken in the input. If multiple languages are detected, this will return language code of most predominant spoken language. If no language is detected, this will be null
-        diarized_transcript:
-          oneOf:
-          - $ref: '#/components/schemas/Sarvam_Model_API_DiarizedTranscript'
-          - type: 'null'
-          description: Diarized transcript of the provided speech
-        language_probability:
-          type:
-          - number
-          - 'null'
-          format: double
-          description: 'Float value (0.0 to 1.0) indicating the probability of the detected language being correct. Higher values indicate higher confidence.
-
-
-            **When it returns a value:**
-
-            - When `language_code` is not provided in the request
-
-            - When `language_code` is set to `unknown`
-
-
-            **When it returns null:**
-
-            - When a specific `language_code` is provided (language detection is skipped)
-
-
-            The parameter is always present in the response.'
-      required:
-      - request_id
-      - transcript
-      - language_code
-      title: Sarvam_Model_API_SpeechToTextTranslateResponse
     Sarvam_Model_API_SpeechToTextResponse:
       type: object
       properties:
@@ -464,43 +372,6 @@ components:
       - transcript
       - language_code
       title: Sarvam_Model_API_SpeechToTextResponse
-    Sarvam_Model_API_Mode:
-      type: string
-      enum:
-      - transcribe
-      - translate
-      - verbatim
-      - translit
-      - codemix
-      description: "Mode of operation for saaras:v3 model.\n\nExample audio: 'मेरा फोन नंबर है 9840950950'\n\n- **transcribe** (default): Standard transcription in the original language with proper formatting and number normalization.\n  - Output: `मेरा फोन नंबर है 9840950950`\n\n- **translate**: Translates speech from any supported Indic language to English.\n  - Output: `My phone number is 9840950950`\n\n- **verbatim**: Exact word-for-word transcription without normalization, preserving filler words and spoken numbers as-is.\n  - Output: `मेरा फोन नंबर है नौ आठ चार zero नौ पांच zero नौ पांच zero`\n\n- **translit**: Romanization - Transliterates speech to Latin/Roman script only.\n  - Output: `mera phone number hai 9840950950`\n\n- **codemix**: Code-mixed text with English words in English and Indic words in native script.\n  - Output: `मेरा phone number है 9840950950`"
-      title: Sarvam_Model_API_Mode
-    Sarvam_Model_API_SpeechToTextTranslateModel:
-      type: string
-      enum:
-      - saaras:v2.5
-      description: "Model to be used for speech to text translation.\n\n- **saaras:v2.5** (default): Translation model that translates audio from any spoken Indic language to English.\n  - Example: Hindi audio → English text output\n\nFor the latest model (saaras:v3), use the `/speech-to-text` endpoint with `mode=\"translate\"`."
-      title: Sarvam_Model_API_SpeechToTextTranslateModel
-    Sarvam_Model_API_ErrorCode:
-      type: string
-      enum:
-      - invalid_request_error
-      - internal_server_error
-      - unprocessable_entity_error
-      - insufficient_quota_error
-      - invalid_api_key_error
-      - authentication_error
-      - not_found_error
-      - rate_limit_exceeded_error
-      title: Sarvam_Model_API_ErrorCode
-    Sarvam_Model_API_ErrorMessage:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/Sarvam_Model_API_ErrorDetails'
-          description: Error details
-      required:
-      - error
-      title: Sarvam_Model_API_ErrorMessage
     Sarvam_Model_API_InputAudioCodec:
       type: string
       enum:
@@ -530,19 +401,6 @@ components:
       - pcm_raw
       description: Audio codec/format of the input file. Our API automatically detects all codec formats, but for PCM files specifically (pcm_s16le, pcm_l16, pcm_raw), you must pass this parameter. PCM files are supported only at 16kHz sample rate.
       title: Sarvam_Model_API_InputAudioCodec
-    Sarvam_Model_API_SpeechToTextModel:
-      type: string
-      enum:
-      - saaras:v3
-      - saarika:v2.5
-      description: 'Model to be used for speech to text.
-
-
-        - **saaras:v3** (default, recommended): State-of-the-art model with flexible output formats. Supports multiple modes via the `mode` parameter: transcribe, translate, verbatim, translit, codemix.
-
-
-        - **saarika:v2.5** (legacy): Transcribes audio in the spoken language. Kept for backward compatibility.'
-      title: Sarvam_Model_API_SpeechToTextModel
     Sarvam_Model_API_ErrorDetails:
       type: object
       properties:
@@ -561,6 +419,190 @@ components:
       - message
       - code
       title: Sarvam_Model_API_ErrorDetails
+    Sarvam_Model_API_TimestampsModel:
+      type: object
+      properties:
+        words:
+          type: array
+          items:
+            type: string
+          description: List of words in the transcript.
+        start_time_seconds:
+          type: array
+          items:
+            type: number
+            format: double
+          description: List of start times of words in seconds.
+        end_time_seconds:
+          type: array
+          items:
+            type: number
+            format: double
+          description: List of end times of words in seconds.
+      required:
+      - words
+      - start_time_seconds
+      - end_time_seconds
+      title: Sarvam_Model_API_TimestampsModel
+    Sarvam_Model_API_SpeechToTextTranslateLanguage:
+      type: string
+      enum:
+      - hi-IN
+      - bn-IN
+      - kn-IN
+      - ml-IN
+      - mr-IN
+      - od-IN
+      - pa-IN
+      - ta-IN
+      - te-IN
+      - gu-IN
+      - en-IN
+      - as-IN
+      - ur-IN
+      - ne-IN
+      - kok-IN
+      - ks-IN
+      - sd-IN
+      - sa-IN
+      - sat-IN
+      - mni-IN
+      - brx-IN
+      - mai-IN
+      - doi-IN
+      description: 'Languages supported for Speech-to-Text-Translate (detected source language).
+
+
+        **saaras:v2.5 supports (11 languages):** hi-IN, bn-IN, kn-IN, ml-IN, mr-IN, od-IN, pa-IN, ta-IN, te-IN, gu-IN, en-IN
+
+
+        For additional languages (as-IN, ur-IN, ne-IN, kok-IN, ks-IN, sd-IN, sa-IN, sat-IN, mni-IN, brx-IN, mai-IN, doi-IN), use saaras:v3 via the `/speech-to-text` endpoint with `mode="translate"`.'
+      title: Sarvam_Model_API_SpeechToTextTranslateLanguage
+    Sarvam_Model_API_Mode:
+      type: string
+      enum:
+      - transcribe
+      - translate
+      - verbatim
+      - translit
+      - codemix
+      description: "Mode of operation for saaras:v3 model.\n\nExample audio: 'मेरा फोन नंबर है 9840950950'\n\n- **transcribe** (default): Standard transcription in the original language with proper formatting and number normalization.\n  - Output: `मेरा फोन नंबर है 9840950950`\n\n- **translate**: Translates speech from any supported Indic language to English.\n  - Output: `My phone number is 9840950950`\n\n- **verbatim**: Exact word-for-word transcription without normalization, preserving filler words and spoken numbers as-is.\n  - Output: `मेरा फोन नंबर है नौ आठ चार zero नौ पांच zero नौ पांच zero`\n\n- **translit**: Romanization - Transliterates speech to Latin/Roman script only.\n  - Output: `mera phone number hai 9840950950`\n\n- **codemix**: Code-mixed text with English words in English and Indic words in native script.\n  - Output: `मेरा phone number है 9840950950`"
+      title: Sarvam_Model_API_Mode
+    Sarvam_Model_API_SpeechToTextTranslateResponse:
+      type: object
+      properties:
+        request_id:
+          type:
+          - string
+          - 'null'
+        transcript:
+          type: string
+          description: Transcript of the provided speech
+        language_code:
+          oneOf:
+          - $ref: '#/components/schemas/Sarvam_Model_API_SpeechToTextTranslateLanguage'
+          - type: 'null'
+          description: This will return the BCP-47 code of language spoken in the input. If multiple languages are detected, this will return language code of most predominant spoken language. If no language is detected, this will be null
+        diarized_transcript:
+          oneOf:
+          - $ref: '#/components/schemas/Sarvam_Model_API_DiarizedTranscript'
+          - type: 'null'
+          description: Diarized transcript of the provided speech
+        language_probability:
+          type:
+          - number
+          - 'null'
+          format: double
+          description: 'Float value (0.0 to 1.0) indicating the probability of the detected language being correct. Higher values indicate higher confidence.
+
+
+            **When it returns a value:**
+
+            - When `language_code` is not provided in the request
+
+            - When `language_code` is set to `unknown`
+
+
+            **When it returns null:**
+
+            - When a specific `language_code` is provided (language detection is skipped)
+
+
+            The parameter is always present in the response.'
+      required:
+      - request_id
+      - transcript
+      - language_code
+      title: Sarvam_Model_API_SpeechToTextTranslateResponse
+    Sarvam_Model_API_SpeechToTextModel:
+      type: string
+      enum:
+      - saaras:v3
+      - saarika:v2.5
+      description: 'Model to be used for speech to text.
+
+
+        - **saaras:v3** (default, recommended): State-of-the-art model with flexible output formats. Supports multiple modes via the `mode` parameter: transcribe, translate, verbatim, translit, codemix.
+
+
+        - **saarika:v2.5** (legacy): Transcribes audio in the spoken language. Kept for backward compatibility.'
+      title: Sarvam_Model_API_SpeechToTextModel
+    Sarvam_Model_API_ErrorCode:
+      type: string
+      enum:
+      - invalid_request_error
+      - internal_server_error
+      - unprocessable_entity_error
+      - insufficient_quota_error
+      - invalid_api_key_error
+      - authentication_error
+      - not_found_error
+      - rate_limit_exceeded_error
+      title: Sarvam_Model_API_ErrorCode
+    Sarvam_Model_API_ErrorMessage:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/Sarvam_Model_API_ErrorDetails'
+          description: Error details
+      required:
+      - error
+      title: Sarvam_Model_API_ErrorMessage
+    Sarvam_Model_API_SpeechToTextLanguage:
+      type: string
+      enum:
+      - unknown
+      - hi-IN
+      - bn-IN
+      - kn-IN
+      - ml-IN
+      - mr-IN
+      - od-IN
+      - pa-IN
+      - ta-IN
+      - te-IN
+      - en-IN
+      - gu-IN
+      - as-IN
+      - ur-IN
+      - ne-IN
+      - kok-IN
+      - ks-IN
+      - sd-IN
+      - sa-IN
+      - sat-IN
+      - mni-IN
+      - brx-IN
+      - mai-IN
+      - doi-IN
+      description: 'Languages supported for Speech-to-Text.
+
+
+        **saarika:v2.5 supports (12 languages):** unknown, hi-IN, bn-IN, kn-IN, ml-IN, mr-IN, od-IN, pa-IN, ta-IN, te-IN, en-IN, gu-IN
+
+
+        **saaras:v3 supports all 23 languages** including: as-IN, ur-IN, ne-IN, kok-IN, ks-IN, sd-IN, sa-IN, sat-IN, mni-IN, brx-IN, mai-IN, doi-IN'
+      title: Sarvam_Model_API_SpeechToTextLanguage
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
