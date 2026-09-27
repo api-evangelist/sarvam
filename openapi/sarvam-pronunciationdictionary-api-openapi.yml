@@ -344,36 +344,18 @@ paths:
                 $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
 components:
   schemas:
-    Sarvam_Model_API_PronunciationDictionaryDeleteResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the deletion was successful.
-        message:
-          type: string
-          description: Human-readable status message (e.g. "Dictionary 'p_5cb7faa6' deleted successfully").
-      required:
-      - success
-      - message
-      description: Response returned after deleting a pronunciation dictionary.
-      title: Sarvam_Model_API_PronunciationDictionaryDeleteResponse
-    Sarvam_Model_API_PronunciationDictionaryGetResponse:
-      type: object
-      properties:
-        dictionary_count:
-          type: integer
-          description: Total number of pronunciation dictionaries owned by the user.
-        dictionaries:
-          type: array
-          items:
-            type: string
-          description: List of dictionary IDs.
-      required:
-      - dictionary_count
-      - dictionaries
-      description: Response containing all pronunciation dictionary IDs for the authenticated user.
-      title: Sarvam_Model_API_PronunciationDictionaryGetResponse
+    Sarvam_Model_API_ErrorCode:
+      type: string
+      enum:
+      - invalid_request_error
+      - internal_server_error
+      - unprocessable_entity_error
+      - insufficient_quota_error
+      - invalid_api_key_error
+      - authentication_error
+      - not_found_error
+      - rate_limit_exceeded_error
+      title: Sarvam_Model_API_ErrorCode
     Sarvam_Model_API_PronunciationDictionaryUpdateResponse:
       type: object
       properties:
@@ -410,6 +392,46 @@ components:
       - message
       - code
       title: Sarvam_Model_API_ErrorDetails
+    Sarvam_Model_API_PronunciationDictionaryDeleteResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the deletion was successful.
+        message:
+          type: string
+          description: Human-readable status message (e.g. "Dictionary 'p_5cb7faa6' deleted successfully").
+      required:
+      - success
+      - message
+      description: Response returned after deleting a pronunciation dictionary.
+      title: Sarvam_Model_API_PronunciationDictionaryDeleteResponse
+    Sarvam_Model_API_PronunciationDictionaryGetResponse:
+      type: object
+      properties:
+        dictionary_count:
+          type: integer
+          description: Total number of pronunciation dictionaries owned by the user.
+        dictionaries:
+          type: array
+          items:
+            type: string
+          description: List of dictionary IDs.
+      required:
+      - dictionary_count
+      - dictionaries
+      description: Response containing all pronunciation dictionary IDs for the authenticated user.
+      title: Sarvam_Model_API_PronunciationDictionaryGetResponse
+    Sarvam_Model_API_PronunciationDictionaryResponse:
+      type: object
+      properties:
+        dictionary_id:
+          type: string
+          description: Unique identifier for the created dictionary (e.g. `p_5cb7faa6`). Use this as the `dict_id` parameter in text-to-speech requests.
+      required:
+      - dictionary_id
+      description: Response returned after successfully creating a pronunciation dictionary.
+      title: Sarvam_Model_API_PronunciationDictionaryResponse
     Sarvam_Model_API_PronunciationDictionaryData:
       type: object
       properties:
@@ -424,28 +446,6 @@ components:
       - pronunciations
       description: The full pronunciation data for a dictionary.
       title: Sarvam_Model_API_PronunciationDictionaryData
-    Sarvam_Model_API_ErrorCode:
-      type: string
-      enum:
-      - invalid_request_error
-      - internal_server_error
-      - unprocessable_entity_error
-      - insufficient_quota_error
-      - invalid_api_key_error
-      - authentication_error
-      - not_found_error
-      - rate_limit_exceeded_error
-      title: Sarvam_Model_API_ErrorCode
-    Sarvam_Model_API_PronunciationDictionaryResponse:
-      type: object
-      properties:
-        dictionary_id:
-          type: string
-          description: Unique identifier for the created dictionary (e.g. `p_5cb7faa6`). Use this as the `dict_id` parameter in text-to-speech requests.
-      required:
-      - dictionary_id
-      description: Response returned after successfully creating a pronunciation dictionary.
-      title: Sarvam_Model_API_PronunciationDictionaryResponse
     Sarvam_Model_API_ErrorMessage:
       type: object
       properties:

@@ -412,6 +412,119 @@ paths:
                 $ref: '#/components/schemas/DocDigitizationErrorMessage'
 components:
   schemas:
+    DocDigitizationErrorMessage:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/DocDigitizationErrorDetails'
+          description: Error details
+      required:
+      - error
+      title: DocDigitizationErrorMessage
+    DocDigitizationCreateJobResponse:
+      type: object
+      properties:
+        job_id:
+          type: string
+          format: uuid
+          description: Unique job identifier (UUID)
+        storage_container_type:
+          $ref: '#/components/schemas/StorageContainerType'
+          description: Storage Container Type
+        job_parameters:
+          $ref: '#/components/schemas/DocDigitizationJobParameters'
+          description: '  Job configuration parameters'
+        job_state:
+          $ref: '#/components/schemas/DocDigitizationJobState'
+      required:
+      - job_id
+      - storage_container_type
+      - job_parameters
+      - job_state
+      title: DocDigitizationCreateJobResponse
+    DocDigitizationPageError:
+      type: object
+      properties:
+        page_number:
+          type: integer
+          description: Page number that failed
+        error_code:
+          type: string
+          description: Standardized error code
+        error_message:
+          type: string
+          description: Human-readable error description
+      required:
+      - page_number
+      - error_code
+      - error_message
+      description: Error details for a specific page.
+      title: DocDigitizationPageError
+    DocDigitizationDownloadFilesResponse:
+      type: object
+      properties:
+        job_id:
+          type: string
+          format: uuid
+          description: Job identifier (UUID)
+        job_state:
+          $ref: '#/components/schemas/DocDigitizationJobState'
+          description: Current job state
+        storage_container_type:
+          $ref: '#/components/schemas/StorageContainerType'
+          description: Storage backend type
+        download_urls:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/FileSignedURLDetails'
+          description: Map of filename to presigned download URL details
+        error_code:
+          type:
+          - string
+          - 'null'
+        error_message:
+          type:
+          - string
+          - 'null'
+      required:
+      - job_id
+      - job_state
+      - storage_container_type
+      - download_urls
+      description: Response for download-files endpoint.
+      title: DocDigitizationDownloadFilesResponse
+    DocDigitizationJobParameters:
+      type: object
+      properties:
+        language:
+          $ref: '#/components/schemas/DocDigitizationSupportedLanguage'
+          description: Primary language of the document in BCP-47 format (e.g. en-IN, hi-IN). Use this field name — not language_code (which other Sarvam APIs use). Sending language_code is ignored and defaults to hi-IN.
+        output_format:
+          $ref: '#/components/schemas/DocDigitizationOutputFormat'
+          description: 'Output format for the extracted content (delivered as a ZIP file). Accepted values: md, html, json. Use md for Markdown — not markdown (returns 400).'
+      description: Configuration parameters for Document Intelligence job. Specify the document language and desired output format.
+      title: DocDigitizationJobParameters
+    StorageContainerType:
+      type: string
+      enum:
+      - Azure
+      - Local
+      - Google
+      - Azure_V1
+      title: StorageContainerType
+    DocDigitizationCreateJobRequest:
+      type: object
+      properties:
+        job_parameters:
+          $ref: '#/components/schemas/DocDigitizationJobParameters'
+          description: Configuration parameters for the Document Intelligence job including language and output format. Defaults to Hindi (hi-IN) and Markdown output if omitted.
+        callback:
+          oneOf:
+          - $ref: '#/components/schemas/DocDigitizationWebhookCallback'
+          - type: 'null'
+          description: Optional webhook for completion notification
+      description: Request body for creating a new document intelligence job
+      title: DocDigitizationCreateJobRequest
     DocDigitizationJobState:
       type: string
       enum:
@@ -423,6 +536,209 @@ components:
       - Failed
       description: Current state of the document intelligence job
       title: DocDigitizationJobState
+    DocDigitizationUploadFilesRequest:
+      type: object
+      properties:
+        job_id:
+          type: string
+          description: Job identifier returned from Create Job
+        files:
+          type: array
+          items:
+            type: string
+          description: 'List of filenames to upload (exactly 1 file: PDF or ZIP)'
+      required:
+      - job_id
+      - files
+      description: Request to get upload URLs for job files
+      title: DocDigitizationUploadFilesRequest
+    DocDigitizationErrorCode:
+      type: string
+      enum:
+      - invalid_request_error
+      - internal_server_error
+      - insufficient_quota_error
+      - invalid_api_key_error
+      - rate_limit_exceeded_error
+      - high_load_error
+      title: DocDigitizationErrorCode
+    DocDigitizationOutputFormat:
+      type: string
+      enum:
+      - html
+      - md
+      - json
+      description: ' Output format for extracted document content, delivered as a ZIP file. ''html'' returns structured HTML files, ''md'' returns human-readable Markdown files, ''json'' returns structured JSON files for programmatic processing.'
+      title: DocDigitizationOutputFormat
+    DocDigitizationWebhookCallback:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          description: HTTPS webhook URL to call upon job completion (HTTP not allowed)
+        auth_token:
+          type: string
+          default: ''
+          description: Authorization token sent as X-SARVAM-JOB-CALLBACK-TOKEN header
+      required:
+      - url
+      description: Webhook configuration for job completion notification
+      title: DocDigitizationWebhookCallback
+    DocDigitizationJobDetail:
+      type: object
+      properties:
+        inputs:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskFileDetails'
+          description: Input file(s) for this task
+        outputs:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskFileDetails'
+          description: Output file(s) produced
+        state:
+          $ref: '#/components/schemas/DocDigitizationJobDetailState'
+          description: Processing state for this file
+        total_pages:
+          type: integer
+          default: 0
+          description: Total pages/images in the input file
+        pages_processed:
+          type: integer
+          default: 0
+          description: Number of pages processed so far
+        pages_succeeded:
+          type: integer
+          default: 0
+          description: Number of pages successfully processed
+        pages_failed:
+          type: integer
+          default: 0
+          description: Number of pages that failed processing
+        error_message:
+          type: string
+          default: ''
+          description: Error message if processing failed
+        error_code:
+          type:
+          - string
+          - 'null'
+          description: Standardized error code if failed
+        page_errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocDigitizationPageError'
+          description: Detailed errors for each failed page
+      required:
+      - inputs
+      - outputs
+      - state
+      description: Processing details for a single input file with page-level metrics.
+      title: DocDigitizationJobDetail
+    DocDigitizationJobStatusResponse:
+      type: object
+      properties:
+        job_id:
+          type: string
+          format: uuid
+          description: Job identifier (UUID)
+        job_state:
+          $ref: '#/components/schemas/DocDigitizationJobState'
+          description: Current job state
+        created_at:
+          type: string
+          format: date-time
+          description: Job creation timestamp (ISO 8601)
+        updated_at:
+          type: string
+          format: date-time
+          description: Last update timestamp (ISO 8601)
+        storage_container_type:
+          $ref: '#/components/schemas/StorageContainerType'
+          description: Storage backend type
+        total_files:
+          type: integer
+          default: 0
+          description: Total input files (always 1)
+        successful_files_count:
+          type: integer
+          default: 0
+          description: Files that completed successfully
+        failed_files_count:
+          type: integer
+          default: 0
+          description: Files that failed
+        error_message:
+          type: string
+          default: ''
+          description: Job-level error message
+        job_details:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocDigitizationJobDetail'
+          description: Per-file processing details with page metrics
+      required:
+      - job_id
+      - job_state
+      - created_at
+      - updated_at
+      - storage_container_type
+      description: Response model for job status endpoint.
+      title: DocDigitizationJobStatusResponse
+    TaskFileDetails:
+      type: object
+      properties:
+        file_name:
+          type: string
+        file_id:
+          type: string
+      required:
+      - file_name
+      - file_id
+      title: TaskFileDetails
+    DocDigitizationErrorDetails:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Message describing the error
+        code:
+          $ref: '#/components/schemas/DocDigitizationErrorCode'
+          description: Error code for the specific error that has occurred.
+        request_id:
+          type: string
+          default: ''
+          description: 'Unique identifier for the request. Format: date_UUID4'
+      required:
+      - message
+      - code
+      title: DocDigitizationErrorDetails
+    DocDigitizationJobDetailState:
+      type: string
+      enum:
+      - Pending
+      - Running
+      - Success
+      - PartialSuccess
+      - Failed
+      description: Processing state for individual file
+      title: DocDigitizationJobDetailState
+    FileSignedURLDetails:
+      type: object
+      properties:
+        file_url:
+          type: string
+        file_metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            description: Any type
+      required:
+      - file_url
+      title: FileSignedURLDetails
     DocDigitizationUploadFilesResponse:
       type: object
       properties:
@@ -476,322 +792,6 @@ components:
       - sd-IN
       description: 'BCP-47 language code specifying the primary language of the document. Supports 23 languages: 22 Indian languages (Hindi, Bengali, Tamil, Telugu, Marathi, Gujarati, Kannada, Malayalam, Odia, Punjabi, Assamese, Urdu, Sanskrit, Nepali, Konkani, Maithili, Sindhi, Kashmiri, Dogri, Manipuri, Bodo, Santali) and English language.'
       title: DocDigitizationSupportedLanguage
-    FileSignedURLDetails:
-      type: object
-      properties:
-        file_url:
-          type: string
-        file_metadata:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            description: Any type
-      required:
-      - file_url
-      title: FileSignedURLDetails
-    DocDigitizationErrorDetails:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Message describing the error
-        code:
-          $ref: '#/components/schemas/DocDigitizationErrorCode'
-          description: Error code for the specific error that has occurred.
-        request_id:
-          type: string
-          default: ''
-          description: 'Unique identifier for the request. Format: date_UUID4'
-      required:
-      - message
-      - code
-      title: DocDigitizationErrorDetails
-    DocDigitizationPageError:
-      type: object
-      properties:
-        page_number:
-          type: integer
-          description: Page number that failed
-        error_code:
-          type: string
-          description: Standardized error code
-        error_message:
-          type: string
-          description: Human-readable error description
-      required:
-      - page_number
-      - error_code
-      - error_message
-      description: Error details for a specific page.
-      title: DocDigitizationPageError
-    DocDigitizationUploadFilesRequest:
-      type: object
-      properties:
-        job_id:
-          type: string
-          description: Job identifier returned from Create Job
-        files:
-          type: array
-          items:
-            type: string
-          description: 'List of filenames to upload (exactly 1 file: PDF or ZIP)'
-      required:
-      - job_id
-      - files
-      description: Request to get upload URLs for job files
-      title: DocDigitizationUploadFilesRequest
-    DocDigitizationDownloadFilesResponse:
-      type: object
-      properties:
-        job_id:
-          type: string
-          format: uuid
-          description: Job identifier (UUID)
-        job_state:
-          $ref: '#/components/schemas/DocDigitizationJobState'
-          description: Current job state
-        storage_container_type:
-          $ref: '#/components/schemas/StorageContainerType'
-          description: Storage backend type
-        download_urls:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/FileSignedURLDetails'
-          description: Map of filename to presigned download URL details
-        error_code:
-          type:
-          - string
-          - 'null'
-        error_message:
-          type:
-          - string
-          - 'null'
-      required:
-      - job_id
-      - job_state
-      - storage_container_type
-      - download_urls
-      description: Response for download-files endpoint.
-      title: DocDigitizationDownloadFilesResponse
-    DocDigitizationJobDetailState:
-      type: string
-      enum:
-      - Pending
-      - Running
-      - Success
-      - PartialSuccess
-      - Failed
-      description: Processing state for individual file
-      title: DocDigitizationJobDetailState
-    StorageContainerType:
-      type: string
-      enum:
-      - Azure
-      - Local
-      - Google
-      - Azure_V1
-      title: StorageContainerType
-    DocDigitizationJobParameters:
-      type: object
-      properties:
-        language:
-          $ref: '#/components/schemas/DocDigitizationSupportedLanguage'
-          description: Primary language of the document in BCP-47 format (e.g. en-IN, hi-IN). Use this field name — not language_code (which other Sarvam APIs use). Sending language_code is ignored and defaults to hi-IN.
-        output_format:
-          $ref: '#/components/schemas/DocDigitizationOutputFormat'
-          description: 'Output format for the extracted content (delivered as a ZIP file). Accepted values: md, html, json. Use md for Markdown — not markdown (returns 400).'
-      description: Configuration parameters for Document Intelligence job. Specify the document language and desired output format.
-      title: DocDigitizationJobParameters
-    DocDigitizationErrorCode:
-      type: string
-      enum:
-      - invalid_request_error
-      - internal_server_error
-      - insufficient_quota_error
-      - invalid_api_key_error
-      - rate_limit_exceeded_error
-      - high_load_error
-      title: DocDigitizationErrorCode
-    DocDigitizationOutputFormat:
-      type: string
-      enum:
-      - html
-      - md
-      - json
-      description: ' Output format for extracted document content, delivered as a ZIP file. ''html'' returns structured HTML files, ''md'' returns human-readable Markdown files, ''json'' returns structured JSON files for programmatic processing.'
-      title: DocDigitizationOutputFormat
-    DocDigitizationJobDetail:
-      type: object
-      properties:
-        inputs:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaskFileDetails'
-          description: Input file(s) for this task
-        outputs:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaskFileDetails'
-          description: Output file(s) produced
-        state:
-          $ref: '#/components/schemas/DocDigitizationJobDetailState'
-          description: Processing state for this file
-        total_pages:
-          type: integer
-          default: 0
-          description: Total pages/images in the input file
-        pages_processed:
-          type: integer
-          default: 0
-          description: Number of pages processed so far
-        pages_succeeded:
-          type: integer
-          default: 0
-          description: Number of pages successfully processed
-        pages_failed:
-          type: integer
-          default: 0
-          description: Number of pages that failed processing
-        error_message:
-          type: string
-          default: ''
-          description: Error message if processing failed
-        error_code:
-          type:
-          - string
-          - 'null'
-          description: Standardized error code if failed
-        page_errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/DocDigitizationPageError'
-          description: Detailed errors for each failed page
-      required:
-      - inputs
-      - outputs
-      - state
-      description: Processing details for a single input file with page-level metrics.
-      title: DocDigitizationJobDetail
-    DocDigitizationErrorMessage:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/DocDigitizationErrorDetails'
-          description: Error details
-      required:
-      - error
-      title: DocDigitizationErrorMessage
-    TaskFileDetails:
-      type: object
-      properties:
-        file_name:
-          type: string
-        file_id:
-          type: string
-      required:
-      - file_name
-      - file_id
-      title: TaskFileDetails
-    DocDigitizationWebhookCallback:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-          description: HTTPS webhook URL to call upon job completion (HTTP not allowed)
-        auth_token:
-          type: string
-          default: ''
-          description: Authorization token sent as X-SARVAM-JOB-CALLBACK-TOKEN header
-      required:
-      - url
-      description: Webhook configuration for job completion notification
-      title: DocDigitizationWebhookCallback
-    DocDigitizationJobStatusResponse:
-      type: object
-      properties:
-        job_id:
-          type: string
-          format: uuid
-          description: Job identifier (UUID)
-        job_state:
-          $ref: '#/components/schemas/DocDigitizationJobState'
-          description: Current job state
-        created_at:
-          type: string
-          format: date-time
-          description: Job creation timestamp (ISO 8601)
-        updated_at:
-          type: string
-          format: date-time
-          description: Last update timestamp (ISO 8601)
-        storage_container_type:
-          $ref: '#/components/schemas/StorageContainerType'
-          description: Storage backend type
-        total_files:
-          type: integer
-          default: 0
-          description: Total input files (always 1)
-        successful_files_count:
-          type: integer
-          default: 0
-          description: Files that completed successfully
-        failed_files_count:
-          type: integer
-          default: 0
-          description: Files that failed
-        error_message:
-          type: string
-          default: ''
-          description: Job-level error message
-        job_details:
-          type: array
-          items:
-            $ref: '#/components/schemas/DocDigitizationJobDetail'
-          description: Per-file processing details with page metrics
-      required:
-      - job_id
-      - job_state
-      - created_at
-      - updated_at
-      - storage_container_type
-      description: Response model for job status endpoint.
-      title: DocDigitizationJobStatusResponse
-    DocDigitizationCreateJobRequest:
-      type: object
-      properties:
-        job_parameters:
-          $ref: '#/components/schemas/DocDigitizationJobParameters'
-          description: Configuration parameters for the Document Intelligence job including language and output format. Defaults to Hindi (hi-IN) and Markdown output if omitted.
-        callback:
-          oneOf:
-          - $ref: '#/components/schemas/DocDigitizationWebhookCallback'
-          - type: 'null'
-          description: Optional webhook for completion notification
-      description: Request body for creating a new document intelligence job
-      title: DocDigitizationCreateJobRequest
-    DocDigitizationCreateJobResponse:
-      type: object
-      properties:
-        job_id:
-          type: string
-          format: uuid
-          description: Unique job identifier (UUID)
-        storage_container_type:
-          $ref: '#/components/schemas/StorageContainerType'
-          description: Storage Container Type
-        job_parameters:
-          $ref: '#/components/schemas/DocDigitizationJobParameters'
-          description: '  Job configuration parameters'
-        job_state:
-          $ref: '#/components/schemas/DocDigitizationJobState'
-      required:
-      - job_id
-      - storage_container_type
-      - job_parameters
-      - job_state
-      title: DocDigitizationCreateJobResponse
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -272,24 +272,24 @@ paths:
               $ref: '#/components/schemas/Sarvam_Model_API_LanguageIdentificationRequest'
 components:
   schemas:
-    Sarvam_Model_API_SpokenFormNumeralsFormat:
+    Sarvam_Model_API_TranslateModel:
       type: string
       enum:
-      - english
+      - mayura:v1
+      - sarvam-translate:v1
+      title: Sarvam_Model_API_TranslateModel
+    Sarvam_Model_API_TranslateSpeakerGender:
+      type: string
+      enum:
+      - Male
+      - Female
+      title: Sarvam_Model_API_TranslateSpeakerGender
+    Sarvam_Model_API_NumeralsFormat:
+      type: string
+      enum:
+      - international
       - native
-      title: Sarvam_Model_API_SpokenFormNumeralsFormat
-    Sarvam_Model_API_ErrorCode:
-      type: string
-      enum:
-      - invalid_request_error
-      - internal_server_error
-      - unprocessable_entity_error
-      - insufficient_quota_error
-      - invalid_api_key_error
-      - authentication_error
-      - not_found_error
-      - rate_limit_exceeded_error
-      title: Sarvam_Model_API_ErrorCode
+      title: Sarvam_Model_API_NumeralsFormat
     Sarvam_Model_API_ErrorMessage:
       type: object
       properties:
@@ -338,256 +338,18 @@ components:
       - source_language_code
       - target_language_code
       title: Sarvam_Model_API_TransliterationRequest
-    Sarvam_Model_API_TransliterateMode:
+    Sarvam_Model_API_ErrorCode:
       type: string
       enum:
-      - roman
-      - fully-native
-      - spoken-form-in-native
-      title: Sarvam_Model_API_TransliterateMode
-    Sarvam_Model_API_TranslateSpeakerGender:
-      type: string
-      enum:
-      - Male
-      - Female
-      title: Sarvam_Model_API_TranslateSpeakerGender
-    Sarvam_Model_API_TransliterationResponse:
-      type: object
-      properties:
-        request_id:
-          type:
-          - string
-          - 'null'
-        transliterated_text:
-          type: string
-          description: Transliterated text result in the requested target language.
-        source_language_code:
-          type: string
-          description: Detected or provided source language of the input text.
-      required:
-      - request_id
-      - transliterated_text
-      - source_language_code
-      title: Sarvam_Model_API_TransliterationResponse
-    Sarvam_Model_API_TranslateMode:
-      type: string
-      enum:
-      - formal
-      - modern-colloquial
-      - classic-colloquial
-      - code-mixed
-      title: Sarvam_Model_API_TranslateMode
-    Sarvam_Model_API_LanguageIdentificationResponse:
-      type: object
-      properties:
-        request_id:
-          type:
-          - string
-          - 'null'
-        language_code:
-          type:
-          - string
-          - 'null'
-          description: 'The detected language code of the input text.
-
-
-            Available languages:
-
-            - **`en-IN`**: English
-
-            - **`hi-IN`**: Hindi
-
-            - **`bn-IN`**: Bengali
-
-            - **`gu-IN`**: Gujarati
-
-            - **`kn-IN`**: Kannada
-
-            - **`ml-IN`**: Malayalam
-
-            - **`mr-IN`**: Marathi
-
-            - **`od-IN`**: Odia
-
-            - **`pa-IN`**: Punjabi
-
-            - **`ta-IN`**: Tamil
-
-            - **`te-IN`**: Telugu'
-        script_code:
-          type:
-          - string
-          - 'null'
-          description: 'The detected script code of the input text.
-
-
-            Available scripts:
-
-            - **`Latn`**: Latin (Romanized script)
-
-            - **`Deva`**: Devanagari (Hindi, Marathi)
-
-            - **`Beng`**: Bengali
-
-            - **`Gujr`**: Gujarati
-
-            - **`Knda`**: Kannada
-
-            - **`Mlym`**: Malayalam
-
-            - **`Orya`**: Odia
-
-            - **`Guru`**: Gurmukhi
-
-            - **`Taml`**: Tamil
-
-            - **`Telu`**: Telugu'
-      required:
-      - request_id
-      title: Sarvam_Model_API_LanguageIdentificationResponse
-    Sarvam_Model_API_TranslateTargetLanguage:
-      type: string
-      enum:
-      - bn-IN
-      - en-IN
-      - gu-IN
-      - hi-IN
-      - kn-IN
-      - ml-IN
-      - mr-IN
-      - od-IN
-      - pa-IN
-      - ta-IN
-      - te-IN
-      - as-IN
-      - brx-IN
-      - doi-IN
-      - kok-IN
-      - ks-IN
-      - mai-IN
-      - mni-IN
-      - ne-IN
-      - sa-IN
-      - sat-IN
-      - sd-IN
-      - ur-IN
-      title: Sarvam_Model_API_TranslateTargetLanguage
-    Sarvam_Model_API_TranslationResponse:
-      type: object
-      properties:
-        request_id:
-          type:
-          - string
-          - 'null'
-        translated_text:
-          type: string
-          description: Translated text result in the requested target language.
-        source_language_code:
-          type: string
-          description: Detected or provided source language of the input text.
-      required:
-      - request_id
-      - translated_text
-      - source_language_code
-      title: Sarvam_Model_API_TranslationResponse
-    Sarvam_Model_API_TranslateModel:
-      type: string
-      enum:
-      - mayura:v1
-      - sarvam-translate:v1
-      title: Sarvam_Model_API_TranslateModel
-    Sarvam_Model_API_NumeralsFormat:
-      type: string
-      enum:
-      - international
-      - native
-      title: Sarvam_Model_API_NumeralsFormat
-    Sarvam_Model_API_TranslateSourceLanguage:
-      type: string
-      enum:
-      - auto
-      - bn-IN
-      - en-IN
-      - gu-IN
-      - hi-IN
-      - kn-IN
-      - ml-IN
-      - mr-IN
-      - od-IN
-      - pa-IN
-      - ta-IN
-      - te-IN
-      - as-IN
-      - brx-IN
-      - doi-IN
-      - kok-IN
-      - ks-IN
-      - mai-IN
-      - mni-IN
-      - ne-IN
-      - sa-IN
-      - sat-IN
-      - sd-IN
-      - ur-IN
-      title: Sarvam_Model_API_TranslateSourceLanguage
-    Sarvam_Model_API_LanguageIdentificationRequest:
-      type: object
-      properties:
-        input:
-          type: string
-          description: The text input for language and script identification. Max Input Limit is 1000 characters
-      required:
-      - input
-      title: Sarvam_Model_API_LanguageIdentificationRequest
-    Sarvam_Model_API_TranslatiterateTargetLanguage:
-      type: string
-      enum:
-      - bn-IN
-      - en-IN
-      - gu-IN
-      - hi-IN
-      - kn-IN
-      - ml-IN
-      - mr-IN
-      - od-IN
-      - pa-IN
-      - ta-IN
-      - te-IN
-      title: Sarvam_Model_API_TranslatiterateTargetLanguage
-    Sarvam_Model_API_ErrorDetails:
-      type: object
-      properties:
-        request_id:
-          type:
-          - string
-          - 'null'
-        message:
-          type: string
-          description: Message describing the error
-        code:
-          $ref: '#/components/schemas/Sarvam_Model_API_ErrorCode'
-          description: Error code for the specific error that has occurred. Refer to the error code documentation for more details.
-      required:
-      - request_id
-      - message
-      - code
-      title: Sarvam_Model_API_ErrorDetails
-    Sarvam_Model_API_TransliterateSourceLanguage:
-      type: string
-      enum:
-      - auto
-      - bn-IN
-      - en-IN
-      - gu-IN
-      - hi-IN
-      - kn-IN
-      - ml-IN
-      - mr-IN
-      - od-IN
-      - pa-IN
-      - ta-IN
-      - te-IN
-      title: Sarvam_Model_API_TransliterateSourceLanguage
+      - invalid_request_error
+      - internal_server_error
+      - unprocessable_entity_error
+      - insufficient_quota_error
+      - invalid_api_key_error
+      - authentication_error
+      - not_found_error
+      - rate_limit_exceeded_error
+      title: Sarvam_Model_API_ErrorCode
     Sarvam_Model_API_TranslationRequest:
       type: object
       properties:
@@ -697,6 +459,244 @@ components:
       - source_language_code
       - target_language_code
       title: Sarvam_Model_API_TranslationRequest
+    Sarvam_Model_API_LanguageIdentificationRequest:
+      type: object
+      properties:
+        input:
+          type: string
+          description: The text input for language and script identification. Max Input Limit is 1000 characters
+      required:
+      - input
+      title: Sarvam_Model_API_LanguageIdentificationRequest
+    Sarvam_Model_API_ErrorDetails:
+      type: object
+      properties:
+        request_id:
+          type:
+          - string
+          - 'null'
+        message:
+          type: string
+          description: Message describing the error
+        code:
+          $ref: '#/components/schemas/Sarvam_Model_API_ErrorCode'
+          description: Error code for the specific error that has occurred. Refer to the error code documentation for more details.
+      required:
+      - request_id
+      - message
+      - code
+      title: Sarvam_Model_API_ErrorDetails
+    Sarvam_Model_API_TranslationResponse:
+      type: object
+      properties:
+        request_id:
+          type:
+          - string
+          - 'null'
+        translated_text:
+          type: string
+          description: Translated text result in the requested target language.
+        source_language_code:
+          type: string
+          description: Detected or provided source language of the input text.
+      required:
+      - request_id
+      - translated_text
+      - source_language_code
+      title: Sarvam_Model_API_TranslationResponse
+    Sarvam_Model_API_LanguageIdentificationResponse:
+      type: object
+      properties:
+        request_id:
+          type:
+          - string
+          - 'null'
+        language_code:
+          type:
+          - string
+          - 'null'
+          description: 'The detected language code of the input text.
+
+
+            Available languages:
+
+            - **`en-IN`**: English
+
+            - **`hi-IN`**: Hindi
+
+            - **`bn-IN`**: Bengali
+
+            - **`gu-IN`**: Gujarati
+
+            - **`kn-IN`**: Kannada
+
+            - **`ml-IN`**: Malayalam
+
+            - **`mr-IN`**: Marathi
+
+            - **`od-IN`**: Odia
+
+            - **`pa-IN`**: Punjabi
+
+            - **`ta-IN`**: Tamil
+
+            - **`te-IN`**: Telugu'
+        script_code:
+          type:
+          - string
+          - 'null'
+          description: 'The detected script code of the input text.
+
+
+            Available scripts:
+
+            - **`Latn`**: Latin (Romanized script)
+
+            - **`Deva`**: Devanagari (Hindi, Marathi)
+
+            - **`Beng`**: Bengali
+
+            - **`Gujr`**: Gujarati
+
+            - **`Knda`**: Kannada
+
+            - **`Mlym`**: Malayalam
+
+            - **`Orya`**: Odia
+
+            - **`Guru`**: Gurmukhi
+
+            - **`Taml`**: Tamil
+
+            - **`Telu`**: Telugu'
+      required:
+      - request_id
+      title: Sarvam_Model_API_LanguageIdentificationResponse
+    Sarvam_Model_API_SpokenFormNumeralsFormat:
+      type: string
+      enum:
+      - english
+      - native
+      title: Sarvam_Model_API_SpokenFormNumeralsFormat
+    Sarvam_Model_API_TransliterateMode:
+      type: string
+      enum:
+      - roman
+      - fully-native
+      - spoken-form-in-native
+      title: Sarvam_Model_API_TransliterateMode
+    Sarvam_Model_API_TransliterationResponse:
+      type: object
+      properties:
+        request_id:
+          type:
+          - string
+          - 'null'
+        transliterated_text:
+          type: string
+          description: Transliterated text result in the requested target language.
+        source_language_code:
+          type: string
+          description: Detected or provided source language of the input text.
+      required:
+      - request_id
+      - transliterated_text
+      - source_language_code
+      title: Sarvam_Model_API_TransliterationResponse
+    Sarvam_Model_API_TranslateSourceLanguage:
+      type: string
+      enum:
+      - auto
+      - bn-IN
+      - en-IN
+      - gu-IN
+      - hi-IN
+      - kn-IN
+      - ml-IN
+      - mr-IN
+      - od-IN
+      - pa-IN
+      - ta-IN
+      - te-IN
+      - as-IN
+      - brx-IN
+      - doi-IN
+      - kok-IN
+      - ks-IN
+      - mai-IN
+      - mni-IN
+      - ne-IN
+      - sa-IN
+      - sat-IN
+      - sd-IN
+      - ur-IN
+      title: Sarvam_Model_API_TranslateSourceLanguage
+    Sarvam_Model_API_TranslateMode:
+      type: string
+      enum:
+      - formal
+      - modern-colloquial
+      - classic-colloquial
+      - code-mixed
+      title: Sarvam_Model_API_TranslateMode
+    Sarvam_Model_API_TranslatiterateTargetLanguage:
+      type: string
+      enum:
+      - bn-IN
+      - en-IN
+      - gu-IN
+      - hi-IN
+      - kn-IN
+      - ml-IN
+      - mr-IN
+      - od-IN
+      - pa-IN
+      - ta-IN
+      - te-IN
+      title: Sarvam_Model_API_TranslatiterateTargetLanguage
+    Sarvam_Model_API_TranslateTargetLanguage:
+      type: string
+      enum:
+      - bn-IN
+      - en-IN
+      - gu-IN
+      - hi-IN
+      - kn-IN
+      - ml-IN
+      - mr-IN
+      - od-IN
+      - pa-IN
+      - ta-IN
+      - te-IN
+      - as-IN
+      - brx-IN
+      - doi-IN
+      - kok-IN
+      - ks-IN
+      - mai-IN
+      - mni-IN
+      - ne-IN
+      - sa-IN
+      - sat-IN
+      - sd-IN
+      - ur-IN
+      title: Sarvam_Model_API_TranslateTargetLanguage
+    Sarvam_Model_API_TransliterateSourceLanguage:
+      type: string
+      enum:
+      - auto
+      - bn-IN
+      - en-IN
+      - gu-IN
+      - hi-IN
+      - kn-IN
+      - ml-IN
+      - mr-IN
+      - od-IN
+      - pa-IN
+      - ta-IN
+      - te-IN
+      title: Sarvam_Model_API_TransliterateSourceLanguage
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

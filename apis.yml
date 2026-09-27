@@ -51,7 +51,7 @@ tags:
 - Company
 - Ai Ml
 - Artificial Intelligence
-- Machine-Learning
+- Machine Learning
 - Speech-to-Text
 - Text-to-Speech
 - Translation
@@ -59,6 +59,7 @@ tags:
 - Document Intelligence
 - Indian Languages
 - Voice
+- Real-Time
 tags_raw:
 - Company
 - Ai Ml
@@ -71,6 +72,8 @@ tags_raw:
 - Document Intelligence
 - Indian Languages
 - Voice
+- Machine-Learning
+- Real-Time
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -78,7 +81,7 @@ maintainers:
   email: info@apis.io
 apis:
 - aid: sarvam:sarvam-chat-api
-  name: Sarvam chat API
+  name: Sarvam Chat API
   description: The chat API from Sarvam — 1 operation(s) for chat.
   humanURL: https://docs.sarvam.ai/api-reference/introduction
   baseURL: https://api.sarvam.ai
@@ -92,7 +95,7 @@ apis:
   - type: AsyncAPI
     url: asyncapi/sarvam-streaming-asyncapi.yaml
 - aid: sarvam:sarvam-pronunciationdictionary-api
-  name: Sarvam pronunciationDictionary API
+  name: Sarvam Pronunciation Dictionary API
   description: >-
     The pronunciationDictionary API from Sarvam — 2 operation(s) for pronunciationdictionary.
   humanURL: https://docs.sarvam.ai/api-reference/introduction
@@ -106,7 +109,7 @@ apis:
   - type: AsyncAPI
     url: asyncapi/sarvam-streaming-asyncapi.yaml
 - aid: sarvam:sarvam-speechtotextjob-api
-  name: Sarvam speechToTextJob API
+  name: Sarvam Speech To Text Job API
   description: The speechToTextJob API from Sarvam — 5 operation(s) for speechtotextjob.
   humanURL: https://docs.sarvam.ai/api-reference/introduction
   baseURL: https://api.sarvam.ai
@@ -118,7 +121,7 @@ apis:
   - type: AsyncAPI
     url: asyncapi/sarvam-streaming-asyncapi.yaml
 - aid: sarvam:sarvam-speechtotexttranslatejob-api
-  name: Sarvam speechToTextTranslateJob API
+  name: Sarvam Speech To Text Translate Job API
   description: >-
     The speechToTextTranslateJob API from Sarvam — 5 operation(s) for speechtotexttranslatejob.
   humanURL: https://docs.sarvam.ai/api-reference/introduction
@@ -131,7 +134,7 @@ apis:
   - type: AsyncAPI
     url: asyncapi/sarvam-streaming-asyncapi.yaml
 - aid: sarvam:sarvam-text-api
-  name: Sarvam text API
+  name: Sarvam Text API
   description: The text API from Sarvam — 3 operation(s) for text.
   humanURL: https://docs.sarvam.ai/api-reference/introduction
   baseURL: https://api.sarvam.ai
@@ -162,8 +165,6 @@ apis:
   humanURL: https://docs.sarvam.ai/api-reference/introduction
   baseURL: https://api.sarvam.ai
   tags:
-  - Speech-to-Text
-  tags_raw:
   - Speech To Text
   properties:
   - type: OpenAPI
@@ -176,8 +177,6 @@ apis:
   humanURL: https://docs.sarvam.ai/api-reference/introduction
   baseURL: https://api.sarvam.ai
   tags:
-  - Text-to-Speech
-  tags_raw:
   - Text To Speech
   properties:
   - type: OpenAPI

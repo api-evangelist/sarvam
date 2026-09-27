@@ -428,60 +428,88 @@ components:
       - pcm_raw
       description: Audio codec/format of the input file. Our API automatically detects all codec formats, but for PCM files specifically (pcm_s16le, pcm_l16, pcm_raw), you must pass this parameter. PCM files are supported only at 16kHz sample rate.
       title: Sarvam_Model_API_InputAudioCodec
-    ErrorCode:
-      type: string
-      enum:
-      - invalid_request_error
-      - internal_server_error
-      - unprocessable_entity_error
-      - insufficient_quota_error
-      - invalid_api_key_error
-      - authentication_error
-      - rate_limit_exceeded_error
-      - not_found_error
-      title: ErrorCode
-    FileSignedURLDetails:
+    TaskDetail:
       type: object
       properties:
-        file_url:
-          type: string
-        file_metadata:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            description: Any type
-      required:
-      - file_url
-      title: FileSignedURLDetails
-    BaseJobParameters:
-      type: object
-      properties: {}
-      title: BaseJobParameters
-    SpeechToTextTranslateJobParameters:
-      type: object
-      properties:
-        prompt:
+        inputs:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskFileDetails'
+        outputs:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskFileDetails'
+        state:
+          $ref: '#/components/schemas/TaskState'
+        error_message:
           type:
           - string
           - 'null'
-          description: Prompt to assist the transcription
-        model:
-          $ref: '#/components/schemas/Sarvam_Model_API_SpeechToTextTranslateModel'
-          description: "Model to be used for speech to text translation.\n\n- **saaras:v2.5** (default): Translation model that translates audio from any spoken Indic language to English.\n  - Example: Hindi audio → English text output\n\nFor the latest model (saaras:v3), use the `/speech-to-text` endpoint with `mode=\"translate\"`."
-        with_diarization:
-          type: boolean
-          default: false
-          description: "Enables speaker diarization, which identifies and separates different speakers in the audio.\n When set to true, the API will provide speaker-specific segments in the response.\n Note: This parameter is currently in Beta mode."
-        num_speakers:
+        exception_name:
           type:
-          - integer
+          - string
           - 'null'
-          description: Number of speakers to be detected in the audio. This is used when with_diarization is set to true.
-        input_audio_codec:
-          $ref: '#/components/schemas/Sarvam_Model_API_InputAudioCodec'
-          description: Audio codec/format of uploaded files. The API automatically detects most formats; for PCM files (pcm_s16le, pcm_l16, pcm_raw), you must specify this parameter. PCM files are supported only at 16kHz sample rate.
-      title: SpeechToTextTranslateJobParameters
+      title: TaskDetail
+    BulkJobInitResponse:
+      type: object
+      properties:
+        job_id:
+          type: string
+          description: Job UUID.
+        storage_container_type:
+          $ref: '#/components/schemas/StorageContainerType'
+          description: Storage Container Type
+        job_parameters:
+          $ref: '#/components/schemas/BaseJobParameters'
+        job_state:
+          $ref: '#/components/schemas/JobState'
+      required:
+      - job_id
+      - storage_container_type
+      - job_parameters
+      - job_state
+      title: BulkJobInitResponse
+    Sarvam_Model_API_SpeechToTextTranslateModel:
+      type: string
+      enum:
+      - saaras:v2.5
+      description: "Model to be used for speech to text translation.\n\n- **saaras:v2.5** (default): Translation model that translates audio from any spoken Indic language to English.\n  - Example: Hindi audio → English text output\n\nFor the latest model (saaras:v3), use the `/speech-to-text` endpoint with `mode=\"translate\"`."
+      title: Sarvam_Model_API_SpeechToTextTranslateModel
+    FilesRequest:
+      type: object
+      properties:
+        job_id:
+          type: string
+          description: UUID of the bulk job returned from job initiation.
+        files:
+          type: array
+          items:
+            type: string
+          description: 'Required. Output filenames to download (e.g. "0.json"). Get these from the job status response: job_details[].outputs[].file_name after the job completes.'
+      required:
+      - job_id
+      - files
+      description: Request body for bulk job upload/download URL generation. Both job_id and files are required for download.
+      title: FilesRequest
+    FilesUploadResponse:
+      type: object
+      properties:
+        job_id:
+          type: string
+        job_state:
+          $ref: '#/components/schemas/JobState'
+        upload_urls:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/FileSignedURLDetails'
+        storage_container_type:
+          $ref: '#/components/schemas/StorageContainerType'
+      required:
+      - job_id
+      - job_state
+      - upload_urls
+      - storage_container_type
+      title: FilesUploadResponse
     JobStatusResponse:
       type: object
       properties:
@@ -536,6 +564,39 @@ components:
       - Google
       - Azure_V1
       title: StorageContainerType
+    ErrorMessage:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorDetails'
+          description: Error details
+      required:
+      - error
+      title: ErrorMessage
+    BulkJobCallback:
+      type: object
+      properties:
+        url:
+          type: string
+          description: Webhook url to call upon job completion
+        auth_token:
+          type: string
+          default: ''
+          description: Authorization token required for the callback Url
+      required:
+      - url
+      title: BulkJobCallback
+    TaskState:
+      type: string
+      enum:
+      - Success
+      - API Error
+      - Internal Server Error
+      title: TaskState
+    BaseJobParameters:
+      type: object
+      properties: {}
+      title: BaseJobParameters
     BulkJobInitRequestV1_SpeechToTextTranslateJobParameters_:
       type: object
       properties:
@@ -550,76 +611,18 @@ components:
       required:
       - job_parameters
       title: BulkJobInitRequestV1_SpeechToTextTranslateJobParameters_
-    BulkJobInitResponse:
-      type: object
-      properties:
-        job_id:
-          type: string
-          description: Job UUID.
-        storage_container_type:
-          $ref: '#/components/schemas/StorageContainerType'
-          description: Storage Container Type
-        job_parameters:
-          $ref: '#/components/schemas/BaseJobParameters'
-        job_state:
-          $ref: '#/components/schemas/JobState'
-      required:
-      - job_id
-      - storage_container_type
-      - job_parameters
-      - job_state
-      title: BulkJobInitResponse
-    ErrorMessage:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorDetails'
-          description: Error details
-      required:
-      - error
-      title: ErrorMessage
-    JobState:
+    ErrorCode:
       type: string
       enum:
-      - Accepted
-      - Pending
-      - Running
-      - Completed
-      - Failed
-      title: JobState
-    FilesRequest:
-      type: object
-      properties:
-        job_id:
-          type: string
-          description: UUID of the bulk job returned from job initiation.
-        files:
-          type: array
-          items:
-            type: string
-          description: 'Required. Output filenames to download (e.g. "0.json"). Get these from the job status response: job_details[].outputs[].file_name after the job completes.'
-      required:
-      - job_id
-      - files
-      description: Request body for bulk job upload/download URL generation. Both job_id and files are required for download.
-      title: FilesRequest
-    ErrorDetails:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Message describing the error
-        code:
-          $ref: '#/components/schemas/ErrorCode'
-          description: Error code for the specific error that has occurred. Refer to the error code documentation for more details.
-        request_id:
-          type: string
-          default: ''
-          description: 'Unique identifier for the request. Format: date_UUID4'
-      required:
-      - message
-      - code
-      title: ErrorDetails
+      - invalid_request_error
+      - internal_server_error
+      - unprocessable_entity_error
+      - insufficient_quota_error
+      - invalid_api_key_error
+      - authentication_error
+      - rate_limit_exceeded_error
+      - not_found_error
+      title: ErrorCode
     TaskFileDetails:
       type: object
       properties:
@@ -631,73 +634,30 @@ components:
       - file_name
       - file_id
       title: TaskFileDetails
-    Sarvam_Model_API_SpeechToTextTranslateModel:
-      type: string
-      enum:
-      - saaras:v2.5
-      description: "Model to be used for speech to text translation.\n\n- **saaras:v2.5** (default): Translation model that translates audio from any spoken Indic language to English.\n  - Example: Hindi audio → English text output\n\nFor the latest model (saaras:v3), use the `/speech-to-text` endpoint with `mode=\"translate\"`."
-      title: Sarvam_Model_API_SpeechToTextTranslateModel
-    BulkJobCallback:
+    SpeechToTextTranslateJobParameters:
       type: object
       properties:
-        url:
-          type: string
-          description: Webhook url to call upon job completion
-        auth_token:
-          type: string
-          default: ''
-          description: Authorization token required for the callback Url
-      required:
-      - url
-      title: BulkJobCallback
-    TaskDetail:
-      type: object
-      properties:
-        inputs:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaskFileDetails'
-        outputs:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaskFileDetails'
-        state:
-          $ref: '#/components/schemas/TaskState'
-        error_message:
+        prompt:
           type:
           - string
           - 'null'
-        exception_name:
+          description: Prompt to assist the transcription
+        model:
+          $ref: '#/components/schemas/Sarvam_Model_API_SpeechToTextTranslateModel'
+          description: "Model to be used for speech to text translation.\n\n- **saaras:v2.5** (default): Translation model that translates audio from any spoken Indic language to English.\n  - Example: Hindi audio → English text output\n\nFor the latest model (saaras:v3), use the `/speech-to-text` endpoint with `mode=\"translate\"`."
+        with_diarization:
+          type: boolean
+          default: false
+          description: "Enables speaker diarization, which identifies and separates different speakers in the audio.\n When set to true, the API will provide speaker-specific segments in the response.\n Note: This parameter is currently in Beta mode."
+        num_speakers:
           type:
-          - string
+          - integer
           - 'null'
-      title: TaskDetail
-    FilesUploadResponse:
-      type: object
-      properties:
-        job_id:
-          type: string
-        job_state:
-          $ref: '#/components/schemas/JobState'
-        upload_urls:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/FileSignedURLDetails'
-        storage_container_type:
-          $ref: '#/components/schemas/StorageContainerType'
-      required:
-      - job_id
-      - job_state
-      - upload_urls
-      - storage_container_type
-      title: FilesUploadResponse
-    TaskState:
-      type: string
-      enum:
-      - Success
-      - API Error
-      - Internal Server Error
-      title: TaskState
+          description: Number of speakers to be detected in the audio. This is used when with_diarization is set to true.
+        input_audio_codec:
+          $ref: '#/components/schemas/Sarvam_Model_API_InputAudioCodec'
+          description: Audio codec/format of uploaded files. The API automatically detects most formats; for PCM files (pcm_s16le, pcm_l16, pcm_raw), you must specify this parameter. PCM files are supported only at 16kHz sample rate.
+      title: SpeechToTextTranslateJobParameters
     FilesDownloadResponse:
       type: object
       properties:
@@ -717,6 +677,46 @@ components:
       - download_urls
       - storage_container_type
       title: FilesDownloadResponse
+    ErrorDetails:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Message describing the error
+        code:
+          $ref: '#/components/schemas/ErrorCode'
+          description: Error code for the specific error that has occurred. Refer to the error code documentation for more details.
+        request_id:
+          type: string
+          default: ''
+          description: 'Unique identifier for the request. Format: date_UUID4'
+      required:
+      - message
+      - code
+      title: ErrorDetails
+    JobState:
+      type: string
+      enum:
+      - Accepted
+      - Pending
+      - Running
+      - Completed
+      - Failed
+      title: JobState
+    FileSignedURLDetails:
+      type: object
+      properties:
+        file_url:
+          type: string
+        file_metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            description: Any type
+      required:
+      - file_url
+      title: FileSignedURLDetails
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
