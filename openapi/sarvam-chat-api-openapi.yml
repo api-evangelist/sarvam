@@ -73,40 +73,6 @@ paths:
               $ref: '#/components/schemas/CreateChatCompletionRequest'
 components:
   schemas:
-    JsonSchemaDefinition:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the response format. Must contain only alphanumeric characters, underscores and dashes.
-        description:
-          type:
-          - string
-          - 'null'
-          description: A description of what the response format is for, used by the model to determine how to respond in the format.
-        schema:
-          oneOf:
-          - $ref: '#/components/schemas/JsonSchemaDefinitionSchema'
-          - type: 'null'
-          description: The schema for the response format, described as a JSON Schema object.
-        strict:
-          type:
-          - boolean
-          - 'null'
-          default: false
-          description: Whether to enable strict schema adherence when generating the output.
-      required:
-      - name
-      title: JsonSchemaDefinition
-    ChatCompletionNamedToolChoiceFunction:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the function to call.
-      required:
-      - name
-      title: ChatCompletionNamedToolChoiceFunction
     ChatCompletionTool:
       type: object
       properties:
@@ -121,52 +87,18 @@ components:
       - type
       - function
       title: ChatCompletionTool
-    FinishReason:
+    ToolChoiceOption:
+      oneOf:
+      - $ref: '#/components/schemas/ToolChoiceOption0'
+      - $ref: '#/components/schemas/ChatCompletionNamedToolChoice'
+      title: ToolChoiceOption
+    ToolChoiceOption0:
       type: string
       enum:
-      - stop
-      - length
-      - tool_calls
-      - content_filter
-      - function_call
-      title: FinishReason
-    Choice:
-      type: object
-      properties:
-        finish_reason:
-          $ref: '#/components/schemas/FinishReason'
-          description: 'The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence,
-
-            `length` if the maximum number of tokens specified in the request was reached,
-
-            `content_filter` if content was omitted due to a flag from our content filters,
-
-            `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.
-
-            '
-        index:
-          type: integer
-          description: The index of the choice in the list of choices.
-        logprobs:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            description: Any type
-        message:
-          $ref: '#/components/schemas/ChatCompletionResponseMessage'
-      required:
-      - finish_reason
-      - index
-      - message
-      title: Choice
-    SarvamModelIds:
-      type: string
-      enum:
-      - sarvam-105b
-      - sarvam-30b
-      description: 'Supported chat completion model IDs: `sarvam-30b`, `sarvam-105b`.'
-      title: SarvamModelIds
+      - none
+      - auto
+      - required
+      title: ToolChoiceOption0
     ChatCompletionRequestMessage:
       oneOf:
       - type: object
@@ -244,89 +176,6 @@ components:
       discriminator:
         propertyName: role
       title: ChatCompletionRequestMessage
-    Role:
-      type: string
-      enum:
-      - assistant
-      title: Role
-    ErrorMessage:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorDetails'
-          description: Error details
-      required:
-      - error
-      title: ErrorMessage
-    StopConfiguration:
-      oneOf:
-      - type: string
-      - type: array
-        items:
-          type: string
-      description: 'Up to 4 sequences where the API will stop generating further tokens. The
-
-        returned text will not contain the stop sequence.
-
-        '
-      title: StopConfiguration
-    ResponseFormat:
-      oneOf:
-      - type: object
-        properties:
-          type:
-            type: string
-            enum:
-            - text
-            description: The type of response format being defined. Always `text`.
-        required:
-        - type
-        description: ResponseFormatText variant
-      - type: object
-        properties:
-          type:
-            type: string
-            enum:
-            - json_object
-            description: The type of response format being defined. Always `json_object`.
-        required:
-        - type
-        description: ResponseFormatJsonObject variant
-      - type: object
-        properties:
-          type:
-            type: string
-            enum:
-            - json_schema
-            description: The type of response format being defined. Always `json_schema`.
-          json_schema:
-            $ref: '#/components/schemas/JsonSchemaDefinition'
-            description: Structured Outputs configuration options, including a JSON Schema.
-        required:
-        - type
-        - json_schema
-        description: ResponseFormatJsonSchema variant
-      discriminator:
-        propertyName: type
-      title: ResponseFormat
-    ToolChoiceOption:
-      oneOf:
-      - $ref: '#/components/schemas/ToolChoiceOption0'
-      - $ref: '#/components/schemas/ChatCompletionNamedToolChoice'
-      title: ToolChoiceOption
-    FunctionCall:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the function to call.
-        arguments:
-          type: string
-          description: The arguments to call the function with, as a JSON string.
-      required:
-      - name
-      - arguments
-      title: FunctionCall
     ChatCompletionResponseMessage:
       type: object
       properties:
@@ -358,39 +207,135 @@ components:
       - content
       - role
       title: ChatCompletionResponseMessage
-    ErrorCode:
-      type: string
-      enum:
-      - invalid_request_error
-      - internal_server_error
-      - unprocessable_entity_error
-      - insufficient_quota_error
-      - invalid_api_key_error
-      - authentication_error
-      - rate_limit_exceeded_error
-      - not_found_error
-      title: ErrorCode
-    ChatCompletionNamedToolChoice:
+    FunctionDefinition:
       type: object
       properties:
+        name:
+          type: string
+          description: The name of the function to be called.
+        description:
+          type:
+          - string
+          - 'null'
+          description: A description of what the function does.
+        parameters:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            description: Any type
+          description: The parameters the function accepts, described as a JSON Schema object.
+      required:
+      - name
+      title: FunctionDefinition
+    JsonSchemaDefinition:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the response format. Must contain only alphanumeric characters, underscores and dashes.
+        description:
+          type:
+          - string
+          - 'null'
+          description: A description of what the response format is for, used by the model to determine how to respond in the format.
+        schema:
+          oneOf:
+          - $ref: '#/components/schemas/JsonSchemaDefinitionSchema'
+          - type: 'null'
+          description: The schema for the response format, described as a JSON Schema object.
+        strict:
+          type:
+          - boolean
+          - 'null'
+          default: false
+          description: Whether to enable strict schema adherence when generating the output.
+      required:
+      - name
+      title: JsonSchemaDefinition
+    ErrorMessage:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorDetails'
+          description: Error details
+      required:
+      - error
+      title: ErrorMessage
+    FinishReason:
+      type: string
+      enum:
+      - stop
+      - length
+      - tool_calls
+      - content_filter
+      - function_call
+      title: FinishReason
+    FunctionCall:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the function to call.
+        arguments:
+          type: string
+          description: The arguments to call the function with, as a JSON string.
+      required:
+      - name
+      - arguments
+      title: FunctionCall
+    CompletionUsage:
+      type: object
+      properties:
+        completion_tokens:
+          type: integer
+          description: Number of tokens in the generated completion.
+        prompt_tokens:
+          type: integer
+          description: Number of tokens in the prompt.
+        total_tokens:
+          type: integer
+          description: Total number of tokens used in the request (prompt + completion).
+        completion_tokens_details:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            description: Any type
+        prompt_tokens_details:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            description: Any type
+      required:
+      - completion_tokens
+      - prompt_tokens
+      - total_tokens
+      title: CompletionUsage
+    ChatCompletionMessageToolCall:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the tool call.
         type:
           type: string
           enum:
           - function
-          description: The type of the tool. Currently, only `function` is supported.
+          description: The type of the tool call, currently only `function`.
         function:
-          $ref: '#/components/schemas/ChatCompletionNamedToolChoiceFunction'
+          $ref: '#/components/schemas/FunctionCall'
       required:
+      - id
       - type
       - function
-      title: ChatCompletionNamedToolChoice
-    ToolChoiceOption0:
+      title: ChatCompletionMessageToolCall
+    Role:
       type: string
       enum:
-      - none
-      - auto
-      - required
-      title: ToolChoiceOption0
+      - assistant
+      title: Role
     CreateChatCompletionRequest:
       type: object
       properties:
@@ -525,23 +470,68 @@ components:
       - messages
       - model
       title: CreateChatCompletionRequest
-    ErrorDetails:
+    ChatCompletionNamedToolChoice:
       type: object
       properties:
-        message:
+        type:
           type: string
-          description: Message describing the error
-        code:
-          $ref: '#/components/schemas/ErrorCode'
-          description: Error code for the specific error that has occurred. Refer to the error code documentation for more details.
-        request_id:
-          type: string
-          default: ''
-          description: 'Unique identifier for the request. Format: date_UUID4'
+          enum:
+          - function
+          description: The type of the tool. Currently, only `function` is supported.
+        function:
+          $ref: '#/components/schemas/ChatCompletionNamedToolChoiceFunction'
       required:
-      - message
-      - code
-      title: ErrorDetails
+      - type
+      - function
+      title: ChatCompletionNamedToolChoice
+    ChatCompletionNamedToolChoiceFunction:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the function to call.
+      required:
+      - name
+      title: ChatCompletionNamedToolChoiceFunction
+    ResponseFormat:
+      oneOf:
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+            - text
+            description: The type of response format being defined. Always `text`.
+        required:
+        - type
+        description: ResponseFormatText variant
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+            - json_object
+            description: The type of response format being defined. Always `json_object`.
+        required:
+        - type
+        description: ResponseFormatJsonObject variant
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+            - json_schema
+            description: The type of response format being defined. Always `json_schema`.
+          json_schema:
+            $ref: '#/components/schemas/JsonSchemaDefinition'
+            description: Structured Outputs configuration options, including a JSON Schema.
+        required:
+        - type
+        - json_schema
+        description: ResponseFormatJsonSchema variant
+      discriminator:
+        propertyName: type
+      title: ResponseFormat
     CreateChatCompletionResponse:
       type: object
       properties:
@@ -583,56 +573,65 @@ components:
       - model
       - object
       title: CreateChatCompletionResponse
-    FunctionDefinition:
+    Choice:
       type: object
       properties:
-        name:
+        finish_reason:
+          $ref: '#/components/schemas/FinishReason'
+          description: 'The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence,
+
+            `length` if the maximum number of tokens specified in the request was reached,
+
+            `content_filter` if content was omitted due to a flag from our content filters,
+
+            `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.
+
+            '
+        index:
+          type: integer
+          description: The index of the choice in the list of choices.
+        logprobs:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            description: Any type
+        message:
+          $ref: '#/components/schemas/ChatCompletionResponseMessage'
+      required:
+      - finish_reason
+      - index
+      - message
+      title: Choice
+    StopConfiguration:
+      oneOf:
+      - type: string
+      - type: array
+        items:
           type: string
-          description: The name of the function to be called.
-        description:
-          type:
-          - string
-          - 'null'
-          description: A description of what the function does.
-        parameters:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            description: Any type
-          description: The parameters the function accepts, described as a JSON Schema object.
-      required:
-      - name
-      title: FunctionDefinition
-    CompletionUsage:
+      description: 'Up to 4 sequences where the API will stop generating further tokens. The
+
+        returned text will not contain the stop sequence.
+
+        '
+      title: StopConfiguration
+    ErrorDetails:
       type: object
       properties:
-        completion_tokens:
-          type: integer
-          description: Number of tokens in the generated completion.
-        prompt_tokens:
-          type: integer
-          description: Number of tokens in the prompt.
-        total_tokens:
-          type: integer
-          description: Total number of tokens used in the request (prompt + completion).
-        completion_tokens_details:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            description: Any type
-        prompt_tokens_details:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            description: Any type
+        message:
+          type: string
+          description: Message describing the error
+        code:
+          $ref: '#/components/schemas/ErrorCode'
+          description: Error code for the specific error that has occurred. Refer to the error code documentation for more details.
+        request_id:
+          type: string
+          default: ''
+          description: 'Unique identifier for the request. Format: date_UUID4'
       required:
-      - completion_tokens
-      - prompt_tokens
-      - total_tokens
-      title: CompletionUsage
+      - message
+      - code
+      title: ErrorDetails
     ReasoningEffort:
       type: string
       enum:
@@ -640,24 +639,25 @@ components:
       - medium
       - high
       title: ReasoningEffort
-    ChatCompletionMessageToolCall:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the tool call.
-        type:
-          type: string
-          enum:
-          - function
-          description: The type of the tool call, currently only `function`.
-        function:
-          $ref: '#/components/schemas/FunctionCall'
-      required:
-      - id
-      - type
-      - function
-      title: ChatCompletionMessageToolCall
+    SarvamModelIds:
+      type: string
+      enum:
+      - sarvam-105b
+      - sarvam-30b
+      description: 'Supported chat completion model IDs: `sarvam-30b`, `sarvam-105b`.'
+      title: SarvamModelIds
+    ErrorCode:
+      type: string
+      enum:
+      - invalid_request_error
+      - internal_server_error
+      - unprocessable_entity_error
+      - insufficient_quota_error
+      - invalid_api_key_error
+      - authentication_error
+      - rate_limit_exceeded_error
+      - not_found_error
+      title: ErrorCode
     JsonSchemaDefinitionSchema:
       type: object
       properties: {}
