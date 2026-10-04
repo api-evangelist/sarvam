@@ -80,20 +80,6 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 apis:
-- aid: sarvam:sarvam-chat-api
-  name: Sarvam Chat API
-  description: The chat API from Sarvam — 1 operation(s) for chat.
-  humanURL: https://docs.sarvam.ai/api-reference/introduction
-  baseURL: https://api.sarvam.ai
-  tags:
-  - Chat
-  tags_raw:
-  - chat
-  properties:
-  - type: OpenAPI
-    url: openapi/sarvam-chat-api-openapi.yml
-  - type: AsyncAPI
-    url: asyncapi/sarvam-streaming-asyncapi.yaml
 - aid: sarvam:sarvam-pronunciationdictionary-api
   name: Sarvam Pronunciation Dictionary API
   description: >-
@@ -147,6 +133,18 @@ apis:
     url: openapi/sarvam-text-api-openapi.yml
   - type: AsyncAPI
     url: asyncapi/sarvam-streaming-asyncapi.yaml
+- aid: sarvam:sarvam-chat-completions-api
+  name: Sarvam Chat Completions API
+  description: The Chat Completions API from Sarvam — 1 operation(s) for chat completions.
+  humanURL: https://docs.sarvam.ai/api-reference/introduction
+  baseURL: https://api.sarvam.ai
+  tags:
+  - Chat Completions
+  properties:
+  - type: OpenAPI
+    url: openapi/sarvam-chat-completions-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/sarvam-streaming-asyncapi.yaml
 - aid: sarvam:sarvam-document-intelligence-api
   name: Sarvam Document Intelligence API
   description: The Document Intelligence API from Sarvam — 5 operation(s) for document intelligence.
@@ -165,8 +163,6 @@ apis:
   humanURL: https://docs.sarvam.ai/api-reference/introduction
   baseURL: https://api.sarvam.ai
   tags:
-  - Speech-to-Text
-  tags_raw:
   - Speech To Text
   properties:
   - type: OpenAPI
@@ -179,8 +175,6 @@ apis:
   humanURL: https://docs.sarvam.ai/api-reference/introduction
   baseURL: https://api.sarvam.ai
   tags:
-  - Text-to-Speech
-  tags_raw:
   - Text To Speech
   properties:
   - type: OpenAPI

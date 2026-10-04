@@ -344,24 +344,15 @@ paths:
                 $ref: '#/components/schemas/Sarvam_Model_API_ErrorMessage'
 components:
   schemas:
-    Sarvam_Model_API_PronunciationDictionaryUpdateResponse:
+    Sarvam_Model_API_ErrorMessage:
       type: object
       properties:
-        dictionary_id:
-          type: string
-          description: Unique identifier of the updated dictionary.
-        updated_pronunciations:
-          type: object
-          additionalProperties:
-            type: object
-            additionalProperties:
-              type: string
-          description: 'The new pronunciation data after the update, organized as `{language_code: {word: pronunciation}}`.'
+        error:
+          $ref: '#/components/schemas/Sarvam_Model_API_ErrorDetails'
+          description: Error details
       required:
-      - dictionary_id
-      - updated_pronunciations
-      description: Response returned after successfully updating a pronunciation dictionary. Includes the full updated pronunciation data for verification.
-      title: Sarvam_Model_API_PronunciationDictionaryUpdateResponse
+      - error
+      title: Sarvam_Model_API_ErrorMessage
     Sarvam_Model_API_PronunciationDictionaryGetResponse:
       type: object
       properties:
@@ -378,44 +369,6 @@ components:
       - dictionaries
       description: Response containing all pronunciation dictionary IDs for the authenticated user.
       title: Sarvam_Model_API_PronunciationDictionaryGetResponse
-    Sarvam_Model_API_PronunciationDictionaryData:
-      type: object
-      properties:
-        pronunciations:
-          type: object
-          additionalProperties:
-            type: object
-            additionalProperties:
-              type: string
-          description: Pronunciation mappings organized by language code (e.g. `hi-IN`, `en-IN`). Each language maps words to their custom pronunciations.
-      required:
-      - pronunciations
-      description: The full pronunciation data for a dictionary.
-      title: Sarvam_Model_API_PronunciationDictionaryData
-    Sarvam_Model_API_PronunciationDictionaryDeleteResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the deletion was successful.
-        message:
-          type: string
-          description: Human-readable status message (e.g. "Dictionary 'p_5cb7faa6' deleted successfully").
-      required:
-      - success
-      - message
-      description: Response returned after deleting a pronunciation dictionary.
-      title: Sarvam_Model_API_PronunciationDictionaryDeleteResponse
-    Sarvam_Model_API_PronunciationDictionaryResponse:
-      type: object
-      properties:
-        dictionary_id:
-          type: string
-          description: Unique identifier for the created dictionary (e.g. `p_5cb7faa6`). Use this as the `dict_id` parameter in text-to-speech requests.
-      required:
-      - dictionary_id
-      description: Response returned after successfully creating a pronunciation dictionary.
-      title: Sarvam_Model_API_PronunciationDictionaryResponse
     Sarvam_Model_API_ErrorCode:
       type: string
       enum:
@@ -428,15 +381,16 @@ components:
       - not_found_error
       - rate_limit_exceeded_error
       title: Sarvam_Model_API_ErrorCode
-    Sarvam_Model_API_ErrorMessage:
+    Sarvam_Model_API_PronunciationDictionaryResponse:
       type: object
       properties:
-        error:
-          $ref: '#/components/schemas/Sarvam_Model_API_ErrorDetails'
-          description: Error details
+        dictionary_id:
+          type: string
+          description: Unique identifier for the created dictionary (e.g. `p_5cb7faa6`). Use this as the `dict_id` parameter in text-to-speech requests.
       required:
-      - error
-      title: Sarvam_Model_API_ErrorMessage
+      - dictionary_id
+      description: Response returned after successfully creating a pronunciation dictionary.
+      title: Sarvam_Model_API_PronunciationDictionaryResponse
     Sarvam_Model_API_ErrorDetails:
       type: object
       properties:
@@ -455,6 +409,52 @@ components:
       - message
       - code
       title: Sarvam_Model_API_ErrorDetails
+    Sarvam_Model_API_PronunciationDictionaryDeleteResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the deletion was successful.
+        message:
+          type: string
+          description: Human-readable status message (e.g. "Dictionary 'p_5cb7faa6' deleted successfully").
+      required:
+      - success
+      - message
+      description: Response returned after deleting a pronunciation dictionary.
+      title: Sarvam_Model_API_PronunciationDictionaryDeleteResponse
+    Sarvam_Model_API_PronunciationDictionaryUpdateResponse:
+      type: object
+      properties:
+        dictionary_id:
+          type: string
+          description: Unique identifier of the updated dictionary.
+        updated_pronunciations:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: string
+          description: 'The new pronunciation data after the update, organized as `{language_code: {word: pronunciation}}`.'
+      required:
+      - dictionary_id
+      - updated_pronunciations
+      description: Response returned after successfully updating a pronunciation dictionary. Includes the full updated pronunciation data for verification.
+      title: Sarvam_Model_API_PronunciationDictionaryUpdateResponse
+    Sarvam_Model_API_PronunciationDictionaryData:
+      type: object
+      properties:
+        pronunciations:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: string
+          description: Pronunciation mappings organized by language code (e.g. `hi-IN`, `en-IN`). Each language maps words to their custom pronunciations.
+      required:
+      - pronunciations
+      description: The full pronunciation data for a dictionary.
+      title: Sarvam_Model_API_PronunciationDictionaryData
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

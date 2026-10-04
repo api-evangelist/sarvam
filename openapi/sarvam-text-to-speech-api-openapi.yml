@@ -147,24 +147,21 @@ paths:
               $ref: '#/components/schemas/Sarvam_Model_API_TextToSpeechStreamRequest'
 components:
   schemas:
-    Sarvam_Model_API_ErrorDetails:
+    Sarvam_Model_API_TextToSpeechModel:
+      type: string
+      enum:
+      - bulbul:v2
+      - bulbul:v3
+      title: Sarvam_Model_API_TextToSpeechModel
+    Sarvam_Model_API_ErrorMessage:
       type: object
       properties:
-        request_id:
-          type:
-          - string
-          - 'null'
-        message:
-          type: string
-          description: Message describing the error
-        code:
-          $ref: '#/components/schemas/Sarvam_Model_API_ErrorCode'
-          description: Error code for the specific error that has occurred. Refer to the error code documentation for more details.
+        error:
+          $ref: '#/components/schemas/Sarvam_Model_API_ErrorDetails'
+          description: Error details
       required:
-      - request_id
-      - message
-      - code
-      title: Sarvam_Model_API_ErrorDetails
+      - error
+      title: Sarvam_Model_API_ErrorMessage
     Sarvam_Model_API_TextToSpeechRequest:
       type: object
       properties:
@@ -302,17 +299,27 @@ components:
       - text
       - target_language_code
       title: Sarvam_Model_API_TextToSpeechRequest
-    Sarvam_Model_API_SpeechSampleRate:
+    Sarvam_Model_API_ErrorCode:
       type: string
       enum:
-      - '8000'
-      - '16000'
-      - '22050'
-      - '24000'
-      - '32000'
-      - '44100'
-      - '48000'
-      title: Sarvam_Model_API_SpeechSampleRate
+      - invalid_request_error
+      - internal_server_error
+      - unprocessable_entity_error
+      - insufficient_quota_error
+      - invalid_api_key_error
+      - authentication_error
+      - not_found_error
+      - rate_limit_exceeded_error
+      title: Sarvam_Model_API_ErrorCode
+    Sarvam_Model_API_SpeechStreamBitrate:
+      type: string
+      enum:
+      - 32k
+      - 64k
+      - 96k
+      - 128k
+      - 192k
+      title: Sarvam_Model_API_SpeechStreamBitrate
     TextToSpeechOutputAudioCodec:
       type: string
       enum:
@@ -326,43 +333,98 @@ components:
       - wav
       description: Audio codec options for the non-streaming /text-to-speech endpoint
       title: TextToSpeechOutputAudioCodec
-    Sarvam_Model_API_SpeechStreamBitrate:
+    Sarvam_Model_API_TextToSpeechSpeaker:
       type: string
       enum:
-      - 32k
-      - 64k
-      - 96k
-      - 128k
-      - 192k
-      title: Sarvam_Model_API_SpeechStreamBitrate
-    Sarvam_Model_API_TextToSpeechResponse:
+      - anushka
+      - abhilash
+      - manisha
+      - vidya
+      - arya
+      - karun
+      - hitesh
+      - aditya
+      - ritu
+      - priya
+      - neha
+      - rahul
+      - pooja
+      - rohan
+      - simran
+      - kavya
+      - amit
+      - dev
+      - ishita
+      - shreya
+      - ratan
+      - varun
+      - manan
+      - sumit
+      - roopa
+      - kabir
+      - aayan
+      - shubh
+      - ashutosh
+      - advait
+      - anand
+      - tanya
+      - tarun
+      - sunny
+      - mani
+      - gokul
+      - vijay
+      - shruti
+      - suhani
+      - mohit
+      - kavitha
+      - rehan
+      - soham
+      - rupali
+      title: Sarvam_Model_API_TextToSpeechSpeaker
+    Sarvam_Model_API_ErrorDetails:
       type: object
       properties:
         request_id:
           type:
           - string
           - 'null'
-        audios:
-          type: array
-          items:
-            type: string
-          description: ' The output audio files in WAV format, encoded as base64 strings. Each string corresponds to one of the input texts.'
+        message:
+          type: string
+          description: Message describing the error
+        code:
+          $ref: '#/components/schemas/Sarvam_Model_API_ErrorCode'
+          description: Error code for the specific error that has occurred. Refer to the error code documentation for more details.
       required:
       - request_id
-      - audios
-      title: Sarvam_Model_API_TextToSpeechResponse
-    Sarvam_Model_API_ErrorCode:
+      - message
+      - code
+      title: Sarvam_Model_API_ErrorDetails
+    Sarvam_Model_API_SpeechSampleRate:
       type: string
       enum:
-      - invalid_request_error
-      - internal_server_error
-      - unprocessable_entity_error
-      - insufficient_quota_error
-      - invalid_api_key_error
-      - authentication_error
-      - not_found_error
-      - rate_limit_exceeded_error
-      title: Sarvam_Model_API_ErrorCode
+      - '8000'
+      - '16000'
+      - '22050'
+      - '24000'
+      - '32000'
+      - '44100'
+      - '48000'
+      title: Sarvam_Model_API_SpeechSampleRate
+    Sarvam_Model_API_TextToSpeechLanguage:
+      type: string
+      enum:
+      - bn-IN
+      - en-IN
+      - gu-IN
+      - hi-IN
+      - kn-IN
+      - ml-IN
+      - mr-IN
+      - od-IN
+      - pa-IN
+      - ta-IN
+      - te-IN
+      title: Sarvam_Model_API_TextToSpeechLanguage
     Sarvam_Model_API_TextToSpeechStreamRequest:
       type: object
       properties:
@@ -503,78 +565,6 @@ components:
 
         - This ensures proper pronunciation as a whole number'
       title: SarvamModelApiTextToSpeechRequestText
-    Sarvam_Model_API_ErrorMessage:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/Sarvam_Model_API_ErrorDetails'
-          description: Error details
-      required:
-      - error
-      title: Sarvam_Model_API_ErrorMessage
-    Sarvam_Model_API_TextToSpeechLanguage:
-      type: string
-      enum:
-      - bn-IN
-      - en-IN
-      - gu-IN
-      - hi-IN
-      - kn-IN
-      - ml-IN
-      - mr-IN
-      - od-IN
-      - pa-IN
-      - ta-IN
-      - te-IN
-      title: Sarvam_Model_API_TextToSpeechLanguage
-    Sarvam_Model_API_TextToSpeechSpeaker:
-      type: string
-      enum:
-      - anushka
-      - abhilash
-      - manisha
-      - vidya
-      - arya
-      - karun
-      - hitesh
-      - aditya
-      - ritu
-      - priya
-      - neha
-      - rahul
-      - pooja
-      - rohan
-      - simran
-      - kavya
-      - amit
-      - dev
-      - ishita
-      - shreya
-      - ratan
-      - varun
-      - manan
-      - sumit
-      - roopa
-      - kabir
-      - aayan
-      - shubh
-      - ashutosh
-      - advait
-      - anand
-      - tanya
-      - tarun
-      - sunny
-      - mani
-      - gokul
-      - vijay
-      - shruti
-      - suhani
-      - mohit
-      - kavitha
-      - rehan
-      - soham
-      - rupali
-      title: Sarvam_Model_API_TextToSpeechSpeaker
     Sarvam_Model_API_SpeechStreamCodec:
       type: string
       enum:
@@ -587,12 +577,22 @@ components:
       - aac
       - wav
       title: Sarvam_Model_API_SpeechStreamCodec
-    Sarvam_Model_API_TextToSpeechModel:
-      type: string
-      enum:
-      - bulbul:v2
-      - bulbul:v3
-      title: Sarvam_Model_API_TextToSpeechModel
+    Sarvam_Model_API_TextToSpeechResponse:
+      type: object
+      properties:
+        request_id:
+          type:
+          - string
+          - 'null'
+        audios:
+          type: array
+          items:
+            type: string
+          description: ' The output audio files in WAV format, encoded as base64 strings. Each string corresponds to one of the input texts.'
+      required:
+      - request_id
+      - audios
+      title: Sarvam_Model_API_TextToSpeechResponse
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
