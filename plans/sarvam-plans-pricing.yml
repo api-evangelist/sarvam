@@ -141,3 +141,167 @@ plans:
 rate_limit_statements:
 - See Credits & Rate Limits for per-API limits, response headers, and retry guidance.
 - Maximum 10 pages per job.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - seat
+  - subscription
+  units:
+  - compute
+  - seat
+  - token
+  plans:
+  - name: Sarvam 105B (sarvam-105b)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - token
+    periods:
+    - other
+  - name: Sarvam 105B cached input
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - token
+    periods:
+    - other
+  - name: Sarvam 105B output
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - token
+    periods:
+    - other
+  - name: Gemma 4 31B input
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - token
+    periods:
+    - other
+  - name: Gemma 4 31B output
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - token
+    periods:
+    - other
+  - name: GLM-5.3 input
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - token
+    periods:
+    - other
+  - name: GLM-5.3 output
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - token
+    periods:
+    - other
+  - name: DeepSeek V4 Flash input
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - token
+    periods:
+    - other
+  - name: DeepSeek V4 Flash output
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - token
+    periods:
+    - other
+  - name: Speech to Text
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: Speech to Text with Diarization
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: Sarvam Translate V1
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: Language Identification
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: Bulbul v3 (Speech Synthesis)
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: Document Digitization API
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: Dubbing Starter
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: Dubbing Pro
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: Dubbing Enterprise
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: Free credits
+    access: other
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - one-time
