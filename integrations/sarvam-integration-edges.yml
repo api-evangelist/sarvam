@@ -3,6 +3,7 @@ method: searched
 checked:
 - https://aws.amazon.com/marketplace/
 - https://azuremarketplace.microsoft.com/
+- https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -39,3 +40,23 @@ edges:
   seller_name: Sarvam
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
+- partner_name: LiteLLM
+  partner: litellm
+  partner_match: router
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+  coverage_role:
+  - provider
+  router_signals:
+    provider:
+      models: 1
+      router_ids:
+      - sarvam
+      tools_share: 0.0
+      structured_output_share: 0.0
+  matched_by: verified-token-table
+  detected_by: sweep-model-routing.py
+  first_seen: '2026-10-13'
