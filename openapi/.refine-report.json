@@ -14,7 +14,7 @@
     "sarvam-texttospeech-api-openapi.yml"
   ],
   "archived": [
-    "deleted 3 superseded output(s) from the previous generation"
+    "deleted 4 superseded output(s) from the previous generation"
   ],
   "errors": [],
   "warnings": [],
@@ -29,11 +29,11 @@
     "sarvam-openapi-original.json: declared missing tag: speechToTextTranslateJob",
     "sarvam-openapi-original.json: declared missing tag: text",
     "sarvam-openapi-original.json: declared missing tag: textToSpeech",
-    "superseded outputs removed: sarvam-document-intelligence-api-openapi.yml, sarvam-speech-to-text-api-openapi.yml, sarvam-text-to-speech-api-openapi.yml",
-    "apis.yml register: written (+3 apis, 8 total)"
+    "superseded outputs removed: sarvam-chat-completions-api-openapi.yml, sarvam-document-intelligence-api-openapi.yml, sarvam-speech-to-text-api-openapi.yml, sarvam-text-to-speech-api-openapi.yml",
+    "apis.yml register: written (+4 apis, 8 total)"
   ],
   "skipped": [
-    "sarvam-chat-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sarvam-chat-completions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "sarvam-document-intelligence-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "sarvam-pronunciationdictionary-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "sarvam-speech-to-text-api-openapi.yml: previously refined output, superseded by openapi/_original/",
