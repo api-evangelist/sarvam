@@ -49,7 +49,6 @@ created: '2026-07-17'
 modified: '2026-10-06'
 tags:
 - Company
-- Ai Ml
 - Artificial Intelligence
 - Machine Learning
 - Speech-to-Text
@@ -163,6 +162,8 @@ apis:
   humanURL: https://docs.sarvam.ai/api-reference/introduction
   baseURL: https://api.sarvam.ai
   tags:
+  - Speech-to-Text
+  tags_raw:
   - Speech To Text
   properties:
   - type: OpenAPI
@@ -175,6 +176,8 @@ apis:
   humanURL: https://docs.sarvam.ai/api-reference/introduction
   baseURL: https://api.sarvam.ai
   tags:
+  - Text-to-Speech
+  tags_raw:
   - Text To Speech
   properties:
   - type: OpenAPI
