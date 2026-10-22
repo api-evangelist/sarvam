@@ -14,6 +14,7 @@ checked:
 - https://registry.npmjs.org/-/v1/search?text=keywords:n8n-community-node-package
 - https://repo1.maven.org/maven2
 - https://rubygems.org/api/v1
+- n8n/integrations/n8n-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -50,26 +51,6 @@ edges:
   seller_name: Sarvam
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
-- partner_name: LiteLLM
-  partner: litellm
-  partner_match: router
-  channel: partner-built
-  direction: partner-built
-  type: coverage
-  relationship: system-coverage
-  evidence: https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
-  coverage_role:
-  - provider
-  router_signals:
-    provider:
-      models: 1
-      router_ids:
-      - sarvam
-      tools_share: 0.0
-      structured_output_share: 0.0
-  matched_by: verified-token-table
-  detected_by: sweep-model-routing.py
-  first_seen: '2026-10-13'
 - partner_name: Pipecat
   partner: pipecat-ai
   partner_match: framework
@@ -169,5 +150,40 @@ edges:
     detected: '2026-10-18'
   detected_by: sweep-official-sdks.py
   first_seen: '2026-10-18'
+- partner_name: LiteLLM
+  partner: litellm
+  partner_match: router
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+  coverage_role:
+  - provider
+  router_signals:
+    provider:
+      models: 1
+      router_ids:
+      - sarvam
+      tools_share: 0.0
+      structured_output_share: 0.0
+  matched_by: verified-token-table
+  detected_by: sweep-model-routing.py
+  first_seen: '2026-10-13'
+- partner_name: n8n (n8n-community)
+  partner: n8n
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: n8n-community
+  evidence: https://www.npmjs.com/package/n8n-nodes-sarvam
+  mirror_of: n8n/integrations/n8n-integration-edges.yml
+  apps: []
+  listing_count: 1
+  detected: '2026-10-19'
+  detected_by: mirror-platform-listings.py
 source:
 - https://registry.npmjs.org/-/v1/search?text=keywords:n8n-community-node-package
