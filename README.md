@@ -64,6 +64,155 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Sarvam is a company surfaced as a portfolio company of bessemer-venture-partners and added to the API Evangelist network as a stub for enrichment. Sector: ai-ml. This profile is a lead awaiting the enrichment pipeline.
+Sarvam AI is an Indian-language AI platform offering a unified REST and WebSocket API across speech-to-text (Saaras / Saarika), text-to-speech (Bulbul, 30+ voices), translation and transliteration (Mayura / Sarvam-Translate) for 22 Indian languages, multilingual chat completion (Sarvam-30B and Sarvam-105B, OpenAI-compatible), and document digitization (Sarvam Vision). The API is authenticated with an api-subscription-key header, billed in Indian Rupees with ₹100 free credits on signup, and shipped with official Python and JavaScript SDKs, published OpenAPI and AsyncAPI specs, a documentation MCP server, a status page, and a dated changelog. Sarvam is backed by Bessemer Venture Partners.
 
-Backed by: bessemer-venture-partners
+**Areas:** Company · Artificial Intelligence · Machine Learning · Speech-to-Text · Text-to-Speech · Translation · LLM · Document Intelligence · Indian Languages · Voice · Real-Time
+
+## Sarvam on APIs.io
+
+Everything profiled for Sarvam is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/sarvam/](https://apis.io/providers/sarvam/)** — or go straight to one of the APIs or properties below.
+
+### APIs (8)
+
+- [Sarvam Pronunciation Dictionary API](https://apis.io/apis/sarvam/sarvam-pronunciationdictionary-api/) — The pronunciationDictionary API from Sarvam — 2 operation(s) for pronunciationdictionary.
+- [Sarvam Speech To Text Job API](https://apis.io/apis/sarvam/sarvam-speechtotextjob-api/) — The speechToTextJob API from Sarvam — 5 operation(s) for speechtotextjob.
+- [Sarvam Speech To Text Translate Job API](https://apis.io/apis/sarvam/sarvam-speechtotexttranslatejob-api/) — The speechToTextTranslateJob API from Sarvam — 5 operation(s) for speechtotexttranslatejob.
+- [Sarvam Text API](https://apis.io/apis/sarvam/sarvam-text-api/) — The text API from Sarvam — 3 operation(s) for text.
+- [Sarvam Chat Completions API](https://apis.io/apis/sarvam/sarvam-chat-completions-api/) — The Chat Completions API from Sarvam — 1 operation(s) for chat completions.
+- [Sarvam Document Intelligence API](https://apis.io/apis/sarvam/sarvam-document-intelligence-api/) — The Document Intelligence API from Sarvam — 5 operation(s) for document intelligence.
+- [Sarvam Speech To Text API](https://apis.io/apis/sarvam/sarvam-speech-to-text-api/) — The Speech To Text API from Sarvam — 2 operation(s) for speech to text.
+- [Sarvam Text To Speech API](https://apis.io/apis/sarvam/sarvam-text-to-speech-api/) — The Text To Speech API from Sarvam — 2 operation(s) for text to speech.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Endpoints](https://apis.io/asyncapis/sarvam/sarvam-streaming-asyncapi/)
+
+#### Event channels (3)
+
+Individual events and webhooks the provider emits.
+
+- [/speech-to-text-translate/ws](https://apis.io/channels/sarvam/speech-to-text-translate-ws/)
+- [/speech-to-text/ws](https://apis.io/channels/sarvam/speech-to-text-ws/)
+- [/text-to-speech/ws](https://apis.io/channels/sarvam/text-to-speech-ws/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [sarvam-docs](https://apis.io/servers/sarvam/sarvam-docs/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Sarvam Agentic Access](https://apis.io/agentic-access/sarvam/sarvam-agentic-access/)
+
+#### Collections (8)
+
+Postman and Open Collection request collections.
+
+- [Endpoints chat API](https://apis.io/collections/sarvam/open-sarvam-chat-api/)
+- [Endpoints chat documentIntelligence API](https://apis.io/collections/sarvam/open-sarvam-documentintelligence-api/)
+- [Endpoints chat pronunciationDictionary API](https://apis.io/collections/sarvam/open-sarvam-pronunciationdictionary-api/)
+- [Endpoints chat speechToText API](https://apis.io/collections/sarvam/open-sarvam-speechtotext-api/)
+- [Endpoints chat speechToTextJob API](https://apis.io/collections/sarvam/open-sarvam-speechtotextjob-api/)
+- [Endpoints chat speechToTextTranslateJob API](https://apis.io/collections/sarvam/open-sarvam-speechtotexttranslatejob-api/)
+- [Endpoints chat text API](https://apis.io/collections/sarvam/open-sarvam-text-api/)
+- [Endpoints chat textToSpeech API](https://apis.io/collections/sarvam/open-sarvam-texttospeech-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Sarvam Openapi Overlay](https://apis.io/overlays/sarvam/sarvam-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Sarvam Authentication](https://apis.io/security/sarvam/sarvam-authentication/)
+- [Sarvam Domain Security](https://apis.io/security/sarvam/sarvam-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Sarvam Plans Pricing](https://apis.io/plans/sarvam/sarvam-plans-pricing/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.sarvam.ai/)
+- [Documentation](https://docs.sarvam.ai)
+- [Getting started](https://docs.sarvam.ai/api/getting-started/quickstart)
+- [API reference](https://docs.sarvam.ai/api-reference/introduction)
+- [Pricing](https://docs.sarvam.ai/api/getting-started/pricing)
+- [Sign up](https://dashboard.sarvam.ai)
+- [Support](https://docs.sarvam.ai/api/getting-started/help)
+- [Blog](https://www.sarvam.ai/blogs)
+- [Terms of service](https://www.sarvam.ai/terms-of-service)
+- [Privacy policy](https://www.sarvam.ai/privacy-policy)
+- [GitHub](https://github.com/sarvamai)
+- [Status](https://status.sarvam.ai)
+
+## API Evangelist rating
+
+**Kin Score 53.2** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.7 |
+| Contract quality | 56.5 |
+| Contract governance | 4.5 |
+| Operational transparency | 42.1 |
+| Developer ergonomics | 66.1 |
+| Access clarity | 63.2 |
+
+**Agent readiness 30.0** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 22.7** — AI & Biometrics
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/sarvam/](https://apis.io/providers/sarvam/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Sarvam: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/sarvam/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
